@@ -1,0 +1,29 @@
+{
+  "name": "acute",
+  "def": [
+    {
+      "definition": "Cấp tính",
+      "definition_en": "having or demonstrating ability to recognize or draw fine distinctions",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "severe"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Health"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'kjut"
+  ],
+  "frequency": 3.43,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Measles is an acute viral infectious disease"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "name": "envisage",
+  "def": [
+    {
+      "definition": "Tưởng tượng, dự tính",
+      "definition_en": "form a mental image of something that is not present or that is not the case",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "visualize"
+  ],
+  "antonyms": [
+  ],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ɛn'vɪzɪdʒ"
+  ],
+  "frequency": 2.08,
+  "audio": "",
+  "image": "",
+  "example": [
+    "he knew what he liked but had difficulty envisaging it"
+  ]
+}

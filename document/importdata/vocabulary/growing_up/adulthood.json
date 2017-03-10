@@ -1,0 +1,29 @@
+{
+  "name": "adulthood",
+  "def": [
+    {
+      "definition": "tuổi trưởng thành",
+      "definition_en": "the period of time in your life after your physical growth has stopped and you are fully developed",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "maturity"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Growing up"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ˈadʌlthʊd"
+  ],
+  "frequency": 2.81,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Some mothers are afraid of losing their children when they reach adulthood"
+  ]
+}

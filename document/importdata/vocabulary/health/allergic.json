@@ -1,0 +1,31 @@
+{
+  "name": "allergic",
+  "def": [
+    {
+      "definition": "dị ứng",
+      "definition_en": "characterized by or caused by allergy",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "sensitised"
+  ],
+  "antonyms": [
+    ""
+  ],
+  "topics": [
+    "Health"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'lɜrdʒɪk"
+  ],
+  "frequency": 3.9,
+  "audio": "",
+  "image": "",
+  "example": [
+    "I like cats, but unluckily I'm allergic to them"
+  ]
+}

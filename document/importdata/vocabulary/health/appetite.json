@@ -1,0 +1,29 @@
+{
+  "name": "appetite",
+  "def": [
+    {
+      "definition": "sự thèm ăn",
+      "definition_en": "a feeling of craving something",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+  ],
+  "antonyms": [
+  ],
+  "topics": [
+    "Health"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "æpɪ,taɪt"
+  ],
+  "frequency": 3.98,
+  "audio": "",
+  "image": "",
+  "example": [
+    "An appetite for life"
+  ]
+}

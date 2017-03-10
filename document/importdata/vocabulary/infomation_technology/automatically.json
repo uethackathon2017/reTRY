@@ -1,0 +1,31 @@
+{
+  "name": "automatically",
+  "def": [
+    {
+      "definition": "Một cách tự động",
+      "definition_en": "in a mechanical manner; by a mechanism",
+      "pos": "adv"
+    }
+  ],
+  "synonyms": [
+    "mechanically"
+  ],
+  "antonyms": [
+    "manually"
+  ],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ˌɔːtəˈmatɪkli"
+  ],
+  "frequency": 4.63,
+  "audio": "",
+  "image": "",
+  "example": [
+    "He answered automatically"
+  ]
+}
