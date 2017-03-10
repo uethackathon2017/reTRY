@@ -15,11 +15,12 @@ Resource doc: /resource-doc
 
 Detailed guides in /resource-doc
 
-## Technology & Library
+## Technology
+
+React native
 
 
 ## Requirement system
-
 
 
 ## Development
