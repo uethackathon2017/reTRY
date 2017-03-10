@@ -1,0 +1,48 @@
+{
+  "name": "reTRYapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "postinstall": "remotedev-debugger",
+    "start": "node_modules/react-native/packager/packager.sh",
+    "eslint": "eslint"
+  },
+  "dependencies": {
+    "@remobile/react-native-cache-image": "^1.0.3",
+    "adm-zip": "^0.4.7",
+    "native-base": "^2.0.10",
+    "plist": "^2.0.1",
+    "react": "15.4.2",
+    "react-native": "0.41.2",
+    "react-native-cacheable-image": "^1.5.1",
+    "react-native-carousel": "^0.10.0",
+    "react-native-fbsdk": "^0.5.0",
+    "react-native-modalbox": "^1.3.9",
+    "react-native-navigation-redux-helpers": "^0.5.0",
+    "react-native-percentage-circle": "^1.0.6",
+    "react-native-popup-dialog": "^0.6.22",
+    "react-native-progress": "^3.2.0",
+    "react-redux": "^5.0.3",
+    "redux": "^3.6.0",
+    "redux-persist": "^4.4.2",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
+    "remote-redux-devtools": "^0.5.7",
+    "remote-redux-devtools-on-debugger": "^0.7.0",
+    "socket.io-client": "^1.7.3",
+    "xcode": "^0.9.1"
+  },
+  "devDependencies": {
+    "babel-jest": "19.0.0",
+    "babel-preset-react-native": "1.9.1",
+    "jest": "19.0.2",
+    "react-test-renderer": "15.4.2",
+    "tslint": "^4.5.1",
+    "typescript": "^2.2.1",
+    "typings": "^2.1.0",
+    "vscode": "^1.0.5"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}

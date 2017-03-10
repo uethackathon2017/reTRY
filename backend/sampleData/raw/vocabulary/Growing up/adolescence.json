@@ -1,0 +1,27 @@
+{
+  "name": "adolescence",
+  "def": [
+    {
+      "definition": "Thời thanh thiếu niên",
+      "definition_en": "the time period between the beginning of puberty and adulthood",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Growing up"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    ",ædəʊ'lesns"
+  ],
+  "frequency": 3.14,
+  "audio": "",
+  "image": "",
+  "example": [
+    "They spent their adolescence hanging out together"
+  ]
+}

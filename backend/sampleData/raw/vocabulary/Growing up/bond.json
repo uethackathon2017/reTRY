@@ -1,0 +1,29 @@
+{
+  "name": "bond",
+  "def": [
+    {
+      "definition": "mối liên hệ",
+      "definition_en": "",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "connetion"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Growing up"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "bɒnd"
+  ],
+  "frequency": 4.27,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The bond between a mother and her child is very special"
+  ]
+}
