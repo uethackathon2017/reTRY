@@ -8,6 +8,7 @@
     "eslint": "eslint"
   },
   "dependencies": {
+    "@remobile/react-native-cache-image": "^1.0.3",
     "adm-zip": "^0.4.7",
     "native-base": "^2.0.10",
     "plist": "^2.0.1",
