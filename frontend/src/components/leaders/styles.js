@@ -15,16 +15,17 @@ const userPositionContainer = {
 export default StyleSheet.create({
     container: {
         flex: 1,
+        width: null,
+        height: null,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: fromTheme.INDIGO
     },
 
     titleRow: {
         width: screenWidth,
         paddingTop: 10,
         paddingBottom: 10,
-        backgroundColor: fromTheme.BLACK_CHERRY,
+        backgroundColor: fromTheme.INDIGO,
     },
 
     title: {
@@ -37,7 +38,6 @@ export default StyleSheet.create({
     statusBarBackground: {
         width: screenWidth,
         height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: fromTheme.BLACK_CHERRY,
     },
 
     userAvatar: {
@@ -89,13 +89,13 @@ export default StyleSheet.create({
     userLevel: {
         flex: 0.2,
         alignSelf: 'center',
-        color: fromTheme.RAISIN,
+        color: 'white',
     },
 
     user: {
         flex: 1,
         width: screenWidth,
-        borderColor: 'grey',
+        borderColor: 'white',
         borderTopWidth: 0.5,
         flexDirection: 'row',
         paddingTop: 20,

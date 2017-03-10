@@ -32,7 +32,7 @@ let QuizSchema = new mongoose.Schema({
     }],
     type: {
         type: String,
-        enum: ['vn_en', 'en_vi', 'missingChar', 'missingWord', 'listen', 'image']
+        enum: ['vi_en', 'en_vi', 'missingChar', 'missingWord', 'listen', 'image']
     },
     duration: Number
 }, {

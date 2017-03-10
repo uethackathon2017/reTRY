@@ -3,28 +3,29 @@
  */
 
 
-import React, { Component } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Platform } from 'react-native';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {View, Text, StyleSheet, ActivityIndicator, Platform, Image} from 'react-native';
+import {connect} from 'react-redux';
 import MinimalButton from '../button/minimalButton';
 import styles from './styles';
 import *as Progress from 'react-native-progress';
 import theme, * as fromTheme from '../../theme';
-import { navPopRoute } from '../../actions/rootNavigation';
-import { Container } from 'native-base';
+import {navPopRoute} from '../../actions/rootNavigation';
+import {Container} from 'native-base';
 import FoundPopup from './FoundPopup';
-import { startFinding, cancelFinding } from '../../actions/games';
+import {startFinding, cancelFinding} from '../../actions/games';
 
 const platform = Platform.OS;
+const background = require('../../../assets/images/background/item-13-bg.jpg');
 
 const getSpinner = () => {
     if (platform === 'ios') {
-        return (<Progress.Circle size={80} indeterminate={true} color={fromTheme.DARK_TEXT} />);
+        return (<Progress.Circle size={80} indeterminate={true} color={fromTheme.DARK_TEXT}/>);
     } else {
         return (<ActivityIndicator
-            animating={true}
-            color={fromTheme.DARK_TEXT}
-            size="large" />
+                animating={true}
+                color={fromTheme.DARK_TEXT}
+                size="large"/>
         );
     }
 };
@@ -38,20 +39,20 @@ class FindScreen extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Container style={StyleSheet.flatten(styles.container)}>
+                <Image style={StyleSheet.flatten(styles.container)} source={background}>
                     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                         {getSpinner()}
                         <Text style={styles.finding}>Finding player...</Text>
                     </View>
                     <View style={styles.cancelBtn}>
                         <MinimalButton text="Cancel"
-                            onPress={() => {
+                                       onPress={() => {
                                 this.props.navPopRoute();
                                 this.props.cancelFinding();
                             }}
                         />
                     </View>
-                </Container>
+                </Image>
                 <FoundPopup />
             </View>
         )

@@ -5,7 +5,7 @@ const initialState = {
     index: 0,
     routes: [
         {
-            key: 'gameResult',
+            key: 'login',
             index: 0,
         },
     ],
