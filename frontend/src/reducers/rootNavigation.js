@@ -1,11 +1,11 @@
-import {cardStackReducer} from 'react-native-navigation-redux-helpers';
+import { cardStackReducer } from 'react-native-navigation-redux-helpers';
 
 const initialState = {
     key: 'root',
     index: 0,
     routes: [
         {
-            key: 'login',
+            key: 'gameResult',
             index: 0,
         },
     ],
