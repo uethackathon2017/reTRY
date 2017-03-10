@@ -15,3 +15,12 @@ export const find = () => (dispatch, getState) => {
 
 
 };
+
+export const profile = (accessToken) => {
+    return fetch(config.apiUrl + '/users/getUserData', {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        }
+    })
+};

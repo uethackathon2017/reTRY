@@ -1,4 +1,5 @@
 import * as types from '../actions/types';
+import {REHYDRATE} from 'redux-persist/constants'
 
 const initialState = {
     status: types.LOGIN_NONE,
@@ -9,6 +10,12 @@ const initialState = {
 
 const login = (state = initialState, action) => {
     switch (action.type) {
+        case REHYDRATE:
+            const incoming = action.payload.login;
+            console.log(incoming);
+            if (incoming && incoming.accessToken != null) return incoming;
+            return state;
+
         case types.FBLOGIN_REQUEST:
         case types.FBLOGIN_SUCCESS:
         case types.FBLOGIN_FAIlURE:
