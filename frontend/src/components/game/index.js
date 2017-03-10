@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {Container} from 'native-base';
+import React, { Component } from 'react';
+import { View, StyleSheet, Text } from 'react-native';
+import { Container } from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import PercentageCircle from 'react-native-percentage-circle';
 
@@ -22,8 +22,8 @@ class Game extends Component {
                     </View>
 
                     <View style={{
-                            marginTop: fromTheme.STATUSBAR_HEIGHT - 15
-                        }}>
+                        marginTop: fromTheme.STATUSBAR_HEIGHT - 15
+                    }}>
                         <PercentageCircle
                             radius={20}
                             percent={50}
@@ -31,7 +31,6 @@ class Game extends Component {
                             bgcolor={fromTheme.ULTRAMARINE}
                             innerColor={fromTheme.ULTRAMARINE}
                             borderWidth={4}
-
                         >
                             <Text style={styles.countDownText}>5</Text>
                         </PercentageCircle>
