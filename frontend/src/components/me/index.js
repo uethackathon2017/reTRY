@@ -4,7 +4,7 @@ import styles from './styles';
 import {Container} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
-import WordList from './WordList';
+import AchievementList from './AchievementList';
 
 const screenWidth = fromTheme.screenWidth;
 
@@ -33,7 +33,7 @@ class Me extends Component {
                         </View>
                         <Text style={styles.userScore}>90 điểm nữa để lên cấp</Text>
                     </View>
-                    <WordList/>
+                    <AchievementList/>
                 </ScrollView>
             </Container>
         )

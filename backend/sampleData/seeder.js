@@ -79,7 +79,7 @@ mongoInit(err => {
           targets: result[idx].targets,
           complexity: 1/result[idx].frequency,
           topics: result[idx].topics,
-          relatedWords: [ result[idx].name, result[idx + 1].name, result[idx + 2].name, result[idx + 3].name ],
+          relatedWords: [ result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id ],
           type: 'vn_en',
           duration: 10
         };

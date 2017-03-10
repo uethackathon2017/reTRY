@@ -1,0 +1,29 @@
+{
+  "name": "ability",
+  "def": [
+    {
+      "definition": "Khả năng",
+      "definition_en": "possession of the qualities (especially mental qualities) required to do something or get something done",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "capability"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'bɪlɪti"
+  ],
+  "frequency": 4.31,
+  "audio": "",
+  "image": "",
+  "example": [
+    "With his exceptional ability, Peter won all the competitions that he took part in."
+  ]
+}

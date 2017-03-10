@@ -2,6 +2,7 @@ import * as actionTypes from './types';
 import { connect, getSocket } from '../api/socket';
 import config from '../config';
 import { getAccessToken } from '../reducers';
+import {navReplaceAt} from './rootNavigation';
 
 export const startFinding = () => (dispatch, getState) => {
     dispatch({
@@ -15,7 +16,6 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
     const socket = getSocket();
-
 
     let countDown = config.gameStartCountDown;
 
@@ -32,8 +32,19 @@ export const startFinding = () => (dispatch, getState) => {
             }
             countDown--;
         }, 1000)
-
     });
+
+    socket.on('game data', (data) => {
+
+        console.log(data);
+
+        dispatch({
+            type: actionTypes.GET_GAME_SUCCESS,
+            data: data
+        });
+
+        dispatch(navReplaceAt('newWords'));
+    })
 };
 
 export const cancelFinding = () => (dispatch) => {
@@ -43,4 +54,6 @@ export const cancelFinding = () => (dispatch) => {
         type: actionTypes.FIND_CANCEL
     });
 };
+
+
 
