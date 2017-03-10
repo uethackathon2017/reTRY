@@ -1,0 +1,29 @@
+{
+  "name": "speculate",
+  "def": [
+    {
+      "definition": "Phỏng đoán",
+      "definition_en": "This finance software",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+  ],
+  "antonyms": [
+  ],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'peɪtənt"
+  ],
+  "frequency": 3.35,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The scientist was granted a patent on his new invention"
+  ]
+}

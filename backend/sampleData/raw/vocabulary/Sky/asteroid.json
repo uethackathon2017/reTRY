@@ -1,0 +1,29 @@
+{
+  "name": "asteroid",
+  "def": [
+    {
+      "definition": "Hành tinh",
+      "definition_en": "shaped like a star",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "star"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'æstə,rɔɪd"
+  ],
+  "frequency": 3.34,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Asteroid is a minor planet that moves around the sun"
+  ]
+}

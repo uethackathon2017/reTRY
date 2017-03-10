@@ -1,0 +1,30 @@
+{
+  "name": "compact",
+  "def": [
+    {
+      "definition": "Nén",
+      "definition_en": "briefly giving the gist of something",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "summary"
+  ],
+  "antonyms": [
+  ],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'kɑmpækt"
+  ],
+  "frequency": 3.18,
+  "audio": "",
+  "image": "",
+  "example": [
+    "A compact style is brief and pithy"
+  ]
+}

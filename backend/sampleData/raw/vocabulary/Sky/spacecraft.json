@@ -1,0 +1,29 @@
+{
+  "name": "spacecraft",
+  "def": [
+    {
+      "definition": "tàu vũ trụ",
+      "definition_en": "a craft capable of traveling in outer space; technically, a satellite around the sun",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "spaceship"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'speɪs,kræft"
+  ],
+  "frequency": 3.28,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The spacecraft lands successfully on Mars"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "cosmos",
+  "def": [
+    {
+      "definition": "Vũ trụ",
+      "definition_en": "everything that exists anywhere",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "universe"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'kɑzməs"
+  ],
+  "frequency": 3.5,
+  "audio": "",
+  "image": "",
+  "example": [
+    "There are plenty of planets in the cosmos besides Earth"
+  ]
+}
