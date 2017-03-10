@@ -102,9 +102,9 @@ mongoInit(err => {
           },
           answers: [
             { content: result[idx].name, pronounce: result[idx].pronunciation, pos: result[idx].def[0].pos, audio: result[idx].audio, image: result[0].image },
-            { content: result[idx].name, pronounce: result[idx + 1].pronunciation, pos: result[idx + 1].def[0].pos, audio: result[idx + 1].audio, image: result[idx + 1].image },
-            { content: result[idx].name, pronounce: result[idx + 2].pronunciation, pos: result[idx + 2].def[0].pos, audio: result[idx + 2].audio, image: result[idx + 2].image },
-            { content: result[idx].name, pronounce: result[idx + 3].pronunciation, pos: result[idx + 3].def[0].pos, audio: result[idx + 3].audio, image: result[idx + 3].image }
+            { content: result[idx + 1].name, pronounce: result[idx + 1].pronunciation, pos: result[idx + 1].def[0].pos, audio: result[idx + 1].audio, image: result[idx + 1].image },
+            { content: result[idx + 2].name, pronounce: result[idx + 2].pronunciation, pos: result[idx + 2].def[0].pos, audio: result[idx + 2].audio, image: result[idx + 2].image },
+            { content: result[idx + 3].name, pronounce: result[idx + 3].pronunciation, pos: result[idx + 3].def[0].pos, audio: result[idx + 3].audio, image: result[idx + 3].image }
           ],
           key: 0,
           targets: result[idx].targets,
