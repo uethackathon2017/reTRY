@@ -9,6 +9,7 @@ const byId = (state = {}, action) => {
 
             action.data.quizzes.map((quiz) => {
                 quiz.relatedWords.map((word) => {
+                    console.log(word);
                     if (!state[word._id]) {
                         newState[word._id] = word;
                     }
