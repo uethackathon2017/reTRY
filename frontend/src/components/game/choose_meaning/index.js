@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {Card} from 'native-base';
 import styles, * as fromStyles from './styles';
 import {getCurrentGame} from '../../../reducers';
@@ -21,7 +21,7 @@ class ChooseMeaning extends Component {
 
         const {game} = this.props;
 
-        if (game.type ==='vi_en') {
+        if (game.type === 'vi_en') {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
@@ -30,9 +30,17 @@ class ChooseMeaning extends Component {
                     </View>
                     <View style={styles.answersContainer}>
                         {game.answers.map((answer, index) => {
-                            return  <AnswerCard
-                                word={answer.content}
-                            />
+                            return (
+                                <TouchableHighlight
+                                    onPress={() => {
+                                        dispatch
+                                    }}
+                                >
+                                    <AnswerCard
+                                        word={answer.content}
+                                    />
+                                </TouchableHighlight>
+                            )
                         })}
                     </View>
                 </View>
