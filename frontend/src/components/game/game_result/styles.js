@@ -11,6 +11,10 @@ const userAvatar = {
     alignSelf: 'center',
 }
 
+const button = {
+    flex: 0.3
+}
+
 const scoreValue = {
     fontSize: fromTheme.H3_SIZE,
     alignSelf: 'center',
@@ -37,6 +41,7 @@ export default StyleSheet.create({
 
     , container: {
         flex: 1,
+        flexDirection: 'column',
         backgroundColor: fromTheme.ULTRAMARINE,
     },
     statusBarBackground: {
@@ -52,7 +57,7 @@ export default StyleSheet.create({
         backgroundColor: fromTheme.INDIGO,
     },
     playersContainer: {
-        flex: 1,
+        // flex: 1,
         flexDirection: 'row'
     },
 
@@ -109,5 +114,27 @@ export default StyleSheet.create({
         ...level,
         alignSelf: 'flex-start',
         marginLeft: 5
+    },
+
+    levelupContainer: {
+        alignSelf: 'center',
+        marginTop: 20
+    },
+    listButtonContainer: {
+        flexDirection: 'row',
+        marginTop: 20
+    },
+
+    button: {
+        ...button,
+        marginLeft: 20,
+        alignSelf: 'center'
+    },
+    buttonPlay: {
+        ...button,
+        // backgroundColor: fromTheme.YELLOW
+    },
+    buttonText: {
+        color: 'white'
     }
 });
