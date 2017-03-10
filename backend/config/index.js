@@ -15,7 +15,7 @@ routeFiles.forEach((file) => {
 module.exports = {
   jwt: {
     secret: 'thisisasecretkey.pleasedonotusesuchasimplekeylikethisinproduction',
-    accessTokenExpiration: '1h',
+    accessTokenExpiration: '1d',
     refreshTokenExpiration: '7d'
   },
   logOptions: {
