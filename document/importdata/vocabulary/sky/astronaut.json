@@ -1,0 +1,29 @@
+{
+  "name": "astronaut",
+  "def": [
+    {
+      "definition": "Phi hành gia",
+      "definition_en": "a person trained to travel in a spacecraft",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "space explore"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'æstrə,nɔt"
+  ],
+  "frequency": 3.59,
+  "audio": "",
+  "image": "",
+  "example": [
+    "the Russians called their astronauts cosmonauts"
+  ]
+}
