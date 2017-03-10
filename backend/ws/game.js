@@ -128,11 +128,21 @@ module.exports = (game) => {
                             setTimeout(() => {
 
                                 Quiz.find({})
-                                    .limit(10)
                                     .populate('relatedWords')
+                                    .lean()
                                     .then(quizzes => {
+                                        let randomTenQuizzes = [];
+                                        let pushedQuizzes = [];
+                                        for (let idx = 0; idx < 10; idx++) {
+                                            let randomIdx = Math.floor(Math.random() * quizzes.length);
+                                            while (pushedQuizzes.indexOf(randomIdx) !== -1) {
+                                                randomIdx = Math.floor(Math.random() * quizzes.length);
+                                            }
+                                            pushedQuizzes.push(randomIdx);
+                                            randomTenQuizzes.push(quizzes[randomIdx]);
+                                        }
                                         game.to(room).emit('game data', {
-                                            quizzes: quizzes
+                                            quizzes: randomTenQuizzes
                                         });
 
                                         gameControl(game, socket, room, quizzes);
