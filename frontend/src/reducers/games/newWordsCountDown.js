@@ -1,6 +1,9 @@
 import * as actionTypes from '../../actions/types';
+import config from '../../config';
 
-const newWordsCountdown = (state = 10, action) => {
+const initialCountDown = config.newWordsCountDown + 1;
+
+const newWordsCountdown = (state = initialCountDown, action) => {
     switch (action.type) {
         case actionTypes.NEW_WORDS_COUNT_DOWN:
             return state - 1;
