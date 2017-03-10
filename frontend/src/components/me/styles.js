@@ -79,17 +79,17 @@ export default StyleSheet.create({
         textAlign: 'center',
     },
 
-    wordList: {
+    achievementList: {
         width: screenWidth,
     },
 
-    wordListTitle: {
+    achievementListTitle: {
         color: fromTheme.LINEN,
         fontWeight: 'bold',
         fontSize: 20,
     },
 
-    wordListTitleContainer: {
+    achievementListTitleContainer: {
         justifyContent: 'center',
         alignItems: 'center',
         width: screenWidth,
@@ -99,10 +99,15 @@ export default StyleSheet.create({
         marginBottom: 10,
     },
 
-    wordCard: {
+    achievementCard: {
         width: screenWidth - 32,
         marginLeft: 16,
         marginRight: 16,
         backgroundColor: 'white',
-    }
+    },
+
+    achievementTitle: {
+        color: fromTheme.BLACK_CHERRY,
+        fontWeight: 'bold',
+    },
 });

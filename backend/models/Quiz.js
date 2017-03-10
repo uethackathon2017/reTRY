@@ -23,7 +23,7 @@ let QuizSchema = new mongoose.Schema({
   targets: [ String ],
   complexity: Number,
   topics: [ mongoose.Schema.Types.ObjectId ],
-  relatedWords: [ String ],
+  relatedWords: [ mongoose.Schema.Types.ObjectId ],
   type: {
     type: String,
     enum: [ 'vn_en', 'en_vi', 'missingChar', 'missingWord', 'listen', 'image' ]

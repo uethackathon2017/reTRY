@@ -1,0 +1,28 @@
+export const PUSH_ROUTE = 'PUSH_ROUTE';
+export const POP_ROUTE = 'POP_ROUTE';
+
+export const FBLOGIN_REQUEST = 'FBLOGIN_REQUEST';
+export const FBLOGIN_SUCCESS = 'FBLOGIN_SUCCESS';
+export const FBLOGIN_FAIlURE = 'FBLOGIN_FAILURE';
+export const FBLOGIN_CANCEL = 'FBLOGIN_CANCEL';
+export const APILOGIN_REQUEST = 'APILOGIN_REQUEST';
+export const APILOGIN_SUCCESS = 'APILOGIN_SUCCESS';
+export const APILOGIN_FAIlURE = 'APILOGIN_FAILURE';
+export const LOGIN_NONE = 'LOGIN_NONE';
+
+export const SHOW_LOADING_POPUP = 'SHOW_LOADING_POPUP';
+export const HIDE_LOADING_POPUP = 'HIDE_LOADING_POPUP';
+
+export const FIND_START = 'FIND_START';
+export const FIND_CANCEL = 'FIND_CANCEL';
+export const FIND_COUNT_DOWN = 'FIND_COUNT_DOWN';
+export const FIND_SUCCESS = 'FIND_SUCCESS';
+export const FIND_FAILURE = 'FIND_FAILURE';
+export const FIND_STOP = 'FIND_STOP';
+
+export const ANSWER = 'ANSWER';
+export const COUNT_DOWN = 'COUNT_DOWN';
+
+export const GET_GAMES_REQUEST = 'GET_GAMES_REQUEST';
+export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS';
+export const GET_GAME_FAILURE = 'GET_GAME_FAILURE';

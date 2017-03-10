@@ -1,0 +1,29 @@
+{
+  "name": "avoid",
+  "def": [
+    {
+      "definition": "tránh xa",
+      "definition_en": "keep away from or stop oneself from doing (smt)",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "stay away from"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Health"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'vɔɪd"
+  ],
+  "frequency": 4.5,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Her former friends now avoid her"
+  ]
+}

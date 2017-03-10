@@ -1,7 +1,7 @@
 'use strict';
 
 let redisClient = require('../utils/redis');
-const {User} = require('../models');
+const {User, Quiz} = require('../models');
 const cluster = require('cluster');
 const async = require('async');
 const WORKER_ID = 1;
@@ -85,9 +85,14 @@ module.exports = (game) => {
                             });
 
                             setTimeout(() => {
-                                game.to(room).emit('game data', {
-                                    test: "test"
-                                });
+
+                                Quiz.find({})
+                                    .limit(10)
+                                    .then(quizzes => {
+                                        game.to(room).emit('game data', {
+                                            quizzes: quizzes
+                                        });
+                                    });
                             }, 5000);
                         }
                     );

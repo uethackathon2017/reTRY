@@ -1,0 +1,29 @@
+{
+  "name": "asset",
+  "def": [
+    {
+      "definition": "tài sản",
+      "definition_en": "a useful or valuable quality",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "property"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Health"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'æsɛt"
+  ],
+  "frequency": 3.49,
+  "audio": "",
+  "image": "",
+  "example": [
+    "the school is an asset to the community"
+  ]
+}

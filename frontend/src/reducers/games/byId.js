@@ -3,9 +3,13 @@ import * as actionTypes from '../../actions/types';
 const byId = (state= {}, action) => {
     switch (action.type) {
         case actionTypes.GET_GAME_SUCCESS:
-            return action.response.games.map((game) => {
-                return game.id;
+
+            let quizzes = {};
+
+            action.data.quizzes.map((quiz) => {
+                quizzes[quiz._id] = quiz;
             });
+            return quizzes;
         case actionTypes.GET_GAME_FAILURE:
         case actionTypes.GET_GAMES_REQUEST:
             return null;
