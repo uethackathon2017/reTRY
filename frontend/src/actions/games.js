@@ -80,12 +80,19 @@ export const startFinding = () => (dispatch, getState) => {
             }
         }
     })
+
 };
 
-export const answer = () => (dispatch) => {
+export const answer = (quizId, answerIndex) => (dispatch, getState) => {
     const socket = getSocket();
 
+    socket.emit('answer quiz', {
+        quizId,
+        answerIndex
+    })
+
 };
+
 export const cancelFinding = () => (dispatch) => {
     const socket = getSocket();
     socket.disconnect();

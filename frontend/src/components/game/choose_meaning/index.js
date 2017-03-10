@@ -4,24 +4,38 @@ import {Card} from 'native-base';
 import styles, * as fromStyles from './styles';
 import {getCurrentGame} from '../../../reducers';
 import {connect} from 'react-redux';
+import {answer} from '../../../actions/games';
 
-const ViEnAnswerCard = ({answer}) => (
+const ViEnAnswerCard = ({answer, answerFunction, index, quizId}) => (
     <Card style={StyleSheet.flatten(styles.answerCard)}
           key={answer._id.toString()}
     >
-        <Text style={styles.answer}>
-            {answer.content + " /" +answer.pronounce[0]+ "/"}
-        </Text>
+        <TouchableHighlight
+            onPress={() => {
+            answerFunction(quizId, index);
+         }}
+        >
+            <Text style={styles.answer}>
+                {answer.content + " /" + answer.pronounce[0] + "/"}
+            </Text>
+        </TouchableHighlight>
     </Card>
+
 );
 
-const EnViAnswerCard = ({answer}) => (
+const EnViAnswerCard = ({answer, answerFunction, index, quizId}) => (
     <Card style={StyleSheet.flatten(styles.answerCard)}
           key={answer._id.toString()}
     >
-        <Text style={styles.answer}>
-            {answer.content + " /" +answer.pronounce[0]+ "/"}
-        </Text>
+        <TouchableHighlight
+            onPress={() => {
+            answerFunction(quizId, index);
+         }}
+        >
+            <Text style={styles.answer}>
+                {answer.content}
+            </Text>
+        </TouchableHighlight>
     </Card>
 );
 
@@ -35,50 +49,48 @@ class ChooseMeaning extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.word}>game.question.content</Text>
-                        <Text style={styles.instruction}>game.question.description_en</Text>
+                        <Text style={styles.word}>{game.question.content}</Text>
+                        <Text style={styles.instruction}>{game.question.description_en}</Text>
                     </View>
                     <View style={styles.answersContainer}>
                         {game.answers.map((answer, index) => {
                             return (
-                                <TouchableHighlight
-                                    onPress={() => {
-                                        dispatch
-                                    }}
-                                >
-                                    <ViEnAnswerCard
-                                        answer={answer}
-                                    />
-                                </TouchableHighlight>
+                                <ViEnAnswerCard
+                                    answer={answer}
+                                    answerFunction={this.props.answer}
+                                    index={index}
+                                    quizId={game._id}
+                                />
                             )
                         })}
                     </View>
                 </View>
             )
-        } else if (game.type === 'en-vi'){
+        } else if (game.type === 'en_vi') {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.word}>game.question.content</Text>
+                        <Text style={styles.word}>game.question.content + " /" + game.question.pronounce[0]+"/"</Text>
                         <Text style={styles.instruction}>game.question.description_en</Text>
                     </View>
                     <View style={styles.answersContainer}>
                         {game.answers.map((answer, index) => {
                             return (
-                                <TouchableHighlight
-                                    onPress={() => {
-                                        dispatch
-                                    }}
-                                >
-                                    <ViEnAnswerCard
-                                        answer={answer}
-                                    />
-                                </TouchableHighlight>
+
+                                <EnViAnswerCard
+                                    answer={answer}
+                                    answerFunction={this.props.answer}
+                                    index={index}
+                                    quizId={game._id}
+                                />
+
                             )
                         })}
                     </View>
                 </View>
             );
+        } else {
+            return (<View/>)
         }
     }
 }
@@ -87,4 +99,6 @@ const mapStateToProps = (state) => ({
     game: getCurrentGame(state)
 });
 
-export default connect(mapStateToProps)(ChooseMeaning);
+export default connect(mapStateToProps, {
+    answer
+})(ChooseMeaning);
