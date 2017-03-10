@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 let QuizSchema = new mongoose.Schema({
     question: {
         content: String,
-        pronounce: String,
+        pronounce: [String],
         pos: String,
         image: String,
         audio: String,
