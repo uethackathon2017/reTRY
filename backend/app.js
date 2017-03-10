@@ -83,11 +83,9 @@ if (cluster.isMaster) {
 } else {
   const redisClient = require('./utils/redis');
   const async = require('async');
-  const TASK_SCHEDULED_TIMER = 10000;
+  const TASK_SCHEDULED_TIMER = 500;
   let task = (callback) => {
-    console.log('Worker is matching players...');
     redisClient.smembers('listWaitingPlayers', (err, replies) => {
-      console.log(`${replies.length} player(s) is waiting in queue`);
       if (replies.length > 1) {
         let firstPlayerIdx = randomIndex(0, replies.length - 2);
         let secondPlayerIdx = randomIndex(firstPlayerIdx + 1, replies.length - 1);
