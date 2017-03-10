@@ -1,17 +1,19 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
 import rootNavigation, * as fromRootNavigation from './rootNavigation';
 import login, * as fromLogin from './login';
 import loadingPopup, * as fromLoadingPopup from './loadingPopup';
 import gameNavigation, * as fromGameNavigation from './gameNavigation';
 import games, * as fromGames from './games';
+import profile, * as fromProfile from './profile';
 
 export default combineReducers({
     rootNavigation,
     login,
     loadingPopup,
     games,
-    gameNavigation
+    gameNavigation,
+    profile,
 });
 
 
@@ -106,4 +108,8 @@ export const getCountDown = (state) => {
  */
 export const getAllWords = (state) => {
     return fromGames.getAllWords(state.games);
+};
+
+export const getProfile = (state) => {
+    return fromProfile.getProfile(state.profile);
 };

@@ -5,11 +5,17 @@ import {Container} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
 import AchievementList from './AchievementList';
+import {getProfile} from '../../reducers';
+import {connect} from 'react-redux';
 
 const screenWidth = fromTheme.screenWidth;
 
 class Me extends Component {
     render() {
+        const {
+            profile
+        } = this.props;
+
         return (
             <Container style={StyleSheet.flatten(styles.container)}>
                 <View style={styles.statusBarBackground}/>
@@ -21,7 +27,7 @@ class Me extends Component {
                         <Image style={styles.userAvatar}
                                source={{uri: 'http://graph.facebook.com/100002307472131/picture?type=square'}}/>
                     </View>
-                    <Text style={styles.userName}>Nguyễn Văn Nhật</Text>
+                    <Text style={styles.userName}>{profile.userData.firstName}</Text>
                     <View style={styles.userLevelContainer}>
                         <View style={styles.userLevelProgressContainer}>
                             <Text style={styles.userLevel}>Cấp 10</Text>
@@ -40,4 +46,10 @@ class Me extends Component {
     }
 }
 
-export default Me;
+const mapStateToProps = (state) => {
+    return {
+        profile: getProfile(state),
+    }
+};
+
+export default connect(mapStateToProps)(Me);
