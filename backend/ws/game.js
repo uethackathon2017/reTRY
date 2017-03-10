@@ -129,6 +129,7 @@ module.exports = (game) => {
 
                                 Quiz.find({})
                                     .limit(10)
+                                    .populate('relatedWords')
                                     .then(quizzes => {
                                         game.to(room).emit('game data', {
                                             quizzes: quizzes
