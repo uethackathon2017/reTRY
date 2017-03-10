@@ -20,7 +20,7 @@ export const FIND_SUCCESS = 'FIND_SUCCESS';
 export const FIND_FAILURE = 'FIND_FAILURE';
 export const FIND_STOP = 'FIND_STOP';
 
-export const   = 'NEW_WORDS_COUNT_DOWN';
+export const NEW_WORDS_COUNT_DOWN = 'NEW_WORDS_COUNT_DOWN';
 
 export const ANSWER = 'ANSWER';
 export const COUNT_DOWN = 'COUNT_DOWN'
