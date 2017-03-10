@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
-import { Card, Icon, Container, Button, Content } from 'native-base';
+import { Card, Icon, Container, Button, Content, Footer } from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import styles, * as fromStyles from './styles';
 import PercentageCircle from 'react-native-percentage-circle';
 import * as fromTheme from '../../../theme';
+
+const congrats = require('../../../../assets/images/award/congrats.png');
+
 class GameResult extends Component {
     constructor() {
         super();
@@ -18,6 +21,7 @@ class GameResult extends Component {
                     <View style={styles.titleRow}>
                         <Text style={styles.title}>Y O U  W I N !</Text>
                     </View>
+
                     <View style={styles.playersContainer}>
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
@@ -37,21 +41,26 @@ class GameResult extends Component {
                             <Text style={styles.levelRight}>Level 1</Text>
                         </View>
                     </View>
-                    <View style={styles.levelupContainer}>
-                        <PercentageCircle
-                            radius={50}
-                            percent={50}
-                            color={fromTheme.GREEN}
-                            bgcolor={fromTheme.ULTRAMARINE}
-                            innerColor={fromTheme.ULTRAMARINE}
-                            borderWidth={10}
-                        >
-                            <Text style={styles.title}>Level 2</Text>
-                        </PercentageCircle>
+                    <View style={styles.levelAndAwardContainer}>
+                        <View style={styles.awardContainer}>
+                            <Image source={congrats} style={styles.awardImage} />
+                        </View>
+
+                        <View style={styles.levelupContainer}>
+                            <PercentageCircle
+                                radius={50}
+                                percent={70}
+                                color={fromTheme.GREEN}
+                                bgcolor={fromTheme.ULTRAMARINE}
+                                innerColor={fromTheme.ULTRAMARINE}
+                                borderWidth={10}
+                            >
+                                <Text style={styles.title}>Level 2</Text>
+                            </PercentageCircle>
+                        </View>
                     </View>
+
                     <View style={styles.listButtonContainer}>
-
-
                         <View style={styles.button}>
                             <Button iconLeft primary>
                                 <Icon name='home' />
@@ -71,11 +80,9 @@ class GameResult extends Component {
                                 <Text style={styles.buttonText}>Share</Text>
                             </Button>
                         </View>
-
-
-
-
                     </View>
+
+
                 </ScrollView>
             </Container>
         )

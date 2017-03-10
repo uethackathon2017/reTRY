@@ -5,7 +5,9 @@ import theme, * as fromTheme from '../../theme';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: fromTheme.LIGHT_BLUE,
+        width: null,
+        height: null,
+        // backgroundColor: fromTheme.LIGHT_BLUE,
         justifyContent: 'space-around',
         alignItems: 'center',
     },

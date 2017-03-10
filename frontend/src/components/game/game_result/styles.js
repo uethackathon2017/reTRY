@@ -20,7 +20,7 @@ const scoreValue = {
     alignSelf: 'center',
 }
 const playerName = {
-    fontSize: fromTheme.H4_SIZE,
+    fontSize: fromTheme.H3_SIZE,
     marginTop: 10
 }
 const level = {
@@ -55,6 +55,10 @@ export default StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 10,
         backgroundColor: fromTheme.INDIGO,
+    },
+    awardImage: {
+        marginTop: 10,
+        alignSelf: 'center'
     },
     playersContainer: {
         // flex: 1,
@@ -118,11 +122,12 @@ export default StyleSheet.create({
 
     levelupContainer: {
         alignSelf: 'center',
-        marginTop: 20
+        marginTop: 20,
+        flex: 0.5
     },
     listButtonContainer: {
         flexDirection: 'row',
-        marginTop: 20
+        marginTop: 100
     },
 
     button: {
@@ -136,5 +141,11 @@ export default StyleSheet.create({
     },
     buttonText: {
         color: 'white'
+    },
+    levelAndAwardContainer: {
+        flexDirection: 'row',
+    },
+    awardContainer: {
+        flex: 0.5
     }
 });
