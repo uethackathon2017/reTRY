@@ -21,8 +21,6 @@ export const startFinding = () => (dispatch, getState) => {
 
     socket.on('opponent found', (data) => {
 
-        console.log(data);
-
         setInterval(() => {
             if (countDown > 0) {
                 dispatch({
@@ -36,7 +34,6 @@ export const startFinding = () => (dispatch, getState) => {
 
     socket.on('game data', (data) => {
 
-        console.log(data);
 
         dispatch({
             type: actionTypes.GET_GAME_SUCCESS,

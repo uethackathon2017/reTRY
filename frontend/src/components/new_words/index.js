@@ -1,63 +1,86 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     Text,
     View,
     StyleSheet
 } from 'react-native';
 import Carousel from 'react-native-carousel';
-import { Card, Container } from 'native-base';
+import {Card, Container} from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import styles from './styles';
+import {getAllWords} from '../../reducers';
+import {connect} from 'react-redux';
 
-
-const cardWithNoImage = () => (
-    <Card style={StyleSheet.flatten(styles.card)}>
+const cardWithNoImage = (word) => (
+    <Card
+        style={StyleSheet.flatten(styles.card)}
+        key={word._id}
+    >
         <View style={styles.header}>
-            <Text style={styles.word}>Fuck</Text>
-            <Text style={styles.pronounce}>/fʌk/</Text>
+            <Text style={styles.word}>{word.name}</Text>
+            <Text style={styles.pronounce}>/{word.pronunciation[0]}/</Text>
         </View>
         <View style={styles.body}>
-            <View style={styles.definition}>
-                <Text style={styles.wordType}>- noun -</Text>
-                <Text style={styles.meaning}>Giao cấu, bạn tình. Bla bla bla bla bla bla</Text>
-            </View>
+            {
+                word.def.map((def, index) => {
+                    return (
+                        <View style={styles.definition}
+                              key={word._id+"-"+index}
+                        >
+                            <Text style={styles.wordType}>-- {def.pos} --</Text>
+                            <Text style={styles.meaning}>{def.definition}</Text>
+                        </View>
+                    )
+                })
+            }
         </View>
     </Card>
 );
 
-const cardWithImage = () => (
-    <Card style={StyleSheet.flatten(styles.card)}>
+const cardWithImage = (word) => (
+    <Card style={StyleSheet.flatten(styles.card)}
+          key={word._id}
+    >
         <View style={styles.smallHeader}>
-            <Text style={styles.darkWord}>Fuck</Text>
-            <Text style={styles.darkPronounce}>/fʌk/</Text>
+            <Text style={styles.darkWord}>{word.name}</Text>
+            <Text style={styles.darkPronounce}>/{word.pronunciation[0]}/</Text>
         </View>
         <View style={styles.userAvatarContainer}>
             <CacheableImage
                 style={styles.headerImage}
-                source={{ uri: "http://knowledge-commons.com/static/assets/images/avatar.png" }}
+                source={{ uri: word.image }}
             >
             </CacheableImage>
         </View>
-
         <View style={styles.body}>
-            <View style={styles.definition}>
-                <Text style={styles.wordType}>- noun -</Text>
-                <Text style={styles.meaning}>Sự giao cấu, bạn tình. Bla bla bla bla bla bla</Text>
-            </View>
-            <View style={styles.definition}>
-                <Text style={styles.wordType}>- verb -</Text>
-                <Text style={styles.meaning}>Chịch. Bla bla bla bla bla bla</Text>
-            </View>
-            <View style={styles.definition}>
-                <Text style={styles.wordType}>- verb -</Text>
-                <Text style={styles.meaning}>Chịch. Bla bla bla bla bla bla</Text>
-            </View>
+            {
+                word.def.map((def, index) => {
+                    return (
+                        <View style={styles.definition}
+                              key={word._id+"-"+index}
+                        >
+                            <Text style={styles.wordType}>-- {def.pos} --</Text>
+                            <Text style={styles.meaning}>{def.definition}</Text>
+                        </View>
+                    )
+                })
+            }
         </View>
     </Card>
 );
 
-export default class NewWords extends Component {
+const wordCard = (word) => {
+    if (!word.image || word.image == '') {
+        return cardWithNoImage(word);
+    } else {
+        return cardWithImage(word);
+    }
+};
+
+class NewWords extends Component {
     render() {
+        const {words} = this.props;
+
         return (
             <Container style={StyleSheet.flatten(styles.container)}>
                 <View style={styles.instructionContainer}>
@@ -67,18 +90,12 @@ export default class NewWords extends Component {
                     style={styles.carousel}
                     animate={false} // Enable carousel autoplay
                     delay={500}
-                    indicatorAtBottom={true}
-                    indicatorSize={30}
-                    inactiveIndicatorColor="#999999"
-                    indicatorColor="#FFFFFF"
-                    indicatorOffset={0}
+                    hideIndicators={true}
                 >
 
-                    {cardWithImage()}
-
-                    {cardWithNoImage()}
-
-                    {cardWithImage()}
+                    {words.map((word) => {
+                        return wordCard(word);
+                    })}
 
                 </Carousel>
                 <View style={styles.countDownContainer}>
@@ -88,3 +105,9 @@ export default class NewWords extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    words: getAllWords(state)
+});
+
+export default connect(mapStateToProps)(NewWords);
