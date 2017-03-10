@@ -10,6 +10,25 @@ const errorHandle = (socket, err) => {
     socket.emit('error', err);
 };
 
+
+const gameControl = (game, socket, room, quizzes) => {
+    let currentQuizIndex = 0;
+    let interval = setInterval(() => {
+
+        if (currentQuizIndex === quizzes.length) {
+            game.to(room).emit('result');
+            clearInterval(interval);
+            return;
+        }
+
+        game.to(room).emit('quiz', {
+            quizId: quizzes[currentQuizIndex]._id
+        });
+
+        currentQuizIndex++;
+    }, 11000)
+};
+
 module.exports = (game) => {
     game.on('connection', (socket) => {
         // TODO: Check if one user is online on two different devices
@@ -45,6 +64,9 @@ module.exports = (game) => {
             }
             if (self !== null) {
                 let room = `room:${self}-${opponent}`;
+
+                redisClient.set('room of ' + socket.id.toString(), room);
+
                 socket.join(room, () => {
 
                     let selfObj;
@@ -92,6 +114,8 @@ module.exports = (game) => {
                                         game.to(room).emit('game data', {
                                             quizzes: quizzes
                                         });
+
+                                        gameControl(game, socket, room, quizzes);
                                     });
                             }, 5000);
                         }
@@ -103,6 +127,7 @@ module.exports = (game) => {
         socket.on('disconnect', () => {
             redisClient.srem('listWaitingPlayers', socket.id.toString());
             redisClient.hdel(socket.id.toString(), 'userData');
+            redisClient.del('room of ' + socket.id.toString());
         });
         socket.on('error', () => {
             socket.emit('error', {message: 'Some error occurs'});
