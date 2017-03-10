@@ -67,7 +67,6 @@ $ react-native run-ios
 $ react-native run-android
 
 
-
 ## Members
 
 Tran Minh Tuan - UET - tuantmtb@gmail.com
