@@ -4,6 +4,9 @@ import styles from './styles';
 import {Thumbnail, Card} from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
+import {getLeaders} from '../../reducers';
+import {connect} from 'react-redux';
+import {getLeaders as getLeadersApi} from '../../actions/leaders';
 
 class User extends Component {
     _onPress() {
@@ -44,30 +47,39 @@ class User extends Component {
 }
 
 class UserList extends Component {
+    componentDidMount() {
+        this.props.getLeadersApi();
+    }
+
+    _mapDataToView() {
+        const {
+            leaders
+        } = this.props;
+
+        return leaders.map((user, position) => (<User
+            key={position}
+            position={position + 1}
+            name={user.firstName + " " + user.lastName}
+            avatar={user.pictureURL}
+            level={user.level}
+        />))
+    }
+
     render() {
         return (
             <ScrollView>
-                <User
-                    position={1}
-                    name="Nguyễn Văn Nhật"
-                    avatar="http://graph.facebook.com/100002307472131/picture?type=square"
-                    level="150"
-                />
-                <User
-                    position={2}
-                    name="Trần Minh Tuấn"
-                    avatar="http://graph.facebook.com/100008765054235/picture?type=square"
-                    level="100"
-                />
-                <User
-                    position={3}
-                    name="Trần Việt Thắng"
-                    avatar="http://graph.facebook.com/100002928642615/picture?type=square"
-                    level="50"
-                />
+                {this._mapDataToView()}
             </ScrollView>
         )
     }
 }
 
-export default UserList;
+const mapStateToProps = (state) => {
+    return {
+        leaders: getLeaders(state),
+    }
+};
+
+export default connect(mapStateToProps, {
+    getLeadersApi
+})(UserList);

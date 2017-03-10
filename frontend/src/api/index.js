@@ -24,3 +24,12 @@ export const profile = (accessToken) => {
         }
     })
 };
+
+export const leaders = (accessToken) => {
+    return fetch(config.apiUrl + '/users/getTopTenHighestLevel', {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        }
+    })
+};

@@ -3,6 +3,7 @@ import {Image, StyleSheet, View, Text, Animated, Easing, TouchableWithoutFeedbac
 import {Container} from 'native-base';
 import {connect} from 'react-redux';
 const welcome = require('../../../assets/images/play_and_learn_with_retry.png');
+const background = require('../../../assets/images/background/item-6-bg.jpg');
 import styles from './styles';
 import {loginWithFacebook, cancelLoginWithFacebook} from '../../actions/login';
 import {navReplaceAt} from '../../actions/rootNavigation';
@@ -31,11 +32,11 @@ class LoginPage extends Component {
         }
 
         return (
-            <Container style={StyleSheet.flatten(styles.container)}>
+            <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <Image source={welcome} style={styles.welcome}/>
                 <SpinningButton />
                 <Text style={styles.guide}>Click the logo to login with FACEBOOK</Text>
-            </Container>
+            </Image>
         );
     }
 }
