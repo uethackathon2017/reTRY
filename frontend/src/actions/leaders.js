@@ -1,23 +1,23 @@
 import * as actions from './types';
 import {getAccessToken} from '../reducers';
-import {profile} from '../api';
+import {leaders} from '../api';
 
-export const getProfile = () => (dispatch, getState) => {
+export const getLeaders = () => (dispatch, getState) => {
     dispatch({
-        type: actions.GET_PROFILE_REQUEST,
+        type: actions.GET_LEADERS_REQUEST,
     });
 
-    profile(getAccessToken(getState()))
+    leaders(getAccessToken(getState()))
         .then(response => response.json())
         .then(responseJson => {
             dispatch({
-                type: actions.GET_PROFILE_SUCCESS,
+                type: actions.GET_LEADERS_SUCCESS,
                 response: responseJson,
             });
         })
         .catch(error => {
             dispatch({
-                type: actions.GET_PROFILE_FAILURE,
+                type: actions.GET_LEADERS_FAILURE,
                 error: error,
             });
         });

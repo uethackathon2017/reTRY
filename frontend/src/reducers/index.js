@@ -6,6 +6,7 @@ import loadingPopup, * as fromLoadingPopup from './loadingPopup';
 import gameNavigation, * as fromGameNavigation from './gameNavigation';
 import games, * as fromGames from './games';
 import profile, * as fromProfile from './profile';
+import leaders, * as fromLeaders from './leaders';
 
 export default combineReducers({
     rootNavigation,
@@ -14,6 +15,7 @@ export default combineReducers({
     games,
     gameNavigation,
     profile,
+    leaders,
 });
 
 
@@ -112,4 +114,8 @@ export const getAllWords = (state) => {
 
 export const getProfile = (state) => {
     return fromProfile.getProfile(state.profile);
+};
+
+export const getLeaders = (state) => {
+    return fromLeaders.getLeaders(state.leaders);
 };
