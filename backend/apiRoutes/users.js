@@ -68,4 +68,40 @@ userRoutes.push({
   }
 });
 
+userRoutes.push({
+  method: 'GET',
+  path: '/users/getPublicProfile',
+  handler: userHandler.getPublicProfile,
+  config: {
+    auth: {
+      mode: 'required',
+      strategies: [ 'jwt' ],
+      access: {
+        scope: [ 'admin', 'common', '+accessToken' ]
+      }
+    },
+    tags: [ 'api', 'users' ],
+    description: 'Get public profile of one user',
+    notes: 'Require access token',
+    validate: {
+      headers: Joi.object({
+        authorization: Joi.string().required().description('Access token')
+      }).required().unknown(),
+      query: {
+        userId: Joi.string().description('User id'),
+        email: Joi.string().email().description('Email')
+      }
+    },
+    response: {
+      status: {
+        // Response format in case of success
+        200: Joi.object({
+          userPublicData: Joi.object({}).required().unknown()
+        }).required(),
+        // TODO: Response format in case of failure
+      }
+    }
+  }
+});
+
 module.exports = userRoutes;
