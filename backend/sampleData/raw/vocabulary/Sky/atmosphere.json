@@ -1,0 +1,29 @@
+{
+  "name": "atmosphere",
+  "def": [
+    {
+      "definition": "Khí quyển",
+      "definition_en": "a particular environment or surrounding influence",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "air"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ætməs,fir"
+  ],
+  "frequency": 4.22,
+  "audio": "",
+  "image": "",
+  "example": [
+    "an atmosphere of defeat pervaded the candidate's headquarters"
+  ]
+}
