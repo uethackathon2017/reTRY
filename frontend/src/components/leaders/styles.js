@@ -33,6 +33,7 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center',
+        ...fromTheme.BG_TRANSPARENT,
     },
 
     statusBarBackground: {
@@ -70,6 +71,7 @@ export default StyleSheet.create({
     },
 
     userPosition: {
+        ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         fontWeight: 'bold',
         alignSelf: 'center',
@@ -80,6 +82,7 @@ export default StyleSheet.create({
     },
 
     userName: {
+        ...fromTheme.BG_TRANSPARENT,
         marginLeft: 5,
         flex: 0.5,
         alignSelf: 'center',
@@ -87,6 +90,7 @@ export default StyleSheet.create({
     },
 
     userLevel: {
+        ...fromTheme.BG_TRANSPARENT,
         flex: 0.2,
         alignSelf: 'center',
         color: 'white',

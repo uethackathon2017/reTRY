@@ -23,6 +23,7 @@ export default StyleSheet.create({
     },
 
     guide: {
-        color: 'white'
+        color: 'white',
+        ...fromTheme.BG_TRANSPARENT,
     }
 });

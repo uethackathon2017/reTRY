@@ -47,8 +47,8 @@ class FindScreen extends Component {
                     <View style={styles.cancelBtn}>
                         <MinimalButton text="Cancel"
                                        onPress={() => {
-                                this.props.navPopRoute();
                                 this.props.cancelFinding();
+                                this.props.navPopRoute();
                             }}
                         />
                     </View>

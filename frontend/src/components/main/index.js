@@ -23,11 +23,6 @@ class Main extends Component {  //eslint-disable-line
         this.props.navPushRoute(route);
     }
 
-    _pushToMe() {
-        this._pushTo('me');
-        this.props.clearProfile();
-    }
-
     render() {
         return (
             <Container>
@@ -52,7 +47,9 @@ class Main extends Component {  //eslint-disable-line
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={() => this._pushToMe()} style={{ flex: 1 }}>
+                <TouchableHighlight onPress={() => {
+                    this._pushTo('me'); this.props.clearProfile();
+                }} style={{ flex: 1 }}>
                     <View style={StyleSheet.flatten(styles.meBox)}>
                         {spacer}
                         <Icon name="ios-person-outline" style={StyleSheet.flatten(styles.leadersIcon)}/>
