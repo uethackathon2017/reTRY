@@ -152,8 +152,8 @@ mongoInit(err => {
             pos: result[idx].def[0].pos,
             image: result[idx].image,
             audio: result[idx].audio,
-            description_vi: 'Chọn nghĩa phù hợp với từ',
-            description_en: 'Choose the true definition of the given word'
+            description_vi: 'Điền từ còn thiếu vào chỗ trống',
+            description_en: 'Fill a missing character into the blank'
           },
           answers: [
             { content: getNextChar(charToBeReplaced, 3) },
