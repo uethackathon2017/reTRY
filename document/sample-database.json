@@ -1,0 +1,97 @@
+{
+  "word": {
+    "name": "từ tiếng anh",
+    "def": [
+      {
+        "definition": "giải nghĩa",
+        "pos": "từ loại"
+      }
+    ],
+    "synonyms": [
+      "đồng nghĩa"
+    ],
+    "antonyms": [
+      "trái nghĩa"
+    ],
+    "topics": [
+      "topic_id"
+    ],
+    "targets": [
+      "target_id"
+    ],
+    "pronunciation": [
+      "'student'"
+    ],
+    "frequency": 4.72,
+    "audio": "link",
+    "image": "link",
+    "example": [
+      "sentence"
+    ]
+  },
+  "topic": {
+    "name": "tên tiếng anh",
+    "description": "Tiếng anh",
+    "image": "link"
+  },
+  "target": {
+    "name": "IELTS, A1, A2, Toiec",
+    "description": "Tiếng anh",
+    "image": "link"
+  },
+  "quiz": {
+    "question": {
+      "content": "",
+      "pronounce": "",
+      "pos": "",
+      "image": "ảnh của câu hỏi",
+      "audio": "link của câu hỏi",
+      "description": ""
+    },
+    "answers": [
+      {
+        "pronounce": "",
+        "pos": "",
+        "content": "",
+        "image": "url",
+        "audio": "url"
+      }
+    ],
+    "key": "index",
+    "targets": [
+      "target_id"
+    ],
+    "complexity": "Độ khó 1-10",
+    "topic": [],
+    "related_words": [
+      "word_id"
+    ],
+    "type": "vn_en, en_vi, missing_char, missing_word,listen, image",
+    "duration": "seconds"
+  },
+  "user": {
+    "firstName": "",
+    "lastName": "",
+    "email": "email",
+    "fbId": "fbId",
+    "fbLink": "",
+    "pictureURL": "",
+    "role": "",
+    "membership": "VIP_MEMBER",
+    "gender": "",
+    "friendlist": [],
+    "level": "",
+    "score": "",
+    "awards": [
+      "award_id"
+    ],
+    "word": [
+      {
+        "word_id": "",
+        "pass_count": "",
+        "fail_count": "",
+        "latest_reviewed": "Ngày học từ gần nhất"
+      }
+    ]
+  }
+}
