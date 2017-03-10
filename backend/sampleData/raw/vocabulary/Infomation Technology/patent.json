@@ -1,0 +1,29 @@
+{
+  "name": "patent",
+  "def": [
+    {
+      "definition": "Bằng sáng chế",
+      "definition_en": "an official document granting a right or privilege",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+  ],
+  "antonyms": [
+  ],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'peɪtənt"
+  ],
+  "frequency": 3.35,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The scientist was granted a patent on his new invention"
+  ]
+}

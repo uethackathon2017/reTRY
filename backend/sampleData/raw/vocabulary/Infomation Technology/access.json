@@ -1,0 +1,29 @@
+{
+  "name": "access",
+  "def": [
+    {
+      "definition": "Truy cập",
+      "definition_en": "the operation of reading or writing stored information",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "approach"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Information Technology"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'æksɛs"
+  ],
+  "frequency": 4.4,
+  "audio": "",
+  "image": "",
+  "example": [
+    "he took a wrong turn on the access to the website"
+  ]
+}
