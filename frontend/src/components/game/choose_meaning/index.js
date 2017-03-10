@@ -2,9 +2,13 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Card} from 'native-base';
 import styles, * as fromStyles from './styles';
+import {getCurrentGame} from '../../../reducers';
+import {connect} from 'react-redux';
 
 const AnswerCard = ({word}) => (
-    <Card style={StyleSheet.flatten(styles.answerCard)}>
+    <Card style={StyleSheet.flatten(styles.answerCard)}
+          key={word._id.toString()}
+    >
         <Text style={styles.answer}>
             {word}
         </Text>
@@ -12,23 +16,35 @@ const AnswerCard = ({word}) => (
 );
 
 class ChooseMeaning extends Component {
+
     render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.questionContainer}>
-                    <Text style={styles.word}>Fuck</Text>
-                    <Text style={styles.pronounce}>/fʌk/</Text>
-                    <Text style={styles.instruction}>Find meanings in Vietnamese</Text>
+
+        const {game} = this.props;
+
+        if (game.type ==='vi_en') {
+            return (
+                <View style={styles.container}>
+                    <View style={styles.questionContainer}>
+                        <Text style={styles.word}>game.question.content</Text>
+                        <Text style={styles.instruction}>game.question.description_en</Text>
+                    </View>
+                    <View style={styles.answersContainer}>
+                        {game.answers.map((answer, index) => {
+                            return  <AnswerCard
+                                word={answer.content}
+                            />
+                        })}
+                    </View>
                 </View>
-                <View style={styles.answersContainer}>
-                    <AnswerCard word="A"/>
-                    <AnswerCard word="A"/>
-                    <AnswerCard word="A"/>
-                    <AnswerCard word="A"/>
-                </View>
-            </View>
-        )
+            )
+        } else {
+            return (<View/>);
+        }
     }
 }
 
-export default ChooseMeaning;
+const mapStateToProps = (state) => ({
+    game: getCurrentGame(state)
+});
+
+export default connect(mapStateToProps)(ChooseMeaning);

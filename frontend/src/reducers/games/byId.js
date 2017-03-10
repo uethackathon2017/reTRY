@@ -25,3 +25,7 @@ const byId = (state= {}, action) => {
 };
 
 export default byId;
+
+export const getGameWithId = (state, id) => {
+    return state[id];
+};

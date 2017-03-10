@@ -13,7 +13,8 @@ if (platform === 'android') {
     config = {
         apiUrl: 'http://10.0.3.2:6969',
         gameUrl: 'http://10.0.3.2:7000/game',
-        gameStartCountDown: 5
+        gameStartCountDown: 5,
+        newWordCountDown: 10
     }
 }
 
