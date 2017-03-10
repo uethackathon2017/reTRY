@@ -1,0 +1,27 @@
+{
+  "name": "adopt",
+  "def": [
+    {
+      "definition": "nhận làm con nuôi",
+      "definition_en": "take into one's family",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Growing up"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'dɔpt"
+  ],
+  "frequency": 3.86,
+  "audio": "",
+  "image": "",
+  "example": [
+    "He adopted the old man as his father"
+  ]
+}

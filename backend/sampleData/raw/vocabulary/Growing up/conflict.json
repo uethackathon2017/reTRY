@@ -1,0 +1,29 @@
+{
+  "name": "conflict",
+  "def": [
+    {
+      "definition": "xung đột",
+      "definition_en": "go against, as of rules and laws",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "disagreement"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Growing up"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'kɑnflɪkt"
+  ],
+  "frequency": 4,
+  "audio": "",
+  "image": "",
+  "example": [
+    "This behavior conflicts with our rules"
+  ]
+}
