@@ -62,7 +62,6 @@
 		7ABE7BD31E6670980046B236 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABE7BCF1E6670980046B236 /* FBSDKShareKit.framework */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8544A384A302495CA103EB7A /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4AD10E7C3E664160A6FEBF86 /* Octicons.ttf */; };
-		879BC587053246F382A08FDF /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 818265F195614BA08F03B3FD /* libCodePush.a */; };
 		8D48FC1D461C424382631DF9 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92D9F0F2232C41F582C52BB5 /* Zocial.ttf */; };
 		97AA9EF852D344048FABD3BA /* SF-UI-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = BF203245F86C44EEB66435D3 /* SF-UI-Text-Regular.otf */; };
 		9DD32EB83B004B3883EF990C /* Arial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 468DDF1B540540D3B77CF029 /* Arial.ttf */; };
@@ -356,7 +355,6 @@
 		7ABE7BCF1E6670980046B236 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		7B5CC27FB49B4B97BFC0290D /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		7F09E914F16C4147B5429270 /* libRNFS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFS.a; sourceTree = "<group>"; };
-		818265F195614BA08F03B3FD /* libCodePush.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libCodePush.a; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		89043CB326A244A8B448A5F6 /* Rubik-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Black.ttf"; path = "../node_modules/native-base/Fonts/Rubik-Black.ttf"; sourceTree = "<group>"; };
 		89A94F5702B14F4881173216 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
@@ -409,7 +407,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				879BC587053246F382A08FDF /* libCodePush.a in Frameworks */,
 				7ABE7BD31E6670980046B236 /* FBSDKShareKit.framework in Frameworks */,
 				7ABE7BD11E6670980046B236 /* FBSDKCoreKit.framework in Frameworks */,
 				A5B10C6DC7DC4642A8DA6219 /* libz.tbd in Frameworks */,
