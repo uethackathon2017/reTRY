@@ -5,7 +5,7 @@ const initialState = {
 export default test = (state = initialState, action) => {
     switch (action.type) {
         case 'TEST':
-            console.log(action);
+
             return {
                 number: action.content
             };
@@ -15,6 +15,6 @@ export default test = (state = initialState, action) => {
 }
 
 export const getNumberOnlineUser = (state) => {
-    console.log("number" + state.number);
+
     return state.number;
 }

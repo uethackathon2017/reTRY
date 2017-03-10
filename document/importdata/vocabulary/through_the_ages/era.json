@@ -1,0 +1,27 @@
+{
+  "name": "era",
+  "def": [
+    {
+      "definition": "kỷ nguyên",
+      "definition_en": "a period marked by distinctive character or reckoned from a fixed point or event",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'irə"
+  ],
+  "frequency": 4.05,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The death of King Quin Shi Huang marked the end of a famous era of China"
+  ]
+}
