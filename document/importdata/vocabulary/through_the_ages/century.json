@@ -1,9 +1,9 @@
 {
-  "name": "archaeologist",
+  "name": "century",
   "def": [
     {
-      "definition": "nhà khảo cổ",
-      "definition_en": "an anthropologist who studies prehistoric people and their culture",
+      "definition": "thế kỷ",
+      "definition_en": "a period of 100 years",
       "pos": "n"
     }
   ],
@@ -16,12 +16,12 @@
     "IELTS"
   ],
   "pronunciation": [
-    ",ɑrki'ɑlʌdʒɪst"
+    "'sɛntʃəri"
   ],
-  "frequency": 3.19,
+  "frequency": 4.53,
   "audio": "",
   "image": "",
   "example": [
-    "The archaeologist has just found a dinosaur skeleton in the valley"
+    "My grandfather turned 100 years old tody. He has lived for a whole century"
   ]
 }

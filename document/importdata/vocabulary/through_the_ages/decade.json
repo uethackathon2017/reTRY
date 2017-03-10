@@ -1,0 +1,27 @@
+{
+  "name": "decade",
+  "def": [
+    {
+      "definition": "thập niên",
+      "definition_en": "a period of 10 years",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'dɛkeɪd"
+  ],
+  "frequency": 3.76,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Peter has been waiting for his wife to come back for a decade"
+  ]
+}

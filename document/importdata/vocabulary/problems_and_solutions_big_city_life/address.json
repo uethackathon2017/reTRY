@@ -1,0 +1,30 @@
+{
+  "name": "address",
+  "def": [
+    {
+      "definition": "địa chỉ",
+      "definition_en": "written directions for finding some location; written on letters or packages that are to be delivered to that location",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "destination",
+    "name and address"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Problems and solutions, big city life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ədrɛs"
+  ],
+  "frequency": 4.76,
+  "audio": "",
+  "image": "",
+  "example": [
+    "I still cannot find Jack's house although I have his address."
+  ]
+}
