@@ -1,0 +1,29 @@
+{
+  "name": "benefit",
+  "def": [
+    {
+      "definition": "lợi ích",
+      "definition_en": "something that aids or promotes well-being",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "advantage"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Problems and solutions, big city life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'bɛnəfɪt"
+  ],
+  "frequency": 4.17,
+  "audio": "",
+  "image": "",
+  "example": [
+    "A clean environment is of great benefit to our health."
+  ]
+}
