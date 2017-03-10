@@ -142,6 +142,34 @@ mongoInit(err => {
         };
         // console.log(enViQuiz);
         quizBulk.push(enViQuiz);
+        let randomCharIdx = Math.floor(Math.random() * (result[idx].name.length - 1));
+        let charToBeReplaced = result[idx].name[randomCharIdx];
+        let questionContent = result[idx].name.substr(0, randomCharIdx) + '_' + result[idx].name.substr(randomCharIdx + 1);
+        let missingCharQuiz = {
+          question: {
+            content: questionContent,
+            pronounce: result[idx].pronunciation,
+            pos: result[idx].def[0].pos,
+            image: result[idx].image,
+            audio: result[idx].audio,
+            description_vi: 'Chọn nghĩa phù hợp với từ',
+            description_en: 'Choose the true definition of the given word'
+          },
+          answers: [
+            { content: getNextChar(charToBeReplaced, 3) },
+            { content: getNextChar(charToBeReplaced, 10) },
+            { content: charToBeReplaced },
+            { content: getNextChar(charToBeReplaced, 13) }
+          ],
+          key: 2,
+          targets: result[idx].targets,
+          complexity: 1/result[idx].frequency,
+          topics: result[idx].topics,
+          relatedWords: [ result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id ],
+          type: 'missingChar',
+          duration: 5
+        };
+        quizBulk.push(missingCharQuiz);
       }
       return Quiz.insertManyAsync(quizBulk);
     })
@@ -157,4 +185,11 @@ mongoInit(err => {
 
 var calculateLevel = (score) => {
   return 1 + parseInt(score/30);
+};
+
+var getNextChar = (char, skip) => {
+  char = char.toLowerCase();
+  if (char.charCodeAt(0) + skip > 122)
+    return String.fromCharCode(97 + skip);
+  return String.fromCharCode(char.charCodeAt(0) + skip);
 };
