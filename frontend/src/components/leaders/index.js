@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, StatusBar} from 'react-native';
+import {StyleSheet, View, Text, StatusBar, Image} from 'react-native';
 import styles from './styles';
 import {Container, ListItem} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import UserList from './UserList';
 
+const background = require('../../../assets/images/background/item-8-bg.jpg');
+
 class Leaders extends Component {
     render() {
         return (
-            <Container style={StyleSheet.flatten(styles.container)}>
+            <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <View style={styles.statusBarBackground}/>
                 <View style={styles.titleRow}>
                     <Text style={styles.title}>L E A D E R B O A R D S</Text>
                 </View>
                 <UserList/>
-            </Container>
+            </Image>
         )
     }
 }
