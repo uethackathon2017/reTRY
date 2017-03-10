@@ -5,12 +5,22 @@ import styles, * as fromStyles from './styles';
 import {getCurrentGame} from '../../../reducers';
 import {connect} from 'react-redux';
 
-const AnswerCard = ({word}) => (
+const ViEnAnswerCard = ({answer}) => (
     <Card style={StyleSheet.flatten(styles.answerCard)}
-          key={word._id.toString()}
+          key={answer._id.toString()}
     >
         <Text style={styles.answer}>
-            {word}
+            {answer.content + " /" +answer.pronounce[0]+ "/"}
+        </Text>
+    </Card>
+);
+
+const EnViAnswerCard = ({answer}) => (
+    <Card style={StyleSheet.flatten(styles.answerCard)}
+          key={answer._id.toString()}
+    >
+        <Text style={styles.answer}>
+            {answer.content + " /" +answer.pronounce[0]+ "/"}
         </Text>
     </Card>
 );
@@ -36,8 +46,8 @@ class ChooseMeaning extends Component {
                                         dispatch
                                     }}
                                 >
-                                    <AnswerCard
-                                        word={answer.content}
+                                    <ViEnAnswerCard
+                                        answer={answer}
                                     />
                                 </TouchableHighlight>
                             )
@@ -45,8 +55,30 @@ class ChooseMeaning extends Component {
                     </View>
                 </View>
             )
-        } else {
-            return (<View/>);
+        } else if (game.type === 'en-vi'){
+            return (
+                <View style={styles.container}>
+                    <View style={styles.questionContainer}>
+                        <Text style={styles.word}>game.question.content</Text>
+                        <Text style={styles.instruction}>game.question.description_en</Text>
+                    </View>
+                    <View style={styles.answersContainer}>
+                        {game.answers.map((answer, index) => {
+                            return (
+                                <TouchableHighlight
+                                    onPress={() => {
+                                        dispatch
+                                    }}
+                                >
+                                    <ViEnAnswerCard
+                                        answer={answer}
+                                    />
+                                </TouchableHighlight>
+                            )
+                        })}
+                    </View>
+                </View>
+            );
         }
     }
 }

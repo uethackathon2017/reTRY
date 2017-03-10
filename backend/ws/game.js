@@ -29,6 +29,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
 
         currentQuizIndex++;
     }, 11000);
+
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
         let currentScore = redisClient.get('score of ' + firstSocket.id);

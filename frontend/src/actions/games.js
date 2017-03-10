@@ -57,21 +57,24 @@ export const startFinding = () => (dispatch, getState) => {
         }, 1000)
     });
 
-    socket.on('quiz', (id) => {
+    socket.on('quiz', (data) => {
         dispatch({
             type: actionTypes.SHOW_GAME,
-            id: id
+            id: data.quizId
         });
 
         const currentGame = getCurrentGame(getState());
 
-        if (getGameIds(getState()).indexOf(id) === 0) {
-            navReplaceAt('game');
+        console.log(getGameIds(getState()));
+
+        if (getGameIds(getState()).indexOf(data.quizId) === 0) {
+
+            dispatch(navReplaceAt('game'));
 
             switch (currentGame.type) {
-                case 'vi-en':
-                case 'en-vi':
-                    gameNav.navReplaceAt('choose_meaning');
+                case 'vi_en':
+                case 'en_vi':
+                    dispatch(gameNav.navReplaceAt('choose_meaning'));
                 default:
                     return;
             }
