@@ -23,6 +23,14 @@ class Me extends Component {
             profile
         } = this.props;
 
+        const score = (level) => {
+            return (level - 1) * 30;
+        };
+
+        const level = (score) => {
+            return score / 30 + 1;
+        };
+
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <View style={styles.statusBarBackground}/>
@@ -31,7 +39,7 @@ class Me extends Component {
                         <Text style={styles.title}>P R O F I L E</Text>
                     </View>
                     <View style={styles.userAvatarContainer}>
-                        <CacheableImage style={styles.userAvatar}
+                        <Image style={styles.userAvatar}
                                source={{uri: profile.pictureURL}}/>
                     </View>
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
@@ -39,13 +47,14 @@ class Me extends Component {
                         <View style={styles.userLevelProgressContainer}>
                             <Text style={styles.userLevel}>Cấp {profile.level}</Text>
                             <View style={styles.userLevelProgress}>
-                                <Progress.Bar progress={0.3} color={fromTheme.YELLOW} height={16}
+                                <Progress.Bar progress={(profile.score - score(profile.level))/30.0}
+                                              color={fromTheme.YELLOW} height={16}
                                               width={(screenWidth - 20)*0.8 - 10}/>
                             </View>
                             <Text style={styles.userLevel}>Cấp {profile.level + 1}</Text>
                         </View>
                         <Text style={styles.userScore}>
-                            {(profile.level + 1) * 10 - profile.score} điểm nữa để lên cấp
+                            {score(profile.level + 1) - profile.score} điểm nữa để lên cấp
                         </Text>
                     </View>
                     <AchievementList/>
