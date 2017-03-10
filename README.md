@@ -1,10 +1,42 @@
-# reTRY
+# UET - reTRY
 
-# Description
+> Develop uet reTRY
 
-# Technology
+## Version
+Status: Developing
 
-# Library
+Begin date: 10/03/2017
 
-# Team members
+## Structure
 
+Resource doc: /resource-doc
+
+## Document
+
+Detailed guides in /resource-doc
+
+## Technology & Library
+
+
+## Requirement system
+
+
+
+## Development
+
+
+## Library
+
+
+## Deployment
+
+
+## Members
+
+Tran Minh Tuan - UET - tuantmtb@gmail.com
+
+Nguyen Van Nhat - UET - nguyenvannhat152@gmail.com
+
+Tran Viet Thang - UET - thangtv1702@gmail.com
+
+Dang Hai Trieu - UET - dangtrieu25@gmail.com
