@@ -6,6 +6,8 @@ const cluster = require('cluster');
 const async = require('async');
 const WORKER_ID = 1;
 
+const quizStorage = {};
+
 const errorHandle = (socket, err) => {
     socket.emit('error', err);
 };
@@ -83,7 +85,6 @@ module.exports = (game) => {
             }
             if (self !== null) {
                 let room = `room:${self}-${opponent}`;
-
                 redisClient.set('room of ' + socket.id.toString(), room);
 
                 socket.join(room, () => {
@@ -126,27 +127,34 @@ module.exports = (game) => {
                             });
 
                             setTimeout(() => {
-
-                                Quiz.find({})
-                                    .populate('relatedWords')
-                                    .lean()
-                                    .then(quizzes => {
-                                        let randomTenQuizzes = [];
-                                        let pushedQuizzes = [];
-                                        for (let idx = 0; idx < 10; idx++) {
-                                            let randomIdx = Math.floor(Math.random() * quizzes.length);
-                                            while (pushedQuizzes.indexOf(randomIdx) !== -1) {
-                                                randomIdx = Math.floor(Math.random() * quizzes.length);
+                                let randomTenQuizzes = quizStorage[room];
+                                if (!randomTenQuizzes) {
+                                    Quiz.find({})
+                                        .populate('relatedWords')
+                                        .lean()
+                                        .then(quizzes => {
+                                            let newRandomTenQuizzes = [];
+                                            let pushedQuizzes = [];
+                                            for (let idx = 0; idx < 10; idx++) {
+                                                let randomIdx = Math.floor(Math.random() * quizzes.length);
+                                                while (pushedQuizzes.indexOf(randomIdx) !== -1) {
+                                                    randomIdx = Math.floor(Math.random() * quizzes.length);
+                                                }
+                                                pushedQuizzes.push(randomIdx);
+                                                newRandomTenQuizzes.push(quizzes[randomIdx]);
                                             }
-                                            pushedQuizzes.push(randomIdx);
-                                            randomTenQuizzes.push(quizzes[randomIdx]);
-                                        }
-                                        game.to(room).emit('game data', {
-                                            quizzes: randomTenQuizzes
+                                            quizStorage[room] = newRandomTenQuizzes;
+                                            game.to(room).emit('game data', {
+                                                quizzes: quizStorage[room]
+                                            });
+                                            gameControl(game, socket, room, quizStorage[room]);
                                         });
-
-                                        gameControl(game, socket, room, quizzes);
+                                } else {
+                                    game.to(room).emit('game data', {
+                                        quizzes: quizStorage[room]
                                     });
+                                    gameControl(game, socket, room, quizStorage[room]);
+                                }
                             }, 5000);
                         }
                     );
