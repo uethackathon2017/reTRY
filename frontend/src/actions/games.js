@@ -22,12 +22,14 @@ export const startFinding = () => (dispatch, getState) => {
 
     socket.on('opponent found', (data) => {
 
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (countDown > 0) {
                 dispatch({
                     type: actionTypes.FIND_SUCCESS,
                     data: data
                 })
+            } else {
+                clearInterval(interval);
             }
             countDown--;
         }, 1000)
@@ -40,6 +42,19 @@ export const startFinding = () => (dispatch, getState) => {
         });
 
         dispatch(navReplaceAt('newWords'));
+
+        let newWordsCountDown = config.newWordsCountDown;
+
+        let interval = setInterval(() => {
+            if (newWordsCountDown > 0) {
+                dispatch({
+                    type: actionTypes.NEW_WORDS_COUNT_DOWN,
+                })
+            } else {
+                clearInterval(interval);
+            }
+            newWordsCountDown--;
+        }, 1000)
     });
 
     socket.on('quiz', (id) => {
@@ -64,6 +79,10 @@ export const startFinding = () => (dispatch, getState) => {
     })
 };
 
+export const answer = () => (dispatch) => {
+    const socket = getSocket();
+
+};
 export const cancelFinding = () => (dispatch) => {
     const socket = getSocket();
     socket.disconnect();
