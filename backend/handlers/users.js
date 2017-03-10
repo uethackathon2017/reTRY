@@ -18,5 +18,22 @@ module.exports = {
         console.log(err);
         return reply(new Boom.wrap(err));
       });
+  },
+
+  getTopTenHighestLevel: (request, reply) => {
+    User
+      .find({})
+      .sort({ level: -1 })
+      .limit(10)
+      .then(topTenUser => {
+        // console.log(topTenUser);
+        return reply({
+          topTenHighestLevel: topTenUser
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        return reply(new Boom.wrap(err));
+      });
   }
 };

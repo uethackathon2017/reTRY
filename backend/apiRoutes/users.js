@@ -36,4 +36,36 @@ userRoutes.push({
   }
 });
 
+userRoutes.push({
+  method: 'GET',
+  path: '/users/getTopTenHighestLevel',
+  handler: userHandler.getTopTenHighestLevel,
+  config: {
+    auth: {
+      mode: 'required',
+      strategies: [ 'jwt' ],
+      access: {
+        scope: [ 'admin', 'common', '+accessToken' ]
+      }
+    },
+    tags: [ 'api', 'users' ],
+    description: 'Get top 10 users who have highest score',
+    notes: 'Require access token',
+    validate: {
+      headers: Joi.object({
+        authorization: Joi.string().required().description('Access token')
+      }).required().unknown()
+    },
+    response: {
+      status: {
+        // Response format in case of success
+        200: Joi.object({
+          topTenHighestLevel: Joi.array().items(Joi.object({}).required().unknown())
+        }).required(),
+        // TODO: Response format in case of failure
+      }
+    }
+  }
+});
+
 module.exports = userRoutes;
