@@ -24,6 +24,6 @@ export default StyleSheet.create({
 
     guide: {
         color: 'white',
-        backgroundColor: 'transparent',
+        ...fromTheme.BG_TRANSPARENT,
     }
 });

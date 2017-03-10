@@ -17,7 +17,8 @@ export default StyleSheet.create({
 
     finding: {
         color: fromTheme.DARK_TEXT,
-        marginTop: 20
+        marginTop: 20,
+        ...fromTheme.BG_TRANSPARENT,
     },
 
     cancelBtn: {

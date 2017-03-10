@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     text: {
+        ...fromTheme.BG_TRANSPARENT,
         paddingTop: 8,
         paddingBottom: 8,
         paddingRight: 32,
