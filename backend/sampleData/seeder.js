@@ -111,7 +111,7 @@ mongoInit(err => {
           complexity: 1/result[idx].frequency,
           topics: result[idx].topics,
           relatedWords: [ result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id ],
-          type: 'vn_en',
+          type: 'vi_en',
           duration: 10
         };
         // console.log(vnEnQuiz);
