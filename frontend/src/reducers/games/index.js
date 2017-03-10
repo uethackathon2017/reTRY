@@ -48,3 +48,7 @@ export const getOpponentData = (state) => {
 export const getCountDown = (state) => {
     return fromFind.getCountDown(state.find);
 };
+
+export const getAllWords = (state) => {
+    return fromWord.getAllWords(state.words);
+};

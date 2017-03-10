@@ -5,9 +5,7 @@ const byId = (state = {}, action) => {
     switch (action.type){
         case actionTypes.GET_GAME_SUCCESS:
 
-            let newState = {
-                ...state
-            };
+            let newState = {};
 
             action.data.quizzes.map((quiz) => {
                 quiz.relatedWords.map((word) => {
@@ -27,11 +25,11 @@ const ids = (state = [], action) => {
     switch (action.type) {
         case actionTypes.GET_GAME_SUCCESS:
 
-            let newState = [...state];
+            let newState = [];
 
             action.data.quizzes.map((quiz) => {
                 quiz.relatedWords.map((word) => {
-                    if (state.indexOf(word._id) === -1) {
+                    if (newState.indexOf(word._id) === -1) {
                         newState.push(word._id);
                     }
                 })
@@ -41,6 +39,13 @@ const ids = (state = [], action) => {
         default:
             return state;
     }
+};
+
+export const getAllWords = (state) => {
+
+    return state.ids.map((id) => {
+        return state.byId[id];
+    })
 };
 
 export default combineReducers({

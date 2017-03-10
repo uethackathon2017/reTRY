@@ -99,3 +99,11 @@ export const getOpponentData = (state) => {
 export const getCountDown = (state) => {
     return fromGames.getCountDown(state.games);
 };
+
+/**
+ * get all words of current game
+ * @param state
+ */
+export const getAllWords = (state) => {
+    return fromGames.getAllWords(state.games);
+};

@@ -34,7 +34,6 @@ export const loginWithFacebook = () => (dispatch) => {
                     .then(response => response.json())
                     .then(responseJson => {
 
-                        console.log(responseJson);
 
                         if (responseJson) {
                             dispatch({
@@ -60,7 +59,7 @@ export const loginWithFacebook = () => (dispatch) => {
             }
         })
         .catch((error) => {
-            console.log(error);
+
             dispatch({
                 type: actions.FBLOGIN_FAIlURE,
                 error: error
