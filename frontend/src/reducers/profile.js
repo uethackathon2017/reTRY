@@ -2,7 +2,15 @@ import * as types from '../actions/types';
 
 const initialState = {
     errorMessage: null,
-    userData: null,
+    userData: {
+        firstName: null,
+        lastName: null,
+        pictureURL: null,
+        score: null,
+        level: null,
+        awards: null,
+        fbLink: null,
+    },
 };
 
 const profile = (state = initialState, action) => {

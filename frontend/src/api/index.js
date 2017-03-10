@@ -18,7 +18,7 @@ export const find = () => (dispatch, getState) => {
 
 export const profile = (accessToken) => {
     return fetch(config.apiUrl + '/users/getUserData', {
-        method: 'POST',
+        method: 'GET',
         headers: {
             authorization: accessToken,
         }
