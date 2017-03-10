@@ -18,6 +18,7 @@ export const RAISIN = '#757081';
 export const LAVENDER = '#6B82A8';
 export const GRAPE = '#6C4F70';
 export const BLACK_CHERRY = '#39324B';
+export const GREEN = '#5cb85c';
 
 
 export const CRIMSON_SKY = '#CF6766';
