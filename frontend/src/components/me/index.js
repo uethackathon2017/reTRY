@@ -34,16 +34,16 @@ class Me extends Component {
                     </View>
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
                     <View style={styles.userLevelContainer}>
-                        {/*<View style={styles.userLevelProgressContainer}>
-                         <Text style={styles.userLevel}>Cấp {profile.level}</Text>
-                         <View style={styles.userLevelProgress}>
-                         <Progress.Bar progress={0.3} color={fromTheme.YELLOW} height={16}
-                         width={(screenWidth - 20)*0.8 - 10}/>
-                         </View>
-                         <Text style={styles.userLevel}>Cấp {profile.level + 1}</Text>
-                         </View>*/}
+                        <View style={styles.userLevelProgressContainer}>
+                            <Text style={styles.userLevel}>Cấp {profile.level}</Text>
+                            <View style={styles.userLevelProgress}>
+                                <Progress.Bar progress={0.3} color={fromTheme.YELLOW} height={16}
+                                              width={(screenWidth - 20)*0.8 - 10}/>
+                            </View>
+                            <Text style={styles.userLevel}>Cấp {profile.level + 1}</Text>
+                        </View>
                         <Text style={styles.userScore}>
-                            Cấp {profile.level}
+                            {(profile.level + 1) * 10 - profile.score} điểm nữa để lên cấp
                         </Text>
                     </View>
                     <AchievementList/>
