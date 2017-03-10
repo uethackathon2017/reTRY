@@ -2,11 +2,9 @@ import * as types from '../../actions/types';
 import config from '../../config';
 
 const initialState = {
-    status : 'stop',
+    status: 'stop',
     data: {
-       opponent: {
-
-       }
+        opponent: {}
     }
 };
 
@@ -19,9 +17,7 @@ const find = (state = initialState, action) => {
                 countDown: config.gameStartCountDown
             };
         case types.FIND_CANCEL:
-            return {
-                status: 'stop'
-            };
+            return initialState;
         case types.FIND_SUCCESS:
             return {
                 status: 'complete',

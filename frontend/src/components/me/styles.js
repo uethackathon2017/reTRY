@@ -22,6 +22,7 @@ export default StyleSheet.create({
     },
 
     title: {
+        ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
@@ -48,6 +49,7 @@ export default StyleSheet.create({
     userAvatarContainer: {},
 
     userName: {
+        ...fromTheme.BG_TRANSPARENT,
         alignSelf: 'center',
         color: 'white',
         fontSize: 16,
@@ -72,11 +74,13 @@ export default StyleSheet.create({
     },
 
     userScore: {
+        ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         alignSelf: 'center',
     },
 
     userLevel: {
+        ...fromTheme.BG_TRANSPARENT,
         flex: 0.1,
         color: 'white',
         textAlign: 'center',
@@ -87,6 +91,7 @@ export default StyleSheet.create({
     },
 
     achievementListTitle: {
+        ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         fontWeight: 'bold',
         fontSize: 20,
@@ -110,6 +115,7 @@ export default StyleSheet.create({
     },
 
     achievementTitle: {
+        ...fromTheme.BG_TRANSPARENT,
         color: fromTheme.BLACK_CHERRY,
         fontWeight: 'bold',
     },
