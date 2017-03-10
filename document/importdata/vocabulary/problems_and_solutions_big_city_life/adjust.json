@@ -1,0 +1,29 @@
+{
+  "name": "adjust",
+  "def": [
+    {
+      "definition": "điều chỉnh",
+      "definition_en": "adapt or conform oneself to new or different conditions",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "modify"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Problems and solutions, big city life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'dʒəst"
+  ],
+  "frequency": 3.77,
+  "audio": "",
+  "image": "",
+  "example": [
+    "He askes them to adjust the position of the wardrobe so that the room can look bigger."
+  ]
+}

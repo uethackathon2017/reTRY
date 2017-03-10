@@ -1,0 +1,29 @@
+{
+  "name": "behavior",
+  "def": [
+    {
+      "definition": "Hành vi",
+      "definition_en": "(psychology) the aggregate of the responses or reactions or movements made by an organism in any situation",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "manner"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body, the mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "bɪ'heɪvjər"
+  ],
+  "frequency": 4.27,
+  "audio": "",
+  "image": "",
+  "example": [
+    "He is always on his best behaviour when communicating with his clients."
+  ]
+}

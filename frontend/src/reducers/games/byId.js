@@ -7,8 +7,14 @@ const byId = (state= {}, action) => {
             let quizzes = {};
 
             action.data.quizzes.map((quiz) => {
-                quizzes[quiz._id] = quiz;
+                quizzes[quiz._id] = {
+                    ...quiz,
+                    relatedWords: quiz.relatedWords.map((word) => {
+                        return word._id;
+                    })
+                };
             });
+
             return quizzes;
         case actionTypes.GET_GAME_FAILURE:
         case actionTypes.GET_GAMES_REQUEST:

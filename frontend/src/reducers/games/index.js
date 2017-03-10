@@ -7,6 +7,7 @@ import errorMessage from './errorMessage';
 import isFetching from './isFetching';
 import rivalPlayer from './rivalPlayer';
 import find, * as fromFind from './find';
+import words, * as fromWord from './words';
 
 const games = combineReducers({
     byId,
@@ -15,7 +16,8 @@ const games = combineReducers({
     errorMessage,
     isFetching,
     rivalPlayer,
-    find
+    find,
+    words
 });
 
 export default games;

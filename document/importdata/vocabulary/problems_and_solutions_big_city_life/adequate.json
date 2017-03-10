@@ -1,0 +1,29 @@
+{
+  "name": "adequate",
+  "def": [
+    {
+      "definition": "đầy đủ, tương xứng",
+      "definition_en": "about average; acceptable",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "sufficient"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Problems and solutions, big city life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ædəkwɪt"
+  ],
+  "frequency": 3.21,
+  "audio": "",
+  "image": "",
+  "example": [
+    "His amount of assets is totally adequate for him to live well for the rest of his life."
+  ]
+}
