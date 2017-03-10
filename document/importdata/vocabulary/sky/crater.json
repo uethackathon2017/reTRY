@@ -1,0 +1,28 @@
+{
+  "name": "crater",
+  "def": [
+    {
+      "definition": "Hố",
+      "definition_en": "a bowl-shaped geological formation at the top of a volcano",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+  ],
+  "antonyms": [],
+  "topics": [
+    "Sky"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'kreɪtər"
+  ],
+  "frequency": 3.4,
+  "audio": "",
+  "image": "",
+  "example": [
+    "This crater is the result of a meteorite crash in 1980"
+  ]
+}
