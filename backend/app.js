@@ -91,8 +91,13 @@ if (cluster.isMaster) {
         let secondPlayerIdx = randomIndex(firstPlayerIdx + 1, replies.length - 1);
         redisClient.smembers('listWaitingPlayers', (err, replies) => {
           let waitingPlayers = replies;
-          redisClient.srem('listWaitingPlayers', [ waitingPlayers[firstPlayerIdx], waitingPlayers[secondPlayerIdx] ]);
-          process.send({ firstPlayer: waitingPlayers[firstPlayerIdx], secondPlayer: waitingPlayers[secondPlayerIdx] });
+
+          const firstPlayer = waitingPlayers[firstPlayerIdx];
+          const secondPlayer = waitingPlayers[secondPlayerIdx];
+
+
+          redisClient.srem('listWaitingPlayers', [ firstPlayer, secondPlayer ]);
+          process.send({ firstPlayer: firstPlayer, secondPlayer: secondPlayer });
         });
       }
     });
