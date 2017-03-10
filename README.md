@@ -17,7 +17,19 @@ Detailed guides in /resource-doc
 
 ## Technology
 
+### Front-end: Mobile app
+
 React native
+
+### Back-end: Webservice, websocket
+
+NodeJs
+
+Hapi
+
+Mongo
+
+Redis
 
 
 ## Requirement system
@@ -28,6 +40,7 @@ React native
 
 ## Library
 
+FB SDK
 
 ## Deployment
 
