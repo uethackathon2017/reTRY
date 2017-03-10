@@ -10,6 +10,9 @@ export const getProfile = () => (dispatch, getState) => {
     profile(getAccessToken(getState()))
         .then(response => response.json())
         .then(responseJson => {
+
+            console.log(responseJson);
+
             dispatch({
                 type: actions.GET_PROFILE_SUCCESS,
                 response: responseJson,
