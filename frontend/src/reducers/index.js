@@ -156,3 +156,7 @@ export const getNewWordsCountDown = (state) => {
 export const getLeaders = (state) => {
     return fromLeaders.getLeaders(state.leaders);
 };
+
+export const checkShouldGetApi = (state) => {
+    return fromProfile.checkShouldGetApi(state.profile);
+};

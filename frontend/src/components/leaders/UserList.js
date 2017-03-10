@@ -7,9 +7,20 @@ import theme, * as fromTheme from '../../theme';
 import {getLeaders} from '../../reducers';
 import {connect} from 'react-redux';
 import {getLeaders as getLeadersApi} from '../../actions/leaders';
+import {navPushRoute} from '../../actions/rootNavigation';
+import {shouldShowPublicProfile} from '../../actions/profile';
 
 class User extends Component {
-    _onPress() {
+    static propTypes = {
+        reset: React.PropTypes.func,
+        navigation: React.PropTypes.shape({
+            key: React.PropTypes.string,
+        }),
+    };
+
+    _pushTo(route, user) {
+        this.props.shouldShowPublicProfile(user);
+        this.props.navPushRoute(route);
     }
 
     _getUserPositionContainerStyle() {
@@ -30,16 +41,17 @@ class User extends Component {
 
     render() {
         return (
-            <TouchableHighlight onPress={this._onPress} style={{flex: 1}} underlayColor={fromTheme.LAVENDER}>
+            <TouchableHighlight onPress={() => this._pushTo('me', this.props.user)} style={{flex: 1}}
+                                underlayColor={fromTheme.LAVENDER}>
                 <View style={styles.user}>
                     <View style={this._getUserPositionContainerStyle()}>
                         <Text style={styles.userPosition}>{this.props.position}</Text>
                     </View>
                     <View style={styles.userAvatarContainer}>
-                        <Image style={styles.userAvatar} source={{uri: this.props.avatar}}/>
+                        <Image style={styles.userAvatar} source={{uri: this.props.user.pictureURL}}/>
                     </View>
-                    <Text style={styles.userName}>{this.props.name}</Text>
-                    <Text style={styles.userLevel}>Cấp {this.props.level}</Text>
+                    <Text style={styles.userName}>{this.props.user.firstName} {this.props.user.lastName}</Text>
+                    <Text style={styles.userLevel}>Cấp {this.props.user.level}</Text>
                 </View>
             </TouchableHighlight>
         )
@@ -53,15 +65,15 @@ class UserList extends Component {
 
     _mapDataToView() {
         const {
-            leaders
+            leaders, navPushRoute, shouldShowPublicProfile
         } = this.props;
 
         return leaders.map((user, position) => (<User
+            navPushRoute={navPushRoute}
+            shouldShowPublicProfile={shouldShowPublicProfile}
             key={position}
             position={position + 1}
-            name={user.firstName + " " + user.lastName}
-            avatar={user.pictureURL}
-            level={user.level}
+            user={user}
         />))
     }
 
@@ -81,5 +93,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    getLeadersApi
+    getLeadersApi, navPushRoute, shouldShowPublicProfile
 })(UserList);
