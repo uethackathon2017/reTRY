@@ -10,7 +10,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: fromTheme.ULTRAMARINE,
-        backgroundImage: require('../../../assets/images/background/item-1-bg.jpg'),
     },
 
     titleRow: {
