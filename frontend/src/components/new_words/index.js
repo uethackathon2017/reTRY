@@ -10,6 +10,7 @@ import CacheableImage from 'react-native-cacheable-image';
 import styles from './styles';
 import {getAllWords} from '../../reducers';
 import {connect} from 'react-redux';
+import CountDownText from './CountDownText';
 
 const cardWithNoImage = (word) => (
     <Card
@@ -99,7 +100,7 @@ class NewWords extends Component {
 
                 </Carousel>
                 <View style={styles.countDownContainer}>
-                    <Text style={styles.countDown}>Game starts in...</Text>
+                    <CountDownText/>
                 </View>
             </Container >
         );

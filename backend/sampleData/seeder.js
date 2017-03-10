@@ -94,7 +94,7 @@ mongoInit(err => {
       console.log('Importing quizzes...');
       let quizBulk = [];
       for (let idx = 0; idx < result.length - 4; idx++) {
-        let vnEnQuiz = {
+        let viEnQuiz = {
           question: {
             content: result[idx].def[0].definition,
             description_vi: 'Chọn từ có nghĩa phù hợp',
@@ -114,8 +114,34 @@ mongoInit(err => {
           type: 'vi_en',
           duration: 10
         };
-        // console.log(vnEnQuiz);
-        quizBulk.push(vnEnQuiz);
+        // console.log(viEnQuiz);
+        quizBulk.push(viEnQuiz);
+        let enViQuiz = {
+          question: {
+            content: result[idx].name,
+            pronounce: result[idx].pronunciation,
+            pos: result[idx].def[0].pos,
+            image: result[idx].image,
+            audio: result[idx].audio,
+            description_vi: 'Chọn nghĩa phù hợp với từ',
+            description_en: 'Choose the true definition of the given word'
+          },
+          answers: [
+            { content: result[idx + 1].def[0].definition },
+            { content: result[idx].def[0].definition },
+            { content: result[idx + 2].def[0].definition },
+            { content: result[idx + 3].def[0].definition }
+          ],
+          key: 1,
+          targets: result[idx].targets,
+          complexity: 1/result[idx].frequency,
+          topics: result[idx].topics,
+          relatedWords: [ result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id ],
+          type: 'en_vi',
+          duration: 10
+        };
+        // console.log(enViQuiz);
+        quizBulk.push(enViQuiz);
       }
       return Quiz.insertManyAsync(quizBulk);
     })

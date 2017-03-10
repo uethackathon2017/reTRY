@@ -34,7 +34,7 @@ class GameNavigator extends Component {
             case 'missing_character':
                 return <MissingCharacterGame/>;
             default:
-                return (<Text>Fuck</Text>)
+                return (<Text></Text>)
         }
     }
 
