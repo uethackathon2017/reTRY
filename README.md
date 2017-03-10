@@ -44,6 +44,29 @@ FB SDK
 
 ## Deployment
 
+### Backend 
+
+$ npm install 
+
+$ mv env.example.json env.json
+
+$ sudo mongod
+
+$ redis-server
+
+$ node app.js
+
+### Frontend
+
+$ npm i
+
+$ react-native link
+
+$ react-native run-ios
+
+$ react-native run-android
+
+
 
 ## Members
 
