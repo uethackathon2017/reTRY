@@ -16,7 +16,7 @@ const gameControl = (game, socket, room, quizzes) => {
     let interval = setInterval(() => {
 
         if (currentQuizIndex === quizzes.length) {
-            game.to(room).emit('result');
+            game.to(room).emit('final result', {});
             clearInterval(interval);
             return;
         }
@@ -26,7 +26,26 @@ const gameControl = (game, socket, room, quizzes) => {
         });
 
         currentQuizIndex++;
-    }, 11000)
+    }, 11000);
+    socket.on('answer quiz', (quizData) => {
+        // quizData: { _id, key, time }
+        let currentScore = redisClient.get('score of ' + socket.id);
+        if (!currentScore) currentScore = 0;
+        else currentScore = parseInt(currentScore);
+        quizzes.forEach(quiz => {
+            if (quiz._id.toString() === quizData._id.toString()) {
+                if (quiz.key === quizData.key) {
+                    currentScore += parseInt(quizData.time);
+                    redisClient.set('score of ' + socket.id, currentScore.toString());
+                    socket.emit('self quiz result', { result: true, currentScore: currentScore });
+                    socket.broadcast.to(room).emit('opponent quiz result', { result: true, currentScore: currentScore });
+                } else {
+                    socket.emit('self quiz result', { result: false, currentScore: currentScore });
+                    socket.broadcast.to(room).emit('opponent quiz result', { result: true, currentScore: currentScore });
+                }
+            }
+        });
+    });
 };
 
 module.exports = (game) => {
@@ -110,6 +129,7 @@ module.exports = (game) => {
 
                                 Quiz.find({})
                                     .limit(10)
+                                    .populate('relatedWords')
                                     .then(quizzes => {
                                         game.to(room).emit('game data', {
                                             quizzes: quizzes

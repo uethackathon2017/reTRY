@@ -34,6 +34,7 @@ export const H1_SIZE = fontSizeBase * 1.8;
 export const H2_SIZE = fontSizeBase * 1.6;
 export const H3_SIZE = fontSizeBase * 1.4;
 export const H4_SIZE = fontSizeBase * 1.2;
+export const H5_SIZE = fontSizeBase * 1.0;
 
 export default {
   platformStyle,

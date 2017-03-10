@@ -8,6 +8,7 @@ import AchievementList from './AchievementList';
 import {getProfile} from '../../reducers';
 import {connect} from 'react-redux';
 import {getProfile as getProfileApi} from '../../actions/profile';
+import CacheableImage from 'react-native-cacheable-image';
 
 const screenWidth = fromTheme.screenWidth;
 
@@ -29,7 +30,7 @@ class Me extends Component {
                         <Text style={styles.title}>P R O F I L E</Text>
                     </View>
                     <View style={styles.userAvatarContainer}>
-                        <Image style={styles.userAvatar}
+                        <CacheableImage style={styles.userAvatar}
                                source={{uri: profile.pictureURL}}/>
                     </View>
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
