@@ -35,6 +35,7 @@ mongoInit(err => {
       console.log('Importing users...');
       let userBulk = [];
       for (let idx = 0; idx < 50; idx++) {
+        let score = faker.random.number({min: 50, max: 3000});
         let newUser = {
           fbId: '2139019283102' + idx,
           email: faker.internet.email(),
@@ -44,8 +45,8 @@ mongoInit(err => {
           pictureURL: faker.image.imageUrl(),
           gender: faker.random.boolean() ? 'male' : 'female',
           friendList: [],
-          level: faker.random.number({min: 1, max: 50}),
-          score: faker.random.number({min: 50, max: 300}),
+          level: calculateLevel(score),
+          score: score,
           awards: [],
           words: [],
           role: 'common',
@@ -90,7 +91,7 @@ mongoInit(err => {
     })
     .then(result => {
       console.log(result.length + ' word(s) inserted!');
-      console.log('Importing quizes...');
+      console.log('Importing quizzes...');
       let quizBulk = [];
       for (let idx = 0; idx < result.length - 4; idx++) {
         let vnEnQuiz = {
@@ -116,15 +117,18 @@ mongoInit(err => {
         // console.log(vnEnQuiz);
         quizBulk.push(vnEnQuiz);
       }
-      console.log(quizBulk.length);
       return Quiz.insertManyAsync(quizBulk);
     })
     .then(result => {
       // console.log(result);
-      console.log(result.length + ' quiz(es) inserted!');
+      console.log(result.length + ' quiz(zes) inserted!');
       process.exit(0);
     })
     .catch(err => {
       throw err;
     });
 });
+
+var calculateLevel = (score) => {
+  return 1 + parseInt(score/30);
+};
