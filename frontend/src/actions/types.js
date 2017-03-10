@@ -20,8 +20,10 @@ export const FIND_SUCCESS = 'FIND_SUCCESS';
 export const FIND_FAILURE = 'FIND_FAILURE';
 export const FIND_STOP = 'FIND_STOP';
 
+export const NEW_WORDS_COUNT_DOWN = 'NEW_WORDS_COUNT_DOWN';
+
 export const ANSWER = 'ANSWER';
-export const COUNT_DOWN = 'COUNT_DOWN';
+export const COUNT_DOWN = 'COUNT_DOWN'
 
 export const GET_GAMES_REQUEST = 'GET_GAMES_REQUEST';
 export const GET_GAME_SUCCESS = 'GET_GAME_SUCCESS';
@@ -30,5 +32,6 @@ export const GET_GAME_FAILURE = 'GET_GAME_FAILURE';
 export const GET_PROFILE_REQUEST = 'GET_PROFILE_REQUEST';
 export const GET_PROFILE_SUCCESS = 'GET_PROFILE_SUCCESS';
 export const GET_PROFILE_FAILURE = 'GET_PROFILE_FAILURE';
+
 
 export const SHOW_GAME = 'SHOW_GAME';

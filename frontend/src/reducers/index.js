@@ -141,3 +141,11 @@ export const getCurrentGame = (state) => {
 export const getGameIds = (state) => {
     return fromGames.getGameIds(state.games);
 };
+
+/**
+ * get new words count down
+ * @param state
+ */
+export const getNewWordsCountDown = (state) => {
+    return fromGames.getNewWordsCountDown(state.games);
+};
