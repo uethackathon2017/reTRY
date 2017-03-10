@@ -1,8 +1,9 @@
 import * as actionTypes from './types';
 import { connect, getSocket } from '../api/socket';
 import config from '../config';
-import { getAccessToken } from '../reducers';
+import { getAccessToken, getGameIds, getCurrentGame } from '../reducers';
 import {navReplaceAt} from './rootNavigation';
+import * as gameNav from './gameNavigation';
 
 export const startFinding = () => (dispatch, getState) => {
     dispatch({
@@ -33,14 +34,33 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
     socket.on('game data', (data) => {
-
-
         dispatch({
             type: actionTypes.GET_GAME_SUCCESS,
             data: data
         });
 
         dispatch(navReplaceAt('newWords'));
+    });
+
+    socket.on('quiz', (id) => {
+        dispatch({
+            type: actionTypes.SHOW_GAME,
+            id: id
+        });
+
+        const currentGame = getCurrentGame(getState());
+
+        if (getGameIds(getState()).indexOf(id) === 0) {
+            navReplaceAt('game');
+
+            switch (currentGame.type) {
+                case 'vi-en':
+                case 'en-vi':
+                    gameNav.navReplaceAt('choose_meaning');
+                default:
+                    return;
+            }
+        }
     })
 };
 

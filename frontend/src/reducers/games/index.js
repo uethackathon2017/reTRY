@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
 import * as actionTypes from '../../actions/types';
-import byId from './byId';
-import ids from './ids';
-import currentGame from './currentGameId';
+import byId, * as fromById from './byId';
+import ids, * as fromIds from './ids';
+import currentGameId, * as fromCurrentGameId from './currentGameId';
 import errorMessage from './errorMessage';
 import isFetching from './isFetching';
 import rivalPlayer from './rivalPlayer';
@@ -12,7 +12,7 @@ import words, * as fromWord from './words';
 const games = combineReducers({
     byId,
     ids,
-    currentGame,
+    currentGameId,
     errorMessage,
     isFetching,
     rivalPlayer,
@@ -51,4 +51,16 @@ export const getCountDown = (state) => {
 
 export const getAllWords = (state) => {
     return fromWord.getAllWords(state.words);
+};
+
+export const getCurrentGameId = (state) => {
+    return fromCurrentGameId.getCurrentGameId(state.currentGameId);
+};
+
+export const getCurrentGame = (state) => {
+    return fromById.getGameWithId(state.byId, getCurrentGameId(state));
+};
+
+export const getGameIds = (state) => {
+    return fromIds.getGameIds(state.ids);
 };

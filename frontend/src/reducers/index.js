@@ -110,6 +110,34 @@ export const getAllWords = (state) => {
     return fromGames.getAllWords(state.games);
 };
 
+/**
+ * get user profile
+ * @param state
+ */
 export const getProfile = (state) => {
     return fromProfile.getProfile(state.profile);
+};
+
+/**
+ * Get current game id
+ * @param state
+ */
+export const getCurrentGameId = (state) => {
+    return fromGames.getCurrentGameId(state.games);
+};
+
+/**
+ * Get current game
+ * @param state
+ */
+export const getCurrentGame = (state) => {
+    return  fromGames.getCurrentGame(state.games);
+};
+
+/**
+ * get all game ids
+ * @param state
+ */
+export const getGameIds = (state) => {
+    return fromGames.getGameIds(state.games);
 };

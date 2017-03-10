@@ -15,3 +15,7 @@ const ids = (state= [], action) => {
 };
 
 export default ids;
+
+export const getGameIds = (state) => {
+    return state;
+};
