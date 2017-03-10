@@ -7,15 +7,18 @@ const screenHeight = fromTheme.screenHeight;
 export default StyleSheet.create({
     container: {
         flex: 1,
+        width: null,
+        height: null,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: fromTheme.ULTRAMARINE,
     },
 
     titleRow: {
         width: screenWidth,
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: 10,
+        paddingBottom: 10,
     },
 
     title: {
@@ -84,7 +87,7 @@ export default StyleSheet.create({
     },
 
     achievementListTitle: {
-        color: fromTheme.LINEN,
+        color: 'white',
         fontWeight: 'bold',
         fontSize: 20,
     },

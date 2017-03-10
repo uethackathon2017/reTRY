@@ -11,6 +11,7 @@ import {getProfile as getProfileApi} from '../../actions/profile';
 import CacheableImage from 'react-native-cacheable-image';
 
 const screenWidth = fromTheme.screenWidth;
+const background = require('../../../assets/images/background/item-4-bg.jpg');
 
 class Me extends Component {
     componentDidMount() {
@@ -23,7 +24,7 @@ class Me extends Component {
         } = this.props;
 
         return (
-            <Container style={StyleSheet.flatten(styles.container)}>
+            <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <View style={styles.statusBarBackground}/>
                 <ScrollView>
                     <View style={styles.titleRow}>
@@ -49,7 +50,7 @@ class Me extends Component {
                     </View>
                     <AchievementList/>
                 </ScrollView>
-            </Container>
+            </Image>
         )
     }
 }

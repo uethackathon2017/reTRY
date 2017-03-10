@@ -9,9 +9,10 @@ import theme, * as fromTheme from '../../theme';
 export default StyleSheet.create({
     container: {
         flex: 1,
+        width: null,
+        height: null,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: fromTheme.CRIMSON_SKY
     },
 
     finding: {
