@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image, Platform, ScrollView} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Image, Platform, ScrollView } from 'react-native';
 import styles from './styles';
-import {Container} from 'native-base';
+import { Container } from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
 import AchievementList from './AchievementList';
-import {getProfile} from '../../reducers';
-import {connect} from 'react-redux';
-import {getProfile as getProfileApi} from '../../actions/profile';
+import { getProfile } from '../../reducers';
+import { connect } from 'react-redux';
+import { getProfile as getProfileApi } from '../../actions/profile';
 import CacheableImage from 'react-native-cacheable-image';
 
 const screenWidth = fromTheme.screenWidth;
@@ -32,7 +32,7 @@ class Me extends Component {
         };
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
-                <View style={styles.statusBarBackground}/>
+                <View style={styles.statusBarBackground} />
                 <ScrollView>
                     <View style={styles.titleRow}>
                         <Text style={styles.title}>P R O F I L E</Text>
@@ -45,9 +45,9 @@ class Me extends Component {
                         <View style={styles.userLevelProgressContainer}>
                             <Text style={styles.userLevel}>Level {profile.level}</Text>
                             <View style={styles.userLevelProgress}>
-                                <Progress.Bar progress={(profile.score - score(profile.level))/30.0}
-                                              color={fromTheme.YELLOW} height={16}
-                                              width={(screenWidth - 20)*0.8 - 10}/>
+                                <Progress.Bar progress={(profile.score - score(profile.level)) / 30.0}
+                                    color={fromTheme.YELLOW} height={16}
+                                    width={(screenWidth - 20) * 0.8 - 10} />
                             </View>
                             <Text style={styles.userLevel}>Level {profile.level + 1}</Text>
                         </View>
@@ -55,7 +55,7 @@ class Me extends Component {
                             {score(profile.level + 1) - profile.score} more scores to level up
                         </Text>
                     </View>
-                    <AchievementList awards={profile.awards}/>
+                    <AchievementList awards={profile.awards} />
                 </ScrollView>
             </Image>
         )
@@ -65,9 +65,9 @@ class Me extends Component {
 const Avatar = (profile) => {
     if (profile.pictureURL) {
         return (<Image style={styles.userAvatar}
-                        source={{uri: profile.pictureURL}}/>)
+            source={{ uri: profile.pictureURL }} />)
     } else {
-        return (<Image style={styles.userAvatar}/>)
+        return (<Image style={styles.userAvatar} />)
     }
 };
 
