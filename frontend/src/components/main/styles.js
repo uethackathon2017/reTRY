@@ -23,7 +23,7 @@ module.exports = StyleSheet.create({
 
     statusBarBackground: {
         height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: fromTheme.INDIGO,
+        backgroundColor: '#30415D80',
     },
 
     spacer: {
@@ -31,7 +31,7 @@ module.exports = StyleSheet.create({
     },
 
     leadersBox: {
-        backgroundColor: fromTheme.INDIGO,
+        backgroundColor: '#30415D80',
         ...box,
         height: boxHeight
     },
@@ -48,7 +48,7 @@ module.exports = StyleSheet.create({
     },
 
     playBox: {
-        backgroundColor: fromTheme.CRIMSON_SKY,
+        backgroundColor: '#CF676680',
         ...box,
         height: boxHeight
     },
@@ -63,7 +63,7 @@ module.exports = StyleSheet.create({
 
 
     meBox: {
-        backgroundColor: fromTheme.ULTRAMARINE,
+        backgroundColor: '#03142480',
         ...box,
         height: boxHeight
     },
@@ -80,7 +80,7 @@ module.exports = StyleSheet.create({
 
 
     settingsBox: {
-        backgroundColor: fromTheme.LIGHT_BLUE,
+        backgroundColor: '#8EAEBD80',
         ...box,
         height: boxHeight
     },

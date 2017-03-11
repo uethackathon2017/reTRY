@@ -107,7 +107,7 @@ export const getOpponentScoreAfterGame = (state) => {
     return fromResult.getOpponentScoreAfterGame(state.result);
 };
 
-export const getsSelfDataBeforeGame =  (state) => {
+export const getsSelfDataBeforeGame = (state) => {
     return fromResult.getsSelfDataBeforeGame(state.result);
 };
 
@@ -116,5 +116,5 @@ export const getOpponentDataBeforeGame = (state) => {
 };
 
 export const getCurrentGameIndexOverTotal = (state) => {
-    return fromIds.getGameIds(state.ids).indexOf(fromCurrentGameId.getCurrentGameId(state.currentGameId)) +"/" + fromIds.getGameIds(state.ids).length;
+    return (fromIds.getGameIds(state.ids).indexOf(fromCurrentGameId.getCurrentGameId(state.currentGameId)) + 1) + "/" + fromIds.getGameIds(state.ids).length;
 };
