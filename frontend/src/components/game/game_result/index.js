@@ -22,7 +22,7 @@ const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
 
 const Avatar = (data) => {
-    if (data.pictureURL) {
+    if (data && data.pictureURL) {
         return (<Image style={styles.userAvatarLeft}
                        source={{ uri: data.pictureURL }}/>)
     }
@@ -33,7 +33,17 @@ const Avatar = (data) => {
  * @return {string}
  */
 const full_name = (data) => {
-    return data.first_name + " " + data.last_name;
+    if (data && data.first_name && data.last_name) {
+        return data.first_name + " " + data.last_name;
+    }
+    return "";
+};
+
+const safe_level = (data) => {
+    if (data && data.level) {
+        return data.level;
+    }
+    return "";
 };
 
 const score = (level) => {
@@ -117,7 +127,7 @@ class GameResult extends Component {
                                 {Avatar(selfDataBeforeGame)}
                             </View>
                             <Text style={styles.playerNameLeft}>{full_name(selfDataBeforeGame)}</Text>
-                            <Text style={styles.levelLeft}>Level {selfDataBeforeGame.level}</Text>
+                            <Text style={styles.levelLeft}>Level {safe_level(selfDataBeforeGame)}</Text>
                         </View>
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
@@ -125,7 +135,7 @@ class GameResult extends Component {
                                 <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
                             </View>
                             <Text style={styles.playerNameRight}>{full_name(opponentDataBeforeGame)}</Text>
-                            <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
+                            <Text style={styles.levelRight}>Level {safe_level(opponentDataBeforeGame)}</Text>
                         </View>
                     </View>
                     <View style={styles.levelAndAwardContainer}>
