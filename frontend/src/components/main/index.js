@@ -58,11 +58,11 @@ class Main extends Component {  //eslint-disable-line
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={() => this._pushTo('play')} style={{ flex: 1 }}>
+                <TouchableHighlight onPress={() => this._pushTo('topics')} style={{ flex: 1 }}>
                     <View style={StyleSheet.flatten(styles.settingsBox)}>
                         {spacer}
                         <Icon name="ios-settings-outline" style={StyleSheet.flatten(styles.settingsIcon)}/>
-                        <Text style={styles.settingsTitle}>SETTINGS</Text>
+                        <Text style={styles.settingsTitle}>MORE</Text>
                         {spacer}
                     </View>
                 </TouchableHighlight>

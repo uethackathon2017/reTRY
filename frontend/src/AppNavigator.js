@@ -10,6 +10,9 @@ import MePage from './components/me';
 import NewWordsPage from './components/new_words';
 import GamePage from './components/game';
 import LeadersPage from './components/leaders';
+import GameResultPage from './components/game/game_result';
+import TopicPage from './components/topic';
+import FriendPage from './components/friend';
 
 const { popRoute, } = actions;
 
@@ -43,21 +46,27 @@ class AppNavigator extends Component {
     _renderScene(props) { // eslint-disable-line class-methods-use-this
         switch (props.scene.route.key) {
             case 'login':
-                return <LoginPage/>;
+                return <LoginPage />;
             case 'main':
-                return <MainPage/>;
+                return <MainPage />;
             case 'find':
-                return <FindPage/>;
+                return <FindPage />;
             case 'me':
-                return <MePage/>;
+                return <MePage />;
             case 'newWords':
-                return <NewWordsPage/>;
+                return <NewWordsPage />;
             case 'game':
-                return <GamePage/>;
+                return <GamePage />;
             case 'leaders':
-                return <LeadersPage/>;
+                return <LeadersPage />;
+            case 'gameResult':
+                return <GameResultPage />;
+            case 'topics':
+                return <TopicPage />;
+            case 'friends':
+                return <FriendPage />;
             default:
-                return <MainPage/>;
+                return <MainPage />;
         }
     }
 

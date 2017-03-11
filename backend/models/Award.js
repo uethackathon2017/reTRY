@@ -12,7 +12,7 @@ let AwardSchema = new mongoose.Schema({
         require: true,
     },
     imageURL: String,
-    bonus_score: Number,
+    bonusScore: Number,
 }, {
     timestamps: true,
     versionKey: false
