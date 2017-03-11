@@ -10,6 +10,7 @@ import gameCountDown, * as fromGameCountDown from './gameCountDown';
 import score, * as fromScore from './score';
 import currentAnswer, * as fromCurrentAnswer from './currentAnswer';
 import currentRightAnswer, * as fromCurrentRightAnswer from './currentRightAnswer';
+import result, * as fromResult from './result';
 
 const games = combineReducers({
     byId,
@@ -21,7 +22,8 @@ const games = combineReducers({
     gameCountDown,
     score,
     currentAnswer,
-    currentRightAnswer
+    currentRightAnswer,
+    result
 });
 
 export default games;
@@ -95,4 +97,20 @@ export const getCurrentAnswerKey = (state) => {
 
 export const getCurrentRightAnswerKey = (state) => {
     return fromCurrentRightAnswer.getCurrentRightAnswerKey(state.currentRightAnswer);
+};
+
+export const getSelfScoreAfterGame = (state) => {
+    fromResult.getSelfScoreAfterGame(state.result);
+};
+
+export const getOpponentScoreAfterGame = (state) => {
+    fromResult.getOpponentScoreAfterGame(state.result);
+};
+
+export const getsSelfDataBeforeGame =  (state) => {
+    fromResult.getsSelfDataBeforeGame(state.result);
+};
+
+export const getOpponentDataBeforeGame = (state) => {
+    fromResult.getOpponentDataBeforeGame(state.result);
 };

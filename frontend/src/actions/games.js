@@ -58,7 +58,6 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
 
-
     let currentGameCountDownInterval;
 
     socket.on('quiz', (data) => {
@@ -118,7 +117,6 @@ export const startFinding = () => (dispatch, getState) => {
         }, 1000);
 
 
-
     })
 };
 
@@ -135,12 +133,12 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
         key: answerIndex
     });
 
-    socket.on('self quiz result', (data) =>{
-       dispatch({
-           type: actionTypes.RECEIVE_SELF_SCORE,
-           score: data.currentScore,
-           rightAnswer: data.rightAnswer
-       })
+    socket.on('self quiz result', (data) => {
+        dispatch({
+            type: actionTypes.RECEIVE_SELF_SCORE,
+            score: data.currentScore,
+            rightAnswer: data.rightAnswer
+        })
     });
 
     socket.on('opponent quiz result', (data) => {
@@ -153,8 +151,13 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
 
     socket.on('game end', (data) => {
         dispatch({
+            type: actionTypes.GAME_END,
+            data: data
+        });
 
-        })
+        socket.disconnect();
+        socket.close();
+        dispatch(navReplaceAt('gameResult'));
     })
 };
 
