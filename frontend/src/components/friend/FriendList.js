@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
-import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
+import {Thumbnail, Card, CardItem, Body, Left, Button, Icon} from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
 
@@ -15,9 +15,19 @@ class FriendCard extends Component {
                 <CardItem>
                     <Left>
                         <Thumbnail source={welcome}/>
-                        <Body>
-                        <Text style={styles.achievementTitle}>{this.props.title}</Text>
-                        <Text note>{this.props.description}</Text>
+                        <Body style={{flexDirection:'row'}}>
+                            <View style={{flex: 0.7}}>
+                                <Text style={styles.achievementTitle}>{this.props.title}</Text>
+                                <Text note>{this.props.description}</Text>
+                            </View>
+                        
+                            <View style={{flex: 0.3}}>
+                                <Button bordered iconLeft >
+                                    <Icon name='ios-chatboxes-outline' />
+                                </Button>
+                        </View>
+                        
+
                         </Body>
                     </Left>
                 </CardItem>
@@ -33,10 +43,10 @@ class FriendList extends Component {
                 {/*<View style={styles.achievementListTitleContainer}>
                     <Text style={styles.achievementListTitle}>THÀNH TÍCH</Text>
                 </View>*/}
-                <FriendCard title="Nguyễn Văn Nhật" description="The sky (or celestial dome) is everything that lies above the surface of the Earth, including the atmosphere and outer space"/>
-                <FriendCard title="Trần Minh Tuấn" description="Progressing toward psychological maturity"/>
-                <FriendCard title="Trần Việt Thắng" description="Health is the level of functional and metabolic efficiency of a living organism"/>
-                <FriendCard title="Đặng Hải Triều" description="Information technology (IT) is the application of computers to store, study, retrieve, transmit, and manipulate data, or information, often in the context of a business or other enterprise"/>
+                <FriendCard title="Nguyễn Văn Nhật" description="Level 2"/>
+                <FriendCard title="Trần Minh Tuấn" description="Level 7"/>
+                <FriendCard title="Trần Việt Thắng" description="Level 2"/>
+                <FriendCard title="Đặng Hải Triều" description="Level 5"/>
             </View>
         )
     }

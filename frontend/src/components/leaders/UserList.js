@@ -63,7 +63,7 @@ class UserList extends Component {
         this.props.getLeadersApi();
     }
 
-    _mapDataToView() {
+    _mapPropsToView() {
         const {
             leaders, navPushRoute, shouldShowPublicProfile
         } = this.props;
@@ -71,7 +71,7 @@ class UserList extends Component {
         return leaders.map((user, position) => (<User
             navPushRoute={navPushRoute}
             shouldShowPublicProfile={shouldShowPublicProfile}
-            key={position}
+            key={user._id}
             position={position + 1}
             user={user}
         />))
@@ -80,7 +80,7 @@ class UserList extends Component {
     render() {
         return (
             <ScrollView>
-                {this._mapDataToView()}
+                {this._mapPropsToView()}
             </ScrollView>
         )
     }

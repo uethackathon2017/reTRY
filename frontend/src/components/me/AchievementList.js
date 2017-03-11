@@ -3,10 +3,9 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
 import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
 
-const welcome = require('../../../assets/images/logo.jpg');
+const awardIcon = require('../../../assets/images/award_icon.png');
 
 class AchievementCard extends Component {
     render() {
@@ -14,7 +13,7 @@ class AchievementCard extends Component {
             <Card style={StyleSheet.flatten(styles.achievementCard)}>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={welcome}/>
+                        <Thumbnail source={this.props.image}/>
                         <Body>
                         <Text style={styles.achievementTitle}>{this.props.title}</Text>
                         <Text note>{this.props.description}</Text>
@@ -27,16 +26,29 @@ class AchievementCard extends Component {
 }
 
 class AchievementList extends Component {
+    _mapPropsToView() {
+        const {
+            awards
+        } = this.props;
+
+        return awards.map((award, index) => {
+            if (award.image) {
+                return (<AchievementCard key={index} title={award.title} description={award.description}
+                                         image={{uri: award.image}}/>);
+            } else {
+                return (<AchievementCard key={index} title={award.title} description={award.description}
+                                         image={awardIcon}/>);
+            }
+        });
+    }
+
     render() {
         return (
             <View style={styles.achievementList}>
                 <View style={styles.achievementListTitleContainer}>
                     <Text style={styles.achievementListTitle}>THÀNH TÍCH</Text>
                 </View>
-                <AchievementCard title="Đối thủ khó nhằn" description="Thắng 3 ván liên tiếp"/>
-                <AchievementCard title="Vạn sự khởi đầu nan" description="Thua trong ván đầu tiên"/>
-                <AchievementCard title="Khởi đầu suôn sẻ" description="Thắng trong ván đầu tiên"/>
-                <AchievementCard title="Khởi đầu" description="Chơi ván đầu tiên"/>
+                {this._mapPropsToView()}
             </View>
         )
     }

@@ -8,7 +8,7 @@ const initialState = {
         pictureURL: null,
         score: null,
         level: null,
-        awards: null,
+        awards: [],
         fbLink: null,
     },
     shouldGetApi: true,
