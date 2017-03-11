@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Khởi đầu",
+    "description": "Đăng nhập lần đầu"
+  },
+  {
+    "title": "First blood",
+    "description": "Thắng trong ván đầu tiên",
+    "bonus_score": 3
+  },
+  {
+    "title": "Vạn sự khởi đầu nan",
+    "description": "Thua trong ván đầu tiên"
+  },
+  {
+    "title": "Đối thủ khó nhằn",
+    "description": "Thắng trong 3 ván liên tiếp",
+    "bonus_score": 10
+  },
+  {
+    "title": "Bá đạo",
+    "description": "Thắng trong 10 ván liên tiếp",
+    "bonus_score": 20
+  },
+  {
+    "title": "Bất khả chiến bại",
+    "description": "Lần đầu đạt top 1",
+    "bonus_score": 10
+  }
+]
