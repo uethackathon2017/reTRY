@@ -94,7 +94,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
 
     const socketPlayerHandler = (socket) => {
 
-    }
+    };
 
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
@@ -234,33 +234,51 @@ module.exports = (game) => {
                         console.log(passedWords.length);
                         console.log(failedWords.length);
                         passedWords.forEach(word => {
-                            User.findOneAndUpdate({
+                            User.findOne({
                                 _id: socket.decoded_token._id,
                                 'passedWords._id': word
-                            }, {
-                                $inc: {
-                                    'passedWords.$.count': 1,
-                                }
-                            }, {
-                                upsert: true
                             })
-                            .then(result=> {})
+                            .then(user => {
+                                if (user) {
+                                    user.update({
+                                        $inc: {
+                                            'passedWords.$.count': 1,
+                                        }
+                                    }).exec();
+                                } else {
+                                    User.update({
+                                        _id: socket.decoded_token._id
+                                    }, {
+                                        'passedWords._id': word,
+                                        'passedWords.count': 1
+                                    }).exec();
+                                }
+                            })
                             .catch(err => {
                                 if (err) console.log(err);
                             });
                         });
                         failedWords.forEach(word => {
-                            User.findOneAndUpdate({
+                            User.findOne({
                                 _id: socket.decoded_token._id,
                                 'failedWords._id': word
-                            }, {
-                                $inc: {
-                                    'failedWords.$.count': 1,
-                                }
-                            }, {
-                                upsert: true
                             })
-                            .then(result => {})
+                            .then(user => {
+                                if (user) {
+                                    user.update({
+                                        $inc: {
+                                            'failedWords.$.count': 1,
+                                        }
+                                    }).exec();
+                                } else {
+                                    User.update({
+                                        _id: socket.decoded_token._id
+                                    }, {
+                                        'failedWords._id': word,
+                                        'failedWords.count': 1
+                                    }).exec();
+                                }
+                            })
                             .catch(err => {
                                 if (err) console.log(err);
                             });
