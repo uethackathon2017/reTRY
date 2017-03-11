@@ -6,7 +6,8 @@ const Boom = require('boom');
 module.exports = {
   getUserData: (request, reply) => {
     User
-      .findByIdAsync(request.auth.credentials._id)
+      .findById(request.auth.credentials._id)
+      .populate('awards')
       .then(user => {
         if (!user)
           throw new Boom.badRequest('Invalid user id');
@@ -25,6 +26,7 @@ module.exports = {
       .find({})
       .sort({ level: -1 })
       .limit(10)
+      .populate('awards')
       .then(topTenUser => {
         // console.log(topTenUser);
         return reply({
@@ -44,7 +46,8 @@ module.exports = {
     if (request.query.email)
       queryObj.email = request.query.email;
     User
-      .findOneAsync(queryObj, { createdAt: 0, updatedAt: 0, isActive: 0, role: 0, words: 0 })
+      .findOne(queryObj)
+      .populate('awards')
       .then(user => {
         return reply({
           userPublicData: user
