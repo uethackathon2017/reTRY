@@ -144,7 +144,7 @@ export const getCurrentGameId = (state) => {
  * @param state
  */
 export const getCurrentGame = (state) => {
-    return  fromGames.getCurrentGame(state.games);
+    return fromGames.getCurrentGame(state.games);
 };
 
 /**
@@ -235,9 +235,9 @@ export const getOpponentScoreAfterGame = (state) => {
  * get self data before game
  * @param state
  */
-export const getsSelfDataBeforeGame =  (state) => {
+export const getsSelfDataBeforeGame = (state) => {
     return fromGames.getsSelfDataBeforeGame(state.games);
-};
+}
 
 /**
  * get opponennt data before game
@@ -254,4 +254,8 @@ export const getOpponentDataBeforeGame = (state) => {
  */
 export const getCurrentGameIndexOverTotal = (state) => {
     return fromGames.getCurrentGameIndexOverTotal(state.games);
+};
+
+export const getVocabularyByTopic = (state) => {
+    return fromTopics.getVocabularyByTopic(state.topic);
 };

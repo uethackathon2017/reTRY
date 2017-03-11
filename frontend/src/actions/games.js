@@ -46,10 +46,14 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
     socket.on('game data', (data) => {
+
+        data.for
+
         dispatch({
             type: actionTypes.GET_GAME_SUCCESS,
             data: data
         });
+
 
 
         dispatch(navReplaceAt('newWords'));
