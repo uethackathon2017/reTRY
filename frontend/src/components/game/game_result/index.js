@@ -55,6 +55,7 @@ const level = (score) => {
 };
 
 class GameResult extends Component {
+
     _pushTo(route) {
         this.props.navPushRoute(route);
     }
@@ -110,6 +111,9 @@ class GameResult extends Component {
     };
 
     render() {
+
+        console.log(this.props);
+
         const {
             selfScoreAfterGame, opponentScoreAfterGame, selfDataBeforeGame, opponentDataBeforeGame
         } = this.props;
