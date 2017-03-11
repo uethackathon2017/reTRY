@@ -8,7 +8,6 @@
     "eslint": "eslint"
   },
   "dependencies": {
-    "@remobile/react-native-cache-image": "^1.0.3",
     "adm-zip": "^0.4.7",
     "native-base": "^2.0.10",
     "plist": "^2.0.1",
@@ -17,6 +16,7 @@
     "react-native-cacheable-image": "^1.5.1",
     "react-native-carousel": "^0.10.0",
     "react-native-fbsdk": "^0.5.0",
+    "react-native-fs": "^2.1.0-rc.1",
     "react-native-modalbox": "^1.3.9",
     "react-native-navigation-redux-helpers": "^0.5.0",
     "react-native-percentage-circle": "^1.0.6",

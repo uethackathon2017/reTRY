@@ -12,6 +12,7 @@ const AnswerCharacter = ({character, answerFunction, quizId, index}) => (
             onPress={() => {
                 answerFunction(quizId, index);
             }}
+            style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
         >
             <Text style={styles.answer}>
                 {character}

@@ -12,8 +12,10 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId}) => (
     >
         <TouchableHighlight
             onPress={() => {
-            answerFunction(quizId, index);
-         }}
+                answerFunction(quizId, index);
+
+                }}
+            style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
         >
             <Text style={styles.answer}>
                 {answer.content + " /" + answer.pronounce[0] + "/"}
@@ -29,8 +31,9 @@ const EnViAnswerCard = ({answer, answerFunction, index, quizId}) => (
     >
         <TouchableHighlight
             onPress={() => {
-            answerFunction(quizId, index);
-         }}
+                answerFunction(quizId, index);
+            }}
+            style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
         >
             <Text style={styles.answer}>
                 {answer.content}

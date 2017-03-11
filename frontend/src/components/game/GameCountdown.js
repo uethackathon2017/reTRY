@@ -12,16 +12,7 @@ class GameCountdown extends Component {
         const {countDown, duration} = this.props;
 
         return (
-            <PercentageCircle
-                radius={20}
-                percent={Math.floor(countDown/duration) * 100}
-                color={fromTheme.CRIMSON_SKY}
-                bgcolor={fromTheme.ULTRAMARINE}
-                innerColor={fromTheme.ULTRAMARINE}
-                borderWidth={4}
-            >
-                <Text style={styles.countDownText}>{countDown}</Text>
-            </PercentageCircle>
+            <Text style={styles.countDownText}>{countDown}</Text>
         )
     }
 }
