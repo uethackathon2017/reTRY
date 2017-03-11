@@ -16,7 +16,7 @@ import FoundPopup from './FoundPopup';
 import {startFinding, cancelFinding} from '../../actions/games';
 
 const platform = Platform.OS;
-const background = require('../../../assets/images/background/item-13-bg.jpg');
+const background = fromTheme.FIND_BG_IMG;
 
 const getSpinner = () => {
     if (platform === 'ios') {

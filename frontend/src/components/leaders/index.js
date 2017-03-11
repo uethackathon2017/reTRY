@@ -5,7 +5,7 @@ import {Container, ListItem} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import UserList from './UserList';
 
-const background = require('../../../assets/images/background/item-8-bg.jpg');
+const background = fromTheme.LEADERS_BG_IMG;
 
 class Leaders extends Component {
     render() {
