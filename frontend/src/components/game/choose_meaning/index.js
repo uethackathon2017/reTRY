@@ -19,6 +19,7 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
           key={answer._id.toString()}
     >
         <TouchableHighlight
+            underlayColor={fromTheme.LINEN}
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
@@ -47,6 +48,7 @@ const EnViAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
           key={answer._id.toString()}
     >
         <TouchableHighlight
+            underlayColor={fromTheme.LINEN}
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
@@ -102,7 +104,8 @@ class ChooseMeaning extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.word}>{game.question.content + " /" + game.question.pronounce[0]+"/"}</Text>
+                        <Text
+                            style={styles.word}>{game.question.content + " /" + game.question.pronounce[0] + "/"}</Text>
                         <Text style={styles.instruction}>{game.question.description_en}</Text>
                     </View>
                     <View style={styles.answersContainer}>
