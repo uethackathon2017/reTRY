@@ -226,8 +226,18 @@ module.exports = (game) => {
                     // failedWords = JSON.parse(failedWords);
                     console.log(passedWords[0]);
                     console.log(failedWords[0]);
+                    console.log(passedWords.length);
+                    console.log(failedWords.length);
                     let passedWordsToBeInserted = [];
                     let failedWordsToBeInserted = [];
+                    let passCount = failedWords.reduce((acc, curr) => {
+                        for (let idx = 0; idx < passedWords.length; idx++) {    
+                            if (curr.toString() === passedWords[idx].toString())
+                                return acc++;
+                        }
+                        return acc;
+                    }, 0);
+                    console.log(passCount);
                     for (let idx = 0; idx < passedWords.length; idx++) {
                         passedWordsToBeInserted.push({
                             _id: passedWords[idx].toString(),
