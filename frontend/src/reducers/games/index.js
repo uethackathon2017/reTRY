@@ -11,6 +11,8 @@ import words, * as fromWord from './words';
 import newWordsCountDown, * as fromNewWordsCountDown from './newWordsCountDown';
 import gameCountDown, * as fromGameCountDown from './gameCountDown';
 import score, * as fromScore from './score';
+import currentAnswer, * as fromCurrentAnswer from './currentAnswer';
+import currentRightAnswer, * as fromCurrentRightAnswer from './currentRightAnswer';
 
 const games = combineReducers({
     byId,
@@ -23,7 +25,9 @@ const games = combineReducers({
     words,
     newWordsCountDown,
     gameCountDown,
-    score
+    score,
+    currentAnswer,
+    currentRightAnswer
 });
 
 export default games;
@@ -85,4 +89,12 @@ export const getSelfScore = (state) => {
 
 export const getOpponentScore = (state) => {
     return fromScore.getOpponentScore(state.score);
+};
+
+export const getCurrentAnswerKey = (state) => {
+    return fromCurrentAnswer.getCurrentAnswerKey(state.currentAnwser);
+};
+
+export const getCurrentRightAnswerKey = (state) => {
+    return fromCurrentRightAnswer.getCurrentRightAnswerKey(state.currentRightAnwser);
 };

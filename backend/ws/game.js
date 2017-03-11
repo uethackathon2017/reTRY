@@ -14,92 +14,122 @@ const errorHandle = (socket, err) => {
 
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
-    let currentQuizIndex = 0;
-
+    let nextQuizIndex = 0;
+    let isFirstPlayerAnswerd = false;
+    let isSecondPlayerAnswerd = false;
     let quizStartTime;
+    let currentTimout;
 
+    const nextQuiz = () => {
 
-    const nextQuiz = (interval) => {
+        isFirstPlayerAnswerd = false;
+        isSecondPlayerAnswerd = false;
 
-        console.log("==== GAME: " + currentQuizIndex);
-
-        if (currentQuizIndex === quizzes.length) {
-            game.to(room).emit('final result', {});
-            clearInterval(interval);
-            return;
-        }
-
+        console.log("==== GAME: " + nextQuizIndex, ' with duration: ' + quizzes[nextQuizIndex].duration);
         quizStartTime = new Date();
 
         game.to(room).emit('quiz', {
-            quizId: quizzes[currentQuizIndex]._id
+            quizId: quizzes[nextQuizIndex]._id
         });
 
-        currentQuizIndex++;
+        nextQuizIndex++;
+
+        if (nextQuizIndex !== quizzes.length) {
+            currentTimout = setTimeout(nextQuiz, (quizzes[nextQuizIndex - 1].duration + 1) * 1000)
+        }
+
     };
 
     setTimeout(() => {
         nextQuiz();
-        let interval = setInterval(() => {
-            nextQuiz(interval);
-        }, quizzes[currentQuizIndex - 1].duration * 1000);
     }, 11000);
 
 
+    const socketPlayerHandler = (socket) => {
+
+    }
+
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
-
+        isFirstPlayerAnswerd = true;
         const time = Math.floor(new Date() - quizStartTime) / 1000;
-        redisClient.get('score of ' + firstSocket.id ,(error, currentScore) =>{
+        redisClient.get('score of ' + firstSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-            quizzes.forEach(quiz => {
-                if (quiz._id.toString() === quizData._id.toString()) {
-                    if (quiz.key === quizData.key) {
 
-                        currentScore += parseInt((quiz.duration - time)) < 0 ? 0 : parseInt((quiz.duration - time));
-                        redisClient.set('score of ' + firstSocket.id, currentScore.toString());
-                        firstSocket.emit('self quiz result', {result: true, currentScore: currentScore});
-                        firstSocket.broadcast.to(room).emit('opponent quiz result', {
-                            result: true,
-                            currentScore: currentScore
-                        });
-                    } else {
-                        firstSocket.emit('self quiz result', {result: false, currentScore: currentScore});
-                        firstSocket.broadcast.to(room).emit('opponent quiz result', {
-                            result: false,
-                            currentScore: currentScore
-                        });
-                    }
+            let currentQuizz = quizzes[nextQuizIndex - 1];
+            if (currentQuizz._id.toString() === quizData._id.toString()) {
+                if (currentQuizz.key === quizData.key) {
+
+                    currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
+                    redisClient.set('score of ' + firstSocket.id, currentScore.toString());
+                    firstSocket.emit('self quiz result', {
+                        result: true,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
+                    firstSocket.broadcast.to(room).emit('opponent quiz result', {
+                        result: true,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
+                } else {
+                    firstSocket.emit('self quiz result', {
+                        result: false,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
+                    firstSocket.broadcast.to(room).emit('opponent quiz result', {
+                        result: false,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
                 }
-            });
+            }
+
         });
     });
+
     secondSocket.on('answer quiz', (quizData) => {
+        isSecondPlayerAnswerd = true;
+
         const time = Math.floor(new Date() - quizStartTime) / 1000;
-        redisClient.get('score of ' + secondSocket.id ,(error, currentScore) =>{
+        redisClient.get('score of ' + secondSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-            quizzes.forEach(quiz => {
-                if (quiz._id.toString() === quizData._id.toString()) {
-                    if (quiz.key === quizData.key) {
 
-                        currentScore += parseInt((quiz.duration - time)) < 0 ? 0 : parseInt((quiz.duration - time));
-                        redisClient.set('score of ' + secondSocket.id, currentScore.toString());
-                        secondSocket.emit('self quiz result', {result: true, currentScore: currentScore});
-                        secondSocket.broadcast.to(room).emit('opponent quiz result', {
+            let currentQuizz = quizzes[nextQuizIndex - 1];
+
+            if (currentQuizz._id.toString() === quizData._id.toString()) {
+                if (currentQuizz.key === quizData.key) {
+
+                    currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
+                    redisClient.set('score of ' + secondSocket.id, currentScore.toString());
+                    secondSocket.emit('self quiz result', {
                             result: true,
-                            currentScore: currentScore
+                            currentScore: currentScore,
+                            rightAnswer: currentQuizz.key
                         });
-                    } else {
-                        secondSocket.emit('self quiz result', {result: false, currentScore: currentScore});
-                        secondSocket.broadcast.to(room).emit('opponent quiz result', {
-                            result: false,
-                            currentScore: currentScore
-                        });
-                    }
+                    secondSocket.broadcast.to(room).emit('opponent quiz result', {
+                        result: true,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
+                } else {
+                    secondSocket.emit('self quiz result', {
+                        result: false,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
+                    secondSocket.broadcast.to(room).emit('opponent quiz result', {
+                        result: false,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
                 }
-            });
+            }
+
+
         });
     });
 };
@@ -128,9 +158,30 @@ module.exports = (game) => {
             });
 
         socket.on('disconnect', () => {
-            redisClient.srem('listWaitingPlayers', socket.id.toString());
-            redisClient.del(socket.id.toString());
-            redisClient.del('room of ' + socket.id.toString());
+            console.log('User ' + socket.id.toString() + " disconnected");
+            redisClient.srem('listWaitingPlayers', socket.id, (error) => {
+                if (error) {
+                    console.log(error);
+                }
+            });
+
+            redisClient.del(socket.id, (error) => {
+                if (error) {
+                    console.log(error);
+                }
+            });
+
+            redisClient.del('room of ' + socket.id, (error) => {
+                if (error) {
+                    console.log(error);
+                }
+            });
+
+            redisClient.del('score of ' + socket.id, (error) => {
+                if (error) {
+                    console.log(error);
+                }
+            });
         });
         socket.on('error', () => {
             socket.emit('error', {message: 'Some error occurs'});

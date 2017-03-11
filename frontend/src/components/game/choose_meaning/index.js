@@ -2,19 +2,59 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {Card} from 'native-base';
 import styles, * as fromStyles from './styles';
-import {getCurrentGame} from '../../../reducers';
+import {getCurrentGame, getCurrentAnswerKey, getCurrentRightAnswerKey} from '../../../reducers';
 import {connect} from 'react-redux';
 import {answer} from '../../../actions/games';
+import * as fromTheme from '../../../theme';
 
-const ViEnAnswerCard = ({answer, answerFunction, index, quizId}) => (
-    <Card style={StyleSheet.flatten(styles.answerCard)}
+const setColorForCard = (index, answerKey, rightAnswerKey) => {
+
+    let color;
+
+    if (rightAnswerKey == -1) {
+        // not have result yet
+
+        if (index === answerKey) {
+            color = 'yellow'
+        } else {
+            color =  'white'
+        }
+    } else {
+        // have result
+
+        if (index === answerKey && answerKey === rightAnswerKey) {
+            // true answer
+            color = 'green'
+        } else if (index === answerKey && answerKey !== rightAnswerKey){
+            // wrong answer
+            color = 'red'
+        } else {
+            // other
+            color=  'white'
+        }
+    }
+
+
+    console.log(color);
+    return color;
+};
+
+const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, rightAnswerKey}) => (
+    <Card style={{
+        width: fromTheme.screenWidth - 32,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: setColorForCard(index, answerKey, rightAnswerKey)
+    }}
           key={answer._id.toString()}
     >
         <TouchableHighlight
             onPress={() => {
-                answerFunction(quizId, index);
-
-                }}
+                if (answerKey == -1) {
+                     answerFunction(quizId, index);
+                }
+             }}
             style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
         >
             <Text style={styles.answer}>
@@ -25,13 +65,22 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId}) => (
 
 );
 
-const EnViAnswerCard = ({answer, answerFunction, index, quizId}) => (
-    <Card style={StyleSheet.flatten(styles.answerCard)}
+const EnViAnswerCard = ({answer, answerFunction, index, quizId, answerKey, rightAnswerKey}) => (
+    <Card style={{
+        width: fromTheme.screenWidth - 32,
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: setColorForCard(index, answerKey, rightAnswerKey)
+    }}
           key={answer._id.toString()}
     >
         <TouchableHighlight
             onPress={() => {
-                answerFunction(quizId, index);
+                if (answerKey == -1) {
+                     answerFunction(quizId, index);
+                }
+
             }}
             style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
         >
@@ -46,7 +95,7 @@ class ChooseMeaning extends Component {
 
     render() {
 
-        const {game} = this.props;
+        const {game, answerKey, rightAnswerKey} = this.props;
 
         if (game.type === 'vi_en') {
             return (
@@ -64,6 +113,8 @@ class ChooseMeaning extends Component {
                                     answerFunction={this.props.answer}
                                     index={index}
                                     quizId={game._id}
+                                    answerKey={answerKey}
+                                    rightAnswerKey={rightAnswerKey}
                                 />
                             )
                         })}
@@ -86,8 +137,9 @@ class ChooseMeaning extends Component {
                                     answerFunction={this.props.answer}
                                     index={index}
                                     quizId={game._id}
+                                    answerKey={answerKey}
+                                    rightAnswerKey={rightAnswerKey}
                                 />
-
                             )
                         })}
                     </View>
@@ -100,7 +152,9 @@ class ChooseMeaning extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    game: getCurrentGame(state)
+    game: getCurrentGame(state),
+    answerKey: getCurrentAnswerKey(state),
+    rightAnswerKey: getCurrentRightAnswerKey(state)
 });
 
 export default connect(mapStateToProps, {

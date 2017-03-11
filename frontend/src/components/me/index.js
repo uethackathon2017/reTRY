@@ -30,7 +30,6 @@ class Me extends Component {
         const level = (score) => {
             return score / 30 + 1;
         };
-
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <View style={styles.statusBarBackground}/>
@@ -39,8 +38,7 @@ class Me extends Component {
                         <Text style={styles.title}>P R O F I L E</Text>
                     </View>
                     <View style={styles.userAvatarContainer}>
-                        <Image style={styles.userAvatar}
-                               source={{uri: profile.pictureURL}}/>
+                        {Avatar(profile)}
                     </View>
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
                     <View style={styles.userLevelContainer}>
@@ -63,6 +61,15 @@ class Me extends Component {
         )
     }
 }
+
+const Avatar = (profile) => {
+    if (profile.pictureURL) {
+        return (<Image style={styles.userAvatar}
+                        source={{uri: profile.pictureURL}}/>)
+    } else {
+        return (<Image style={styles.userAvatar}/>)
+    }
+};
 
 const mapStateToProps = (state) => {
     return {

@@ -13,6 +13,7 @@ import LeadersPage from './components/leaders';
 import GameResultPage from './components/game/game_result';
 import TopicPage from './components/topic';
 import FriendPage from './components/friend';
+import MembershipPage from './components/membership';
 
 const { popRoute, } = actions;
 
@@ -65,6 +66,8 @@ class AppNavigator extends Component {
                 return <TopicPage />;
             case 'friends':
                 return <FriendPage />;
+            case 'membership':
+                return <MembershipPage />;
             default:
                 return <MainPage />;
         }
