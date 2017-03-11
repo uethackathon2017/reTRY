@@ -45,16 +45,16 @@ class Me extends Component {
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
                     <View style={styles.userLevelContainer}>
                         <View style={styles.userLevelProgressContainer}>
-                            <Text style={styles.userLevel}>Cấp {profile.level}</Text>
+                            <Text style={styles.userLevel}>Level {profile.level}</Text>
                             <View style={styles.userLevelProgress}>
                                 <Progress.Bar progress={(profile.score - score(profile.level))/30.0}
                                               color={fromTheme.YELLOW} height={16}
                                               width={(screenWidth - 20)*0.8 - 10}/>
                             </View>
-                            <Text style={styles.userLevel}>Cấp {profile.level + 1}</Text>
+                            <Text style={styles.userLevel}>Level {profile.level + 1}</Text>
                         </View>
                         <Text style={styles.userScore}>
-                            {score(profile.level + 1) - profile.score} điểm nữa để lên cấp
+                            {score(profile.level + 1) - profile.score} more scores to level up
                         </Text>
                     </View>
                     <AchievementList awards={profile.awards}/>

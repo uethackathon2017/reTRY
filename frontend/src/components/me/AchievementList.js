@@ -46,7 +46,7 @@ class AchievementList extends Component {
         return (
             <View style={styles.achievementList}>
                 <View style={styles.achievementListTitleContainer}>
-                    <Text style={styles.achievementListTitle}>THÀNH TÍCH</Text>
+                    <Text style={styles.achievementListTitle}>ACHIEVEMENTS</Text>
                 </View>
                 {this._mapPropsToView()}
             </View>
