@@ -52,8 +52,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     User.updateAsync({
                         _id: firstPlayerData._id
                     }, {
-                        score: (firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore,
-                        level: calculateLevel((firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore)
+                        score: score,
+                        level: level
                         // TODO: Update words here
                         // TODO: Update awards here
                     })
@@ -64,8 +64,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                         return User.updateAsync({
                             _id: secondPlayerData._id
                         }, {
-                            score: (secondPlayerData.score ? secondPlayerData.score : 0) + secondPlayerScore,
-                            level: calculateLevel((secondPlayerData.score ? secondPlayerData.score : 0) + secondPlayerData)
+                            score: score,
+                            level: level
                             // TODO: Update words here
                             // TODO: Update awards here
                         });
@@ -215,8 +215,8 @@ module.exports = (game) => {
             console.log('User ' + socket.id.toString() + " disconnected");
             redisClient.smembers('passed words of ' + socket.id, (err, passedWords) => {
                 redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
-                    passedWords = JSON.parse(passedWords);
-                    failedWords = JSON.parse(failedWords);
+                    // passedWords = JSON.parse(passedWords);
+                    // failedWords = JSON.parse(failedWords);
                     let passedWordsToBeInserted = [];
                     let failedWordsToBeInserted = [];
                     for (let idx = 0; idx < passedWords.length; idx++) {
