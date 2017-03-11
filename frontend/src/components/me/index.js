@@ -10,9 +10,11 @@ import {getProfile as getProfileApi} from '../../actions/profile';
 import TitleWithLogout from '../common/TitleWithLogout';
 import TitleWithBackButton from '../common/TitleWithBackButton';
 import TransparentStatusBar from '../common/TransparentStatusBar';
+import {Button, Icon} from 'native-base';
 
 const screenWidth = fromTheme.screenWidth;
 const background = fromTheme.ME_BG_IMG;
+const diamond = require('../../../assets/images/diamond.png');
 
 class Me extends Component {
     componentDidMount() {
@@ -28,6 +30,29 @@ class Me extends Component {
             return (<TitleWithLogout title="P R O F I L E"/>);
         } else {
             return (<TitleWithBackButton title="P R O F I L E"/>);
+        }
+    }
+
+    _getNameComponent() {
+        const {
+            isCurrentUser, profile
+        } = this.props;
+
+        if (isCurrentUser) {
+            return (
+                <View style={styles.userNameContainer}>
+                    <View style={{flex: 0.3}}></View>
+                    <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
+                    <Button light transparent small style={styles.upgradeButton}>
+                        <View style={styles.diamondContainer}>
+                            <Image source={diamond} style={styles.diamond}/>
+                        </View>
+                        <Text style={styles.upgradeText}>UPGRADE</Text>
+                    </Button>
+                </View>
+            )
+        } else {
+            return (<Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>);
         }
     }
 
@@ -52,7 +77,7 @@ class Me extends Component {
                     <View style={styles.userAvatarContainer}>
                         {Avatar(profile)}
                     </View>
-                    <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
+                    {this._getNameComponent()}
                     <View style={styles.userLevelContainer}>
                         <View style={styles.userLevelProgressContainer}>
                             <Text style={styles.userLevel}>Level {profile.level}</Text>
