@@ -94,7 +94,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
         isFirstPlayerAnswerd = true;
-        const time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
+        let time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
         if (time < 0) time = 0;
         redisClient.get('score of ' + firstSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
@@ -143,7 +143,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
 
     secondSocket.on('answer quiz', (quizData) => {
         isSecondPlayerAnswerd = true;
-        const time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
+        let time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
         if (time < 0) time = 0;
         redisClient.get('score of ' + secondSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
