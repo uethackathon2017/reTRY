@@ -85,7 +85,10 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
     };
 
     setTimeout(() => {
-        nextQuiz();
+        game.to(room).emit('quiz start');
+        setTimeout(() => {
+            nextQuiz();
+        }, 2000);
     }, 11000);
 
 
@@ -164,10 +167,10 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
                     redisClient.set('score of ' + secondSocket.id, currentScore.toString());
                     secondSocket.emit('self quiz result', {
-                            result: true,
-                            currentScore: currentScore,
-                            rightAnswer: currentQuizz.key
-                        });
+                        result: true,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
                     secondSocket.broadcast.to(room).emit('opponent quiz result', {
                         result: true,
                         currentScore: currentScore,
@@ -192,8 +195,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 }
             }
-
-
         });
     });
 };
