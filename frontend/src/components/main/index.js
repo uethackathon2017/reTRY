@@ -48,7 +48,7 @@ class Main extends Component {  //eslint-disable-line
                 </TouchableHighlight>
 
                 <TouchableHighlight onPress={() => {
-                    this._pushTo('me'); this.props.clearProfile();
+                    this.props.clearProfile(); this._pushTo('me');
                 }} style={{ flex: 1 }}>
                     <View style={StyleSheet.flatten(styles.meBox)}>
                         {spacer}
