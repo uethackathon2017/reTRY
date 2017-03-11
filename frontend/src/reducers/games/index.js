@@ -49,6 +49,10 @@ export const getOpponentData = (state) => {
     return fromFind.getOpponentData(state.find);
 };
 
+export const getSelfData = (state) => {
+    return fromFind.getSelfData(state.find);
+}
+
 export const getCountDown = (state) => {
     return fromFind.getCountDown(state.find);
 };

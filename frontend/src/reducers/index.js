@@ -99,6 +99,14 @@ export const getOpponentData = (state) => {
 };
 
 /**
+ * get self data
+ * @param state
+ */
+export const getSelfData = (state) => {
+    return fromGames.getSelfData(state.games);
+};
+
+/**
  * get count down second amount
  * @param state
  */

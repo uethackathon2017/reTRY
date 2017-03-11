@@ -151,6 +151,11 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
         })
     });
 
+    socket.on('game end', (data) => {
+        dispatch({
+
+        })
+    })
 };
 
 export const cancelFinding = () => (dispatch) => {
