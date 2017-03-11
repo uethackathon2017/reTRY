@@ -12,8 +12,11 @@ const errorHandle = (socket, err) => {
     socket.emit('error', err);
 };
 
+const calculateLevel = (score) => {
+    return 1 + parseInt(score / 30);
+};
 
-const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
+const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
     let nextQuizIndex = 0;
     let isFirstPlayerAnswerd = false;
     let isSecondPlayerAnswerd = false;
@@ -34,10 +37,42 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
 
         nextQuizIndex++;
 
-        if (nextQuizIndex !== quizzes.length) {
+        if (nextQuizIndex < quizzes.length) {
             currentTimout = setTimeout(nextQuiz, (quizzes[nextQuizIndex - 1].duration + 1) * 1000)
+        } else {
+            redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
+                redisClient.get('score of ' + secondSocket.id, (error, secondPlayerScore) => {
+                    firstSocket.emit('game end', { selfScore: firstPlayerScore, opponentScore: secondPlayerScore, selfData: firstPlayerData, opponentData: secondPlayerData });
+                    secondSocket.emit('game end', { selfScore: secondPlayerScore, opponentScore: firstPlayerScore, selfData: secondPlayerData, opponentData: firstPlayerData });             
+                    // TODO: Save result of two players
+                    User.updateAsync({
+                        _id: firstPlayerData._id
+                    }, {
+                        score: firstPlayerData.score + firstPlayerScore,
+                        level: calculateLevel(firstPlayerData.score + firstPlayerScore)
+                        // TODO: Update words here
+                        // TODO: Update awards here
+                    })
+                    .then(result => {
+                        console.log('player 1 result: ' + result);
+                        return User.updateAsync({
+                            _id: secondPlayerData._id
+                        }, {
+                            score: secondPlayerData.score + secondPlayerScore,
+                            level: calculateLevel(secondPlayerData.score + secondPlayerData)
+                            // TODO: Update words here
+                            // TODO: Update awards here
+                        });
+                    })
+                    .then(result => {
+                        console.log('player 2 result: ' + result);
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+                });
+            });
         }
-
     };
 
     setTimeout(() => {
@@ -238,10 +273,12 @@ module.exports = (game) => {
                 }
 
                 firstSocket.emit('opponent found', {
+                    self: JSON.parse(firstPlayerInfo.userData),
                     opponent: JSON.parse(secondPlayerInfo.userData)
                 });
 
                 secondSocket.emit('opponent found', {
+                    self: JSON.parse(secondPlayerInfo.userData),
                     opponent: JSON.parse(firstPlayerInfo.userData)
                 });
 
@@ -268,103 +305,11 @@ module.exports = (game) => {
 
                             console.log("=====quiz generated");
 
-                            gameControl(game, firstSocket, secondSocket, room, newRandomTenQuizzes);
+                            gameControl(game, firstSocket, secondSocket, room, newRandomTenQuizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
                         });
                 }, 5000);
 
             }
         );
-
-
-        // let self = null;
-        // let opponent = null;
-        // if (firstPlayer === socket.id.toString()) {
-        //     self = firstPlayer;
-        //     opponent = secondPlayer;
-        // }
-        // if (secondPlayer === socket.id.toString()) {
-        //     self = secondPlayer;
-        //     opponent = firstPlayer;
-        // }
-        // if (self !== null) {
-        //     let room = `room:${self}-${opponent}`;
-        //     redisClient.set('room of ' + socket.id.toString(), room);
-        //
-        //     socket.join(room, () => {
-        //
-        //         let selfObj;
-        //         let opponentObj;
-        //
-        //         async.parallel([
-        //                 (callback) => {
-        //                     redisClient.hgetall(self, (err, data) => {
-        //                         if (err) {
-        //                             callback(err);
-        //                         }
-        //
-        //                         selfObj = data;
-        //                         callback();
-        //                     })
-        //                 },
-        //                 (callback) => {
-        //                     redisClient.hgetall(self, (err, data) => {
-        //                         if (err) {
-        //                             callback(err);
-        //                         }
-        //
-        //                         opponentObj = data;
-        //                         callback();
-        //                     });
-        //                 }
-        //             ],
-        //             (errors) => {
-        //                 if (errors) {
-        //                     errorHandle(socket, errors[0]);
-        //                 }
-        //
-        //                 console.log(opponentObj);
-        //
-        //                 game.to(room).emit('opponent found', {
-        //                     self: JSON.parse(selfObj.userData),
-        //                     opponent: JSON.parse(opponentObj.userData)
-        //                 });
-        //
-        //                 setTimeout(() => {
-        //                     let randomTenQuizzes = quizStorage[room];
-        //                     if (randomTenQuizzes == 'undefined') {
-        //                         quizStorage[room] = false;
-        //                         Quiz.find({})
-        //                             .populate('relatedWords')
-        //                             .lean()
-        //                             .then(quizzes => {
-        //                                 let newRandomTenQuizzes = [];
-        //                                 let pushedQuizzes = [];
-        //                                 for (let idx = 0; idx < 10; idx++) {
-        //                                     let randomIdx = Math.floor(Math.random() * quizzes.length);
-        //                                     while (pushedQuizzes.indexOf(randomIdx) !== -1) {
-        //                                         randomIdx = Math.floor(Math.random() * quizzes.length);
-        //                                     }
-        //                                     pushedQuizzes.push(randomIdx);
-        //                                     newRandomTenQuizzes.push(quizzes[randomIdx]);
-        //                                 }
-        //
-        //                                 game.to(room).emit('game data', {
-        //                                     quizzes: quizStorage[room]
-        //                                 });
-        //                                 gameControl(game, socket, room, quizStorage[room]);
-        //                             });
-        //                     }
-        //                     // else {
-        //                     //     game.to(room).emit('game data', {
-        //                     //         quizzes: quizStorage[room]
-        //                     //     });
-        //                     //     gameControl(game, socket, room, quizStorage[room]);
-        //                     // }
-        //                 }, 5000);
-        //             }
-        //         );
-        //
-        //     });
-        // }
     });
 };
