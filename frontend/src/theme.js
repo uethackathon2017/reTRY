@@ -11,7 +11,7 @@ export const LEADERS_BG_IMG = {uri: 'https://dl.dropbox.com/s/fne0nj5jm2bv6w8/it
 export const FIND_BG_IMG = {uri: 'https://dl.dropbox.com/s/vytcv3mf4wr2o4q/item-13-bg.jpg?dl=0'};
 export const ME_BG_IMG = {uri: 'https://dl.dropbox.com/s/2q22exjwmlkymps/item-4-bg.jpg?dl=0'};
 export const LOGIN_BG_IMG = {uri: 'https://dl.dropbox.com/s/2q22exjwmlkymps/item-4-bg.jpg?dl=0'};
-export const DEFAULT_AWARD_ICON = {uri: 'https://dl.dropboxusercontent.com/s/14o0iw3d22vi2cz/161%20-%20Star%20%28Flat%29.png?dl=0'};
+export const DEFAULT_AWARD_ICON = {uri: 'https://dl.dropbox.com/s/9qd87gcoig1owvq/award_icon.png?dl=0'};
 export const WELCOME_IMG = {uri: 'https://dl.dropbox.com/s/ibp9zwe5sjk7rjh/play_and_learn_with_retry.png?dl=0'};
 export const LOGO = {uri: 'https://dl.dropbox.com/s/ibdf10ju99ifkx9/logo.png?dl=0'};
 

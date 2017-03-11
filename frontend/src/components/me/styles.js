@@ -120,4 +120,9 @@ export default StyleSheet.create({
         color: fromTheme.BLACK_CHERRY,
         fontWeight: 'bold',
     },
+
+    achievementIcon: {
+        width: 24,
+        height: 24,
+    },
 });
