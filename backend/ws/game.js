@@ -102,7 +102,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
                     redisClient.sadd('passed words of ' + firstSocket.id, wordNeedToBeTracked.toString());
 
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
@@ -119,7 +119,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 } else {
                     // Save words which this user has the wrong answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
                     console.log('word id========' + wordNeedToBeTracked.toString());
                     redisClient.sadd('failed words of ' + firstSocket.id, wordNeedToBeTracked.toString());
 
@@ -152,7 +152,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
                     redisClient.sadd('passed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
 
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
@@ -169,7 +169,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 } else {
                     // Save words which this user has the wrong answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
                     console.log('word id========' + wordNeedToBeTracked.toString());
                     redisClient.sadd('failed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
 
