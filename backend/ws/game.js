@@ -261,7 +261,10 @@ module.exports = (game) => {
                             })
                             .then(user => {
                                 if (user) {
-                                    user.update({
+                                    User.findOneAndUpdate({
+                                        _id: socket.decoded_token._id,
+                                        'failedWords._id': word
+                                    }, {
                                         $inc: {
                                             'failedWords.$.count': 1,
                                         }
