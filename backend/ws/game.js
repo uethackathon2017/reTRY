@@ -20,6 +20,9 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
 
 
     const nextQuiz = (interval) => {
+
+        console.log("==== GAME: " + currentQuizIndex);
+
         if (currentQuizIndex === quizzes.length) {
             game.to(room).emit('final result', {});
             clearInterval(interval);
@@ -37,9 +40,12 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes) => {
 
     setTimeout(() => {
         nextQuiz();
-        let interval = setInterval(() => {
-            nextQuiz(interval);
-        }, quizzes[currentQuizIndex - 1].duration);
+        setTimeout(() => {
+            let interval = setInterval(() => {
+                nextQuiz(interval);
+                console.log("==TIME OUT: " + quizzes[currentQuizIndex - 1].duration * 1000);
+            }, quizzes[currentQuizIndex - 1].duration * 1000);
+        }, quizzes[currentQuizIndex - 1].duration * 1000);
     }, 11000);
 
 
@@ -123,7 +129,7 @@ module.exports = (game) => {
 
         socket.on('disconnect', () => {
             redisClient.srem('listWaitingPlayers', socket.id.toString());
-            redisClient.hdel(socket.id.toString(), 'userData');
+            redisClient.del(socket.id.toString());
             redisClient.del('room of ' + socket.id.toString());
         });
         socket.on('error', () => {
@@ -209,7 +215,7 @@ module.exports = (game) => {
                                 quizzes: newRandomTenQuizzes
                             });
 
-                            console.log(newRandomTenQuizzes);
+                            console.log("=====quiz generated");
 
                             gameControl(game, firstSocket, secondSocket, room, newRandomTenQuizzes);
                         });

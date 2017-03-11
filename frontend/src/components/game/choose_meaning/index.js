@@ -56,6 +56,7 @@ class ChooseMeaning extends Component {
                         {game.answers.map((answer, index) => {
                             return (
                                 <ViEnAnswerCard
+                                    key={answer._id.toString()}
                                     answer={answer}
                                     answerFunction={this.props.answer}
                                     index={index}
@@ -70,14 +71,14 @@ class ChooseMeaning extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.word}>game.question.content + " /" + game.question.pronounce[0]+"/"</Text>
-                        <Text style={styles.instruction}>game.question.description_en</Text>
+                        <Text style={styles.word}>{game.question.content + " /" + game.question.pronounce[0]+"/"}</Text>
+                        <Text style={styles.instruction}>{game.question.description_en}</Text>
                     </View>
                     <View style={styles.answersContainer}>
                         {game.answers.map((answer, index) => {
                             return (
-
                                 <EnViAnswerCard
+                                    key={answer._id.toString()}
                                     answer={answer}
                                     answerFunction={this.props.answer}
                                     index={index}

@@ -1,33 +1,55 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {Card, Icon} from 'native-base';
 import styles, * as fromStyles from './styles';
+import {connect} from 'react-redux';
+import {getCurrentGame} from '../../../reducers';
+import {answer} from '../../../actions/games';
 
-const AnsweCharacter = ({character}) => (
+const AnswerCharacter = ({character, answerFunction, quizId, index}) => (
     <View style={styles.answerCharacterContainer}>
-        <Text style={styles.answer}>
-            {character}
-        </Text>
+        <TouchableHighlight
+            onPress={() => {
+                answerFunction(quizId, index);
+            }}
+        >
+            <Text style={styles.answer}>
+                {character}
+            </Text>
+        </TouchableHighlight>
     </View>
 );
 
 class MissingWord extends Component {
     render() {
+        const {game} = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.questionContainer}>
-                    <Text style={styles.word}>F_ck</Text>
-                    <Text style={styles.instruction}>Find a missing character</Text>
+                    <Text style={styles.word}>{game.question.content}></Text>
+                    <Text style={styles.instruction}>{game.question.content.description_en}</Text>
                 </View>
                 <View style={styles.answersContainer}>
-                    <AnsweCharacter character="A"/>
-                    <AnsweCharacter character="B"/>
-                    <AnsweCharacter character="C"/>
-                    <AnsweCharacter character="D"/>
+                    {
+                        game.answers.map((answer, index) => {
+                            return (<AnswerCharacter
+                                    character={answer.content}
+                                    key={index}
+                                    answerFunction={this.props.answer}
+                                    quizId={game._id}
+                                />)
+                        })
+                    }
                 </View>
             </View>
         )
     }
 }
 
-export default MissingWord;
+const mapStateToProps = (state) => ({
+    game: getCurrentGame(state)
+});
+
+export default connect(mapStateToProps, {
+    answer
+})(MissingWord);

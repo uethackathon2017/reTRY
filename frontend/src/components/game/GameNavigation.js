@@ -6,24 +6,13 @@ import ChooseMeaningGame from './choose_meaning';
 import ListenGame from './listen';
 import MissingCharacterGame from './missing_character';
 
+
 const {
     CardStack: NavigationCardStack,
 } = NavigationExperimental;
 
 class GameNavigator extends Component {
 
-    componentDidMount() {
-        // BackAndroid.addEventListener('hardwareBackPress', () => {
-        //     const routes = this.props.navigation.routes;
-        //
-        //     if (routes[routes.length - 1].key === 'home' || routes[routes.length - 1].key === 'login') {
-        //         return false;
-        //     }
-        //
-        //     this.props.popRoute(this.props.navigation.key);
-        //     return true;
-        // });
-    }
 
     _renderScene(props) { // eslint-disable-line class-methods-use-this
         switch (props.scene.route.key) {

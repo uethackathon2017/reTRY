@@ -146,6 +146,14 @@ export const getGameIds = (state) => {
 };
 
 /**
+ * get count down for current game
+ * @param state
+ */
+export const getGameCountDown = (state) => {
+    return fromGames.getGameCountDown(state.games);
+};
+
+/**
  * get new words count down
  * @param state
  */
@@ -160,3 +168,4 @@ export const getLeaders = (state) => {
 export const checkShouldGetApi = (state) => {
     return fromProfile.checkShouldGetApi(state.profile);
 };
+
