@@ -211,8 +211,12 @@ module.exports = (game) => {
             })
             .lean()
             .then(user => {
-                redisClient.hset(socket.id.toString(), 'userData', JSON.stringify(user));
-                redisClient.sadd('listWaitingPlayers', socket.id.toString());
+                if (user) {
+                    redisClient.hset(socket.id.toString(), 'userData', JSON.stringify(user));
+                    redisClient.sadd('listWaitingPlayers', socket.id.toString());
+                } else {
+                    socket.emit('invalid token');
+                }
             })
             .catch(err => {
                 console.log(err);
