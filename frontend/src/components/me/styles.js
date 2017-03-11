@@ -15,6 +15,7 @@ export default StyleSheet.create({
     },
 
     titleRow: {
+        flexDirection: 'row',
         width: screenWidth,
         alignItems: 'center',
         justifyContent: 'center',
@@ -23,17 +24,26 @@ export default StyleSheet.create({
     },
 
     title: {
+        flex: 0.6,
         ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center',
+        textAlign: 'center',
     },
+
+    backButtonContainer: {
+        flex: 0.2,
+        alignItems: 'center',
+    },
+
+    backButtonIcon: {color: 'white', alignSelf: 'center'},
 
     statusBarBackground: {
         width: screenWidth,
         height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: fromTheme.ULTRAMARINE,
+        backgroundColor: 'transparent',
     },
 
     userAvatar: {

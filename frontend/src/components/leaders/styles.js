@@ -26,7 +26,9 @@ export default StyleSheet.create({
         width: screenWidth,
         paddingTop: 10,
         paddingBottom: 10,
-        backgroundColor: fromTheme.INDIGO,
+        backgroundColor: 'transparent',
+        borderColor: 'white',
+        borderBottomWidth: 0.5,
     },
 
     title: {
@@ -40,6 +42,7 @@ export default StyleSheet.create({
     statusBarBackground: {
         width: screenWidth,
         height: fromTheme.STATUSBAR_HEIGHT,
+        backgroundColor: 'transparent',
     },
 
     userAvatar: {
@@ -101,7 +104,7 @@ export default StyleSheet.create({
         flex: 1,
         width: screenWidth,
         borderColor: 'white',
-        borderTopWidth: 0.5,
+        borderBottomWidth: 0.5,
         flexDirection: 'row',
         paddingTop: 20,
         paddingBottom: 20,
