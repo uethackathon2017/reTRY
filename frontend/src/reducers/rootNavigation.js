@@ -1,4 +1,4 @@
-import {cardStackReducer} from 'react-native-navigation-redux-helpers';
+import { cardStackReducer } from 'react-native-navigation-redux-helpers';
 
 const initialState = {
     key: 'root',

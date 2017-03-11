@@ -2,31 +2,37 @@
   {
     "title": "Very first step!",
     "description": "First login to reTRY app",
-    "bonusScore": 1
+    "bonusScore": 1,
+    "imageURL": "http://dl.dropbox.com/s/3o0bcd5g3da4ykp/awards_1.png?dl=0"
   },
   {
     "title": "First blood!",
     "description": "Win the the game for the first time",
-    "bonusScore": 3
+    "bonusScore": 3,
+    "imageURL": "http://dl.dropbox.com/s/ab0g0d50cf4ubus/awards_2.png?dl=0"
   },
   {
     "title": "It is the first step that costs!",
     "description": "Win the the game for the first time",
-    "bonusScore": 5
+    "bonusScore": 5,
+    "imageURL": "https://dl.dropbox.com/s/hz6cnnhbm5qzble/awards_3.png?dl=0"
   },
   {
     "title": "Greate move!",
     "description": "Win 3 games in a row",
-    "bonusScore": 10
+    "bonusScore": 10,
+    "imageURL": "https://dl.dropbox.com/s/14wb55e6yby9uud/awards_4.png?dl=0"
   },
   {
     "title": "God like!",
     "description": "Win 10 games in a row",
-    "bonusScore": 20
+    "bonusScore": 20,
+    "imageURL": "https://dl.dropbox.com/s/azmrwx1wixl60y9/awards_5.png?dl=0"
   },
   {
     "title": "I am divine!",
     "description": "Reach top 1 leaderboard for the first time",
-    "bonusScore": 100
+    "bonusScore": 100,
+    "imageURL": "https://dl.dropbox.com/s/1752kgp5lw7vo2t/premium.png?dl=0"
   }
 ]
