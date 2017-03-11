@@ -18,35 +18,30 @@ const screenWidth = fromTheme.screenWidth;
 class Word extends Component {
     render() {
         return (
-            <Card style={StyleSheet.flatten(styles.achievementCard)}>
 
+            <Card style={StyleSheet.flatten(styles.achievementCard)}>
                 <CardItem >
                     <Left>
                         <Thumbnail source={this.props.image} />
-                        <Body style={{ flexDirection: 'column', marginTop: 10 }}>
-                            <View style={{ flexDirection: 'row' }}>
-                                <View style={{ flex: 0.8 }}>
-                                    <Text style={styles.achievementTitle}>{this.props.title}</Text>
-                                    <Text style={styles.achievementpronunciation}>{this.props.pronunciation}</Text>
-                                    <Text style={styles.achievementNote} note>{this.props.description}</Text>
+                        <Body >
+                            <View style={{ flexDirection: 'column' }}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ flex: 0.8 }}>
+                                        <Text style={styles.achievementTitle}>{this.props.title}</Text>
+                                        <Text style={styles.achievementpronunciation}>{this.props.pronunciation}</Text>
+                                        <Text style={styles.achievementNote} note>{this.props.description}</Text>
+                                    </View>
+                                    <View style={{ flex: 0.2 }}>
+                                        <Image style={styles.imageSpeaker} source={speakerWord} />
+                                    </View>
                                 </View>
-                                <View style={{ flex: 0.2 }}>
-                                    <Image style={styles.imageSpeaker} source={speakerWord} />
-                                </View>
-                            </View>
-                            <View style={styles.userLevelProgress}>
-                                <Progress.Bar progress={0.6}
-                                    color={fromTheme.YELLOW} height={10}
-                                    width={(screenWidth - 100)} />
+
                             </View>
                         </Body>
                     </Left>
                 </CardItem>
-
-
-
-
             </Card>
+
         )
     }
 }
@@ -61,6 +56,42 @@ class WordList extends Component {
                 <Word title="Booming" description="Mr.Obama had a booming career when he was electe as presient of the US."
                     pronunciation="'ˈbuːmɪŋ"
                     image={chart} />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
+                <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
+                    pronunciation="katəˈstrɒfɪk"
+                    image={speaker}
+                />
                 <Word title="Catastrophic" description="The radiantion contamination had catastrophic effects on the ecosystem."
                     pronunciation="katəˈstrɒfɪk"
                     image={speaker}

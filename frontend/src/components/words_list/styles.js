@@ -69,7 +69,7 @@ export default StyleSheet.create({
 
     userLevelProgress: {
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
 
     },
 
@@ -113,6 +113,7 @@ export default StyleSheet.create({
         marginRight: 16,
         backgroundColor: 'white',
         height: 150,
+        marginTop: 20
     },
 
     achievementTitle: {
@@ -130,6 +131,7 @@ export default StyleSheet.create({
         marginTop: 15,
         fontSize: fromTheme.H5_SIZE,
         color: fromTheme.BLACK_CHERRY,
+        justifyContent: 'space-between'
     },
     imageSpeaker: {
         width: 50,
