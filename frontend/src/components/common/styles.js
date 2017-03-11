@@ -1,4 +1,4 @@
-import React, {StyleSheet} from 'react-native';
+import React, { StyleSheet } from 'react-native';
 import theme, * as fromTheme from '../../theme';
 
 const screenWidth = fromTheme.screenWidth;
@@ -12,7 +12,7 @@ export default StyleSheet.create({
         paddingBottom: 10,
         backgroundColor: 'transparent',
         borderColor: 'white',
-        borderBottomWidth: 0.5,
+        borderBottomWidth: 0,
     },
 
     title: {
@@ -21,6 +21,7 @@ export default StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center',
+        textAlign: 'center',
         ...fromTheme.BG_TRANSPARENT,
     },
 
