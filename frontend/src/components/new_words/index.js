@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    Image
 } from 'react-native';
 import Carousel from 'react-native-carousel';
 import {Card, Container} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
 import styles from './styles';
 import {getAllWords} from '../../reducers';
 import {connect} from 'react-redux';
@@ -47,11 +47,11 @@ const cardWithImage = (word) => (
             <Text style={styles.darkPronounce}>/{word.pronunciation[0]}/</Text>
         </View>
         <View style={styles.userAvatarContainer}>
-            <CacheableImage
+            <Image
                 style={styles.headerImage}
                 source={{ uri: word.image }}
             >
-            </CacheableImage>
+            </Image>
         </View>
         <View style={styles.body}>
             {

@@ -1,7 +1,7 @@
 import * as actionTypes from './types';
-import { connect, getSocket } from '../api/socket';
+import {connect, getSocket} from '../api/socket';
 import config from '../config';
-import { getAccessToken, getGameIds, getCurrentGame } from '../reducers';
+import {getAccessToken, getGameIds, getCurrentGame} from '../reducers';
 import {navReplaceAt} from './rootNavigation';
 import * as gameNav from './gameNavigation';
 
@@ -46,7 +46,7 @@ export const startFinding = () => (dispatch, getState) => {
         let newWordsCountDown = config.newWordsCountDown;
 
         let interval = setInterval(() => {
-            if (newWordsCountDown > 0) {
+            if (newWordsCountDown >= 0) {
                 dispatch({
                     type: actionTypes.NEW_WORDS_COUNT_DOWN,
                 })
@@ -57,32 +57,67 @@ export const startFinding = () => (dispatch, getState) => {
         }, 1000)
     });
 
-    socket.on('quiz', (id) => {
+    socket.on('quiz', (data) => {
         dispatch({
             type: actionTypes.SHOW_GAME,
-            id: id
+            id: data.quizId
         });
 
         const currentGame = getCurrentGame(getState());
 
-        if (getGameIds(getState()).indexOf(id) === 0) {
-            navReplaceAt('game');
 
-            switch (currentGame.type) {
-                case 'vi-en':
-                case 'en-vi':
-                    gameNav.navReplaceAt('choose_meaning');
-                default:
-                    return;
+        // move to game screen if needed
+        if (getGameIds(getState()).indexOf(data.quizId) === 0) {
+            dispatch(navReplaceAt('game'));
+        }
+
+        // Game count down
+        let countdown = currentGame.duration;
+        dispatch({
+            type: actionTypes.GAME_COUNT_DOWN,
+            countDown: countdown
+        });
+
+        let interval = setInterval(() => {
+            if (countDown === 0) {
+                clearInterval(interval);
+                return;
             }
+
+            countDown--;
+
+            dispatch({
+                type: actionTypes.GAME_COUNT_DOWN,
+                countDown: countdown
+            })
+        }, 1000);
+
+
+        // switch game
+        switch (currentGame.type) {
+            case 'vi_en':
+            case 'en_vi':
+                dispatch(gameNav.navReplaceAt('choose_meaning'));
+                break;
+            case 'missingChar':
+                dispatch(gameNav.navReplaceAt('missing_character'));
+                break;
+            default:
+                return;
         }
     })
 };
 
-export const answer = () => (dispatch) => {
+export const answer = (quizId, answerIndex) => (dispatch, getState) => {
     const socket = getSocket();
 
+    socket.emit('answer quiz', {
+        quizId,
+        answerIndex
+    })
+
 };
+
 export const cancelFinding = () => (dispatch) => {
     const socket = getSocket();
     socket.disconnect();
