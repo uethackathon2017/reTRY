@@ -1,15 +1,7 @@
 import * as types from '../actions/types';
 
 const initialState = {
-    errorMessage: null,
     userData: {
-        firstName: null,
-        lastName: null,
-        pictureURL: null,
-        score: null,
-        level: null,
-        awards: [],
-        fbLink: null,
     },
     shouldGetApi: true,
 };
