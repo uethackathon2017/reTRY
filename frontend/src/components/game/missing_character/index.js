@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 import {getCurrentGame, getCurrentAnswerKey, getCurrentRightAnswerKey} from '../../../reducers';
 import {answer} from '../../../actions/games';
 import {setColorForTransparentCard} from '../../../helpers/answerCard';
+import * as fromTheme from '../../../theme';
 
 const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, rightAnswerKey}) => (
 
@@ -13,6 +14,7 @@ const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, r
         backgroundColor: setColorForTransparentCard(index, answerKey, rightAnswerKey)
     }]}>
         <TouchableHighlight
+            underlayColor={fromTheme.LINEN}
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
