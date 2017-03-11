@@ -173,7 +173,7 @@ export const checkShouldGetApi = (state) => {
 
 export const getTopics = (state) => {
     return fromTopics.getTopics(state.topics)
-}
+};
 
 /**
  * get self score
@@ -189,4 +189,20 @@ export const getSelfScore = (state) => {
  */
 export const getOpponentScore = (state) => {
     return fromGames.getOpponentScore(state.games);
+};
+
+/**
+ * Get current answer key
+ * @param state
+ */
+export const getCurrentAnswerKey = (state) => {
+    return fromGames.getCurrentAnswerKey(state.games);
+};
+
+/**
+ * Get current right answer key
+ * @param state
+ */
+export const getCurrentRightAnswerKey = (state) => {
+    return fromGames.getCurrentRightAnswerKey(state.games);
 };
