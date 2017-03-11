@@ -51,7 +51,7 @@ class User extends Component {
                         <Image style={styles.userAvatar} source={{uri: this.props.user.pictureURL}}/>
                     </View>
                     <Text style={styles.userName}>{this.props.user.firstName} {this.props.user.lastName}</Text>
-                    <Text style={styles.userLevel}>Cấp {this.props.user.level}</Text>
+                    <Text style={styles.userLevel}>Level {this.props.user.level}</Text>
                 </View>
             </TouchableHighlight>
         )
