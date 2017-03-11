@@ -33,7 +33,7 @@ class MissingWord extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.questionContainer}>
-                    <Text style={styles.word}>{game.question.content}></Text>
+                    <Text style={styles.word}>{game.question.content}</Text>
                     <Text style={styles.instruction}>{game.question.content.description_en}</Text>
                 </View>
                 <View style={styles.answersContainer}>
