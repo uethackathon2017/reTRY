@@ -22,29 +22,6 @@ export default StyleSheet.create({
         backgroundColor: fromTheme.INDIGO,
     },
 
-    titleRow: {
-        width: screenWidth,
-        paddingTop: 10,
-        paddingBottom: 10,
-        backgroundColor: 'transparent',
-        borderColor: 'white',
-        borderBottomWidth: 0.5,
-    },
-
-    title: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-        ...fromTheme.BG_TRANSPARENT,
-    },
-
-    statusBarBackground: {
-        width: screenWidth,
-        height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: 'transparent',
-    },
-
     userAvatar: {
         width: 50,
         height: 50,
