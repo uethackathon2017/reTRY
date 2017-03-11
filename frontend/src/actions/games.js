@@ -57,7 +57,14 @@ export const startFinding = () => (dispatch, getState) => {
         }, 1000)
     });
 
+
+
+    let currentGameCountDownInterval;
+
     socket.on('quiz', (data) => {
+
+        clearInterval(currentGameCountDownInterval);
+
         dispatch({
             type: actionTypes.SHOW_GAME,
             id: data.quizId
@@ -95,9 +102,9 @@ export const startFinding = () => (dispatch, getState) => {
 
         console.log("=== DURATION: " + gameCountdown);
 
-        let interval = setInterval(() => {
+        currentGameCountDownInterval = setInterval(() => {
             if (gameCountdown === 0) {
-                clearInterval(interval);
+                clearInterval(currentGameCountDownInterval);
                 return;
             }
 
@@ -118,6 +125,11 @@ export const startFinding = () => (dispatch, getState) => {
 export const answer = (quizId, answerIndex) => (dispatch, getState) => {
     const socket = getSocket();
 
+    dispatch({
+        type: actionTypes.ANSWER,
+        key: answerIndex
+    });
+
     socket.emit('answer quiz', {
         _id: quizId,
         key: answerIndex
@@ -126,14 +138,16 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
     socket.on('self quiz result', (data) =>{
        dispatch({
            type: actionTypes.RECEIVE_SELF_SCORE,
-           score: data.currentScore
+           score: data.currentScore,
+           rightAnswer: data.rightAnswer
        })
     });
 
     socket.on('opponent quiz result', (data) => {
         dispatch({
             type: actionTypes.RECEIVE_OPPONENT_SCORE,
-            score: data.currentScore
+            score: data.currentScore,
+            rightAnswer: data.rightAnswer
         })
     });
 
