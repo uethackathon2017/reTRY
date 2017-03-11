@@ -1,4 +1,4 @@
-import React, {StyleSheet} from 'react-native';
+import React, { StyleSheet } from 'react-native';
 import theme, * as fromTheme from '../../theme';
 
 const screenWidth = fromTheme.screenWidth;
@@ -11,11 +11,9 @@ export default StyleSheet.create({
         height: null,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: fromTheme.ULTRAMARINE,
     },
 
     titleRow: {
-        flexDirection: 'row',
         width: screenWidth,
         alignItems: 'center',
         justifyContent: 'center',
@@ -24,26 +22,17 @@ export default StyleSheet.create({
     },
 
     title: {
-        flex: 0.6,
         ...fromTheme.BG_TRANSPARENT,
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
         alignSelf: 'center',
-        textAlign: 'center',
     },
-
-    backButtonContainer: {
-        flex: 0.2,
-        alignItems: 'center',
-    },
-
-    backButtonIcon: {color: 'white', alignSelf: 'center'},
 
     statusBarBackground: {
         width: screenWidth,
         height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: 'transparent',
+        // backgroundColor: fromTheme.ULTRAMARINE,
     },
 
     userAvatar: {
@@ -123,16 +112,20 @@ export default StyleSheet.create({
         marginLeft: 16,
         marginRight: 16,
         backgroundColor: 'white',
+        height: 150
     },
 
     achievementTitle: {
         ...fromTheme.BG_TRANSPARENT,
+        fontSize: fromTheme.H2_SIZE,
         color: fromTheme.BLACK_CHERRY,
         fontWeight: 'bold',
     },
+    achievementNote: {
+        ...fromTheme.BG_TRANSPARENT,
+        marginTop: 15,
+        fontSize: fromTheme.H5_SIZE,
+        color: fromTheme.BLACK_CHERRY,
 
-    achievementIcon: {
-        width: 24,
-        height: 24,
-    },
+    }
 });
