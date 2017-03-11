@@ -2,18 +2,18 @@ import { Platform } from 'react-native';
 const platform = Platform.OS;
 
 
-//
+
 // let config =  {
-//     apiUrl: 'http://52.76.166.38:6969',
-//     gameUrl: 'http://52.76.166.38:7000/game',
+//     apiUrl: 'http://112.137.131.9:6969',
+//     gameUrl: 'http://112.137.131.9:7000/game',
 //     gameStartCountDown: 5,
 //     newWordsCountDown: 10
 // };
 //
 // if (platform === 'android') {
 //     config = {
-//         apiUrl: 'http://52.76.166.38:6969',
-//         gameUrl: 'http://52.76.166.38:7000/game',
+//         apiUrl: 'http://112.137.131.9:6969',
+//         gameUrl: 'http://112.137.131.9:7000/game',
 //         gameStartCountDown: 5,
 //         newWordsCountDown: 10
 //     }

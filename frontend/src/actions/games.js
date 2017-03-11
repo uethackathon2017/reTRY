@@ -65,10 +65,22 @@ export const startFinding = () => (dispatch, getState) => {
 
         const currentGame = getCurrentGame(getState());
 
-
         // move to game screen if needed
         if (getGameIds(getState()).indexOf(data.quizId) === 0) {
             dispatch(navReplaceAt('game'));
+        }
+
+        // switch game
+        switch (currentGame.type) {
+            case 'vi_en':
+            case 'en_vi':
+                dispatch(gameNav.navReplaceAt('choose_meaning'));
+                break;
+            case 'missingChar':
+                dispatch(gameNav.navReplaceAt('missing_character'));
+                break;
+            default:
+                return;
         }
 
         // Game count down
@@ -99,18 +111,7 @@ export const startFinding = () => (dispatch, getState) => {
         }, 1000);
 
 
-        // switch game
-        switch (currentGame.type) {
-            case 'vi_en':
-            case 'en_vi':
-                dispatch(gameNav.navReplaceAt('choose_meaning'));
-                break;
-            case 'missingChar':
-                dispatch(gameNav.navReplaceAt('missing_character'));
-                break;
-            default:
-                return;
-        }
+
     })
 };
 
@@ -141,6 +142,7 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
 export const cancelFinding = () => (dispatch) => {
     const socket = getSocket();
     socket.disconnect();
+    socket.close();
     dispatch({
         type: actionTypes.FIND_CANCEL
     });

@@ -7,9 +7,11 @@ import {getCurrentGame} from '../../../reducers';
 import {answer} from '../../../actions/games';
 
 const AnswerCharacter = ({character, answerFunction, quizId, index}) => (
+
     <View style={styles.answerCharacterContainer}>
         <TouchableHighlight
             onPress={() => {
+                 console.log("QUESTION: " + quizId + ", ANSWER: " + index);
                 answerFunction(quizId, index);
             }}
             style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
@@ -33,8 +35,10 @@ class MissingWord extends Component {
                 <View style={styles.answersContainer}>
                     {
                         game.answers.map((answer, index) => {
+                            console.log("INDEX: " + index);
                             return (<AnswerCharacter
                                     character={answer.content}
+                                    index={index}
                                     key={index}
                                     answerFunction={this.props.answer}
                                     quizId={game._id}
