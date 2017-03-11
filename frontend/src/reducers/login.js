@@ -7,11 +7,11 @@ const initialState = {
 
 const login = (state = initialState, action) => {
     switch (action.type) {
-        // case REHYDRATE:
-        //     const incoming = action.payload.login;
-        //     console.log(incoming);
-        //     if (incoming && incoming.accessToken != null) return incoming;
-        //     return state;
+        case REHYDRATE:
+            const incoming = action.payload.login;
+            console.log(incoming);
+            if (incoming && incoming.accessToken != null) return incoming;
+            return state;
 
         case types.FBLOGIN_REQUEST:
         case types.FBLOGIN_SUCCESS:
