@@ -11,7 +11,7 @@ import {getProfile as getProfileApi} from '../../actions/profile';
 import CacheableImage from 'react-native-cacheable-image';
 
 const screenWidth = fromTheme.screenWidth;
-const background = require('../../../assets/images/background/item-4-bg.jpg');
+const background = fromTheme.ME_BG_IMG;
 
 class Me extends Component {
     componentDidMount() {

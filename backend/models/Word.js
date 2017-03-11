@@ -14,7 +14,10 @@ let WordSchema = new mongoose.Schema({
   }],
   synonyms: [ String ],
   antonyms: [ String ],
-  topics: [ mongoose.Schema.Types.ObjectId ],
+  topics: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Topic'
+  }],
   targets: [ String ],
   pronunciation: [ String ],
   frequency: Number,

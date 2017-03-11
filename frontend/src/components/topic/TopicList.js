@@ -5,10 +5,22 @@ import styles from './styles';
 import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
+import {getTopics} from '../../reducers';
+import {connect} from 'react-redux';
+import {getTopics as getTopicsApi} from '../../actions/topics';
+import {navPushRoute} from '../../actions/rootNavigation';
 
 const welcome = require('../../../assets/images/logo.jpg');
 
 class TopicCard extends Component {
+    
+    static propTypes = {
+        reset: React.PropTypes.func,
+        navigation: React.PropTypes.shape({
+            key: React.PropTypes.string,
+        }),
+    };
+
     render() {
         return (
             <Card style={StyleSheet.flatten(styles.achievementCard)}>
@@ -27,19 +39,40 @@ class TopicCard extends Component {
 }
 
 class TopicList extends Component {
+    
+    componentDidMount(){
+        this.props.getTopicsApi();
+    }
+
+    _mapPropsToView() {
+        const {
+            topics, navPushRoute
+        } = this.props;
+
+        return topics.map((topic, position) => (<TopicCard
+            key={topic._id}
+            navPushRoute={navPushRoute}
+            title={topic.name}
+            description={topic.description}
+        />))
+    }
+
     render() {
         return (
             <View style={styles.achievementList}>
-                {/*<View style={styles.achievementListTitleContainer}>
-                    <Text style={styles.achievementListTitle}>THÀNH TÍCH</Text>
-                </View>*/}
-                <TopicCard title="Growing up" description="Progressing toward psychological maturity"/>
-                <TopicCard title="Health" description="Health is the level of functional and metabolic efficiency of a living organism"/>
-                <TopicCard title="Sky" description="The sky (or celestial dome) is everything that lies above the surface of the Earth, including the atmosphere and outer space"/>
-                <TopicCard title="Information Technology" description="Information technology (IT) is the application of computers to store, study, retrieve, transmit, and manipulate data, or information, often in the context of a business or other enterprise"/>
+               {this._mapPropsToView()}
             </View>
         )
     }
 }
 
-export default TopicList;
+
+const mapStateToProps = (state) => {
+    return {
+        topics: getTopics(state),
+    }
+};
+
+export default connect(mapStateToProps, {
+    getTopicsApi, navPushRoute
+})(TopicList);

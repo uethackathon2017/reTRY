@@ -11,6 +11,7 @@ export default StyleSheet.create({
         height: null,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: fromTheme.ULTRAMARINE,
     },
 
     titleRow: {

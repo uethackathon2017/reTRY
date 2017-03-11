@@ -7,7 +7,7 @@ export default StyleSheet.create({
         flex: 1,
         width: null,
         height: null,
-        // backgroundColor: fromTheme.LIGHT_BLUE,
+        backgroundColor: fromTheme.LIGHT_BLUE,
         justifyContent: 'space-around',
         alignItems: 'center',
     },
