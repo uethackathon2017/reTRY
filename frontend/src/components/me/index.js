@@ -8,6 +8,7 @@ import {getProfile, checkShouldGetApi} from '../../reducers';
 import {connect} from 'react-redux';
 import {getProfile as getProfileApi} from '../../actions/profile';
 import TitleWithLogout from '../common/TitleWithLogout';
+import TitleWithBackButton from '../common/TitleWithBackButton';
 import TransparentStatusBar from '../common/TransparentStatusBar';
 
 const screenWidth = fromTheme.screenWidth;
