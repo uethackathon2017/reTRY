@@ -3,12 +3,12 @@ import {View, Text} from 'react-native';
 import {Button, Icon} from 'native-base';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/login'
-import {navPopRoute, navReplaceAt} from '../../actions/rootNavigation'
+import {navPopRoute, navReplaceAt, navResetRoute} from '../../actions/rootNavigation'
 
 class BackButton extends Component {
     _logout() {
         this.props.logout();
-        this.props.navPopRoute();
+        this.props.navResetRoute();
     }
 
     render() {
@@ -27,5 +27,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-    logout, navPopRoute
+    logout, navResetRoute
 })(BackButton);

@@ -18,7 +18,7 @@ const calculateLevel = (score) => {
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
-    let nextQuizIndex = 0;
+    let currentQuizIdx = 0;
     let isFirstPlayerAnswerd = false;
     let isSecondPlayerAnswerd = false;
     let quizStartTime;
@@ -29,19 +29,20 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         isFirstPlayerAnswerd = false;
         isSecondPlayerAnswerd = false;
 
-        // console.log("==== GAME: " + nextQuizIndex, ' with duration: ' + quizzes[nextQuizIndex].duration);
+        console.log("==== GAME: " + currentQuizIdx, ' with duration: ' + quizzes[currentQuizIdx].duration);
         quizStartTime = new Date();
 
         game.to(room).emit('quiz', {
-            quizId: quizzes[nextQuizIndex]._id
+            quizId: quizzes[currentQuizIdx]._id
         });
 
-        nextQuizIndex++;
+        currentQuizIdx++;
 
-        if (nextQuizIndex < quizzes.length) {
-            currentTimout = setTimeout(nextQuiz, (quizzes[nextQuizIndex - 1].duration + 1) * 1000)
+        if (currentQuizIdx < quizzes.length) {
+            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx].duration + 1) * 1000)
         } else {
-            redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
+            setTimeout(() => {
+                redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
                 redisClient.get('score of ' + secondSocket.id, (error, secondPlayerScore) => {
                     firstSocket.emit('game end', { selfScore: firstPlayerScore, opponentScore: secondPlayerScore, selfData: firstPlayerData, opponentData: secondPlayerData });
                     secondSocket.emit('game end', { selfScore: secondPlayerScore, opponentScore: firstPlayerScore, selfData: secondPlayerData, opponentData: firstPlayerData });             
@@ -79,6 +80,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 });
             });
+            }, (quizzes[currentQuizIdx].duration + 1) * 1000);
         }
     };
 
@@ -94,12 +96,12 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
         isFirstPlayerAnswerd = true;
-        const time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
+        let time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
         if (time < 0) time = 0;
         redisClient.get('score of ' + firstSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-            let currentQuizz = quizzes[nextQuizIndex - 1];
+            let currentQuizz = quizzes[currentQuizIdx];
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -143,13 +145,13 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
 
     secondSocket.on('answer quiz', (quizData) => {
         isSecondPlayerAnswerd = true;
-        const time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
+        let time = Math.floor(new Date() - quizStartTime) / 1000 - DELAY_TIME;
         if (time < 0) time = 0;
         redisClient.get('score of ' + secondSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
 
-            let currentQuizz = quizzes[nextQuizIndex - 1];
+            let currentQuizz = quizzes[currentQuizIdx];
 
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
