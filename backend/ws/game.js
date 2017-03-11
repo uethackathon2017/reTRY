@@ -49,7 +49,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     // TODO: Save result of two players
                     // console.log(firstPlayerScore);
                     // console.log(secondPlayerScore);
-                    let score = (firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore;
+                    let score = parseInt(firstPlayerData.score ? firstPlayerData.score : 0) + parseInt(firstPlayerScore);
                     let level = calculateLevel(score);
                     User.updateAsync({
                         _id: firstPlayerData._id
@@ -61,7 +61,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     })
                     .then(result => {
                         console.log('player 1 result: ' + result);
-                        let score = (firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore;
+                        let score = parseInt(firstPlayerData.score ? firstPlayerData.score : 0) + parseInt(firstPlayerScore);
                         let level = calculateLevel(score);
                         return User.updateAsync({
                             _id: secondPlayerData._id
