@@ -33,3 +33,13 @@ export const leaders = (accessToken) => {
         }
     })
 };
+
+export const topics = (accessToken) => {
+    console.log("topic api:")
+    return fetch(config.apiUrl + '/games/getTopics', {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        }
+    })
+};

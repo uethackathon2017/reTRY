@@ -13,7 +13,7 @@ import CacheableImage from 'react-native-cacheable-image';
 const screenWidth = fromTheme.screenWidth;
 const background = require('../../../assets/images/background/item-4-bg.jpg');
 
-class Topic extends Component {
+class Topics extends Component {
 
     render() {
      return (
@@ -32,4 +32,4 @@ class Topic extends Component {
 
 
 
-export default Topic
+export default Topics

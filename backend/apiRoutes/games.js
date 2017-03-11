@@ -72,4 +72,39 @@ gameRoutes.push({
   }
 });
 
+gameRoutes.push({
+  method: 'GET',
+  path: '/games/getWordsByTopic',
+  handler: gameHandler.getWordsByTopic,
+  config: {
+    auth: {
+      mode: 'required',
+      strategies: [ 'jwt' ],
+      access: {
+        scope: [ 'admin', 'common', '+accessToken' ]
+      }
+    },
+    tags: [ 'api', 'games' ],
+    description: 'Get words by topic id',
+    notes: 'Require access token',
+    validate: {
+      headers: Joi.object({
+        authorization: Joi.string().required().description('Access token')
+      }).required().unknown(),
+      query: {
+        topicId: Joi.string().required().description('Word id')
+      }
+    },
+    response: {
+      status: {
+        // Response format in case of success
+        200: Joi.object({
+          words: Joi.array().items(Joi.object({}).unknown())
+        }),
+        // TODO: Response format in case of failure
+      }
+    }
+  }
+});
+
 module.exports = gameRoutes;

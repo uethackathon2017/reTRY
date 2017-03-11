@@ -35,5 +35,20 @@ module.exports = {
         console.log(err);
         return reply(new Boom.wrap(err));
       });
+  },
+
+  getWordsByTopic: (request, reply) => {
+    Word
+      .find({ topics: request.query.topicId })
+      .populate('topics')
+      .then(words => {
+        return reply({
+          words: words
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        return reply(new Boom.wrap(err));
+      });
   }
 };
