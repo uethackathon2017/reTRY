@@ -5,10 +5,11 @@ import {actions} from 'react-native-navigation-redux-helpers';
 import {Container, Icon} from 'native-base';
 import {navPushRoute} from '../../actions/rootNavigation';
 import {clearProfile} from '../../actions/profile';
-
+import TransparentStatusBar from '../common/TransparentStatusBar';
 import styles from './styles';
 
 const spacer = <View style={styles.spacer}></View>;
+const background = require('../../../assets/images/background/item-2-bg.jpg');
 
 class Main extends Component {  //eslint-disable-line
 
@@ -25,13 +26,13 @@ class Main extends Component {  //eslint-disable-line
 
     render() {
         return (
-            <Container>
-                <View style={styles.statusBarBackground}></View>
+            <Image source={background} style={StyleSheet.flatten(styles.container)}>
+                <TransparentStatusBar/>
                 <TouchableHighlight onPress={() => this._pushTo('leaders')} style={{flex: 1}}>
                     <View style={styles.leadersBox}>
 
                         {spacer}
-                        <Icon name="trophy" style={StyleSheet.flatten(styles.leadersIcon)}/>
+                        <Icon name="ios-trophy-outline" style={StyleSheet.flatten(styles.leadersIcon)}/>
                         <Text style={styles.leadersTitle}>LEADERS </Text>
                         {spacer}
 
@@ -66,7 +67,7 @@ class Main extends Component {  //eslint-disable-line
                         {spacer}
                     </View>
                 </TouchableHighlight>
-            </Container>
+            </Image>
         );
     }
 }
