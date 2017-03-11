@@ -94,7 +94,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
 
     const socketPlayerHandler = (socket) => {
 
-    }
+    };
 
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }

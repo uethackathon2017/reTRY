@@ -129,20 +129,6 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
 
-};
-
-export const answer = (quizId, answerIndex) => (dispatch, getState) => {
-    const socket = getSocket();
-
-    dispatch({
-        type: actionTypes.ANSWER,
-        key: answerIndex
-    });
-
-    socket.emit('answer quiz', {
-        _id: quizId,
-        key: answerIndex
-    });
 
     socket.on('self quiz result', (data) => {
         dispatch({
@@ -170,6 +156,20 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
         socket.close();
         dispatch(navReplaceAt('gameResult'));
     })
+};
+
+export const answer = (quizId, answerIndex) => (dispatch, getState) => {
+    const socket = getSocket();
+
+    dispatch({
+        type: actionTypes.ANSWER,
+        key: answerIndex
+    });
+
+    socket.emit('answer quiz', {
+        _id: quizId,
+        key: answerIndex
+    });
 };
 
 export const cancelFinding = () => (dispatch) => {
