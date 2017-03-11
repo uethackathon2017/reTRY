@@ -18,5 +18,20 @@
     "name": "Information Technology",
     "description": "Information technology (IT) is the application of computers to store, study, retrieve, transmit, and manipulate data, or information, often in the context of a business or other enterprise",
     "image": "http://www.straighterline.com/wp/wp-content/uploads/2015/07/blog_feature_IT_Careers_072015.jpg"
+  },
+  {
+    "name": "City life",
+    "description": "",
+    "image": ""
+  },
+  {
+    "name": "The body and The mind",
+    "description": "",
+    "image": ""
+  },
+  {
+    "name": "Through the ages",
+    "description": "",
+    "image": ""
   }
 ]
