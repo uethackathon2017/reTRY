@@ -18,12 +18,12 @@ export const startFinding = () => (dispatch, getState) => {
 
     const socket = getSocket();
 
-    let countDown = config.gameStartCountDown;
+    let gameStartCountDown = config.gameStartCountDown;
 
     socket.on('opponent found', (data) => {
 
         let interval = setInterval(() => {
-            if (countDown > 0) {
+            if (gameStartCountDown > 0) {
                 dispatch({
                     type: actionTypes.FIND_SUCCESS,
                     data: data
@@ -31,7 +31,7 @@ export const startFinding = () => (dispatch, getState) => {
             } else {
                 clearInterval(interval);
             }
-            countDown--;
+            gameStartCountDown--;
         }, 1000)
     });
 
@@ -72,23 +72,29 @@ export const startFinding = () => (dispatch, getState) => {
         }
 
         // Game count down
-        let countdown = currentGame.duration;
+        let gameCountdown = currentGame.duration;
+        console.log("=== DURATION: " + gameCountdown);
+
+
         dispatch({
             type: actionTypes.GAME_COUNT_DOWN,
-            countDown: countdown
+            countDown: gameCountdown
         });
 
+        console.log("=== DURATION: " + gameCountdown);
+
         let interval = setInterval(() => {
-            if (countDown === 0) {
+            if (gameCountdown === 0) {
                 clearInterval(interval);
                 return;
             }
 
-            countDown--;
+            console.log(gameStartCountDown);
+            gameCountdown--;
 
             dispatch({
                 type: actionTypes.GAME_COUNT_DOWN,
-                countDown: countdown
+                countDown: gameCountdown
             })
         }, 1000);
 
@@ -112,9 +118,23 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
     const socket = getSocket();
 
     socket.emit('answer quiz', {
-        quizId,
-        answerIndex
-    })
+        _id: quizId,
+        key: answerIndex
+    });
+
+    socket.on('self quiz result', (data) =>{
+       dispatch({
+           type: actionTypes.RECEIVE_SELF_SCORE,
+           score: data.currentScore
+       })
+    });
+
+    socket.on('opponent quiz result', (data) => {
+        dispatch({
+            type: actionTypes.RECEIVE_OPPONENT_SCORE,
+            score: data.currentScore
+        })
+    });
 
 };
 

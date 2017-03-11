@@ -169,3 +169,19 @@ export const checkShouldGetApi = (state) => {
     return fromProfile.checkShouldGetApi(state.profile);
 };
 
+/**
+ * get self score
+ * @param state
+ */
+export const getSelfScore = (state) => {
+    return fromGames.getSelfScore(state.games);
+};
+
+/**
+ * get opponent score
+ * @param state
+ */
+export const getOpponentScore = (state) => {
+    return fromGames.getOpponentScore(state.games);
+};
+
