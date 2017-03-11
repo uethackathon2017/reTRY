@@ -99,6 +99,14 @@ export const getOpponentData = (state) => {
 };
 
 /**
+ * get self data
+ * @param state
+ */
+export const getSelfData = (state) => {
+    return fromGames.getSelfData(state.games);
+};
+
+/**
  * get count down second amount
  * @param state
  */
@@ -205,4 +213,36 @@ export const getCurrentAnswerKey = (state) => {
  */
 export const getCurrentRightAnswerKey = (state) => {
     return fromGames.getCurrentRightAnswerKey(state.games);
+};
+
+/**
+ * get self score after game
+ * @param state
+ */
+export const getSelfScoreAfterGame = (state) => {
+    fromGames.getSelfScoreAfterGame(state.games);
+};
+
+/**
+ * get opponent score after game
+ * @param state
+ */
+export const getOpponentScoreAfterGame = (state) => {
+    fromGames.getOpponentScoreAfterGame(state.games);
+};
+
+/**
+ * get self data before game
+ * @param state
+ */
+export const getsSelfDataBeforeGame =  (state) => {
+    fromGames.getsSelfDataBeforeGame(state.games);
+};
+
+/**
+ * get opponennt data before game
+ * @param state
+ */
+export const getOpponentDataBeforeGame = (state) => {
+    fromGames.getOpponentDataBeforeGame(state.games);
 };

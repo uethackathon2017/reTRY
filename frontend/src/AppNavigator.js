@@ -14,6 +14,7 @@ import GameResultPage from './components/game/game_result';
 import TopicPage from './components/topic';
 import FriendPage from './components/friend';
 import MembershipPage from './components/membership';
+import WordListPage from './components/words_list';
 
 const { popRoute, } = actions;
 
@@ -68,6 +69,8 @@ class AppNavigator extends Component {
                 return <FriendPage />;
             case 'membership':
                 return <MembershipPage />;
+            case 'wordList':
+                return <WordListPage />;
             default:
                 return <MainPage />;
         }

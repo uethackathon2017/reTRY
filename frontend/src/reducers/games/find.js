@@ -4,7 +4,8 @@ import config from '../../config';
 const initialState = {
     status: 'stop',
     data: {
-        opponent: {}
+        opponent: {},
+        self: {},
     }
 };
 
@@ -45,6 +46,10 @@ export const getFindStatus = (state) => {
 
 export const getOpponentData = (state) => {
     return state.data.opponent;
+};
+
+export const getSelfData = (state) => {
+    return state.data.self;
 };
 
 export const getCountDown = (state) => {

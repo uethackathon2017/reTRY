@@ -9,6 +9,8 @@ import { getProfile } from '../../reducers';
 import { connect } from 'react-redux';
 import { getProfile as getProfileApi } from '../../actions/profile';
 import CacheableImage from 'react-native-cacheable-image';
+import TitleWithBackButton from '../common/TitleWithBackButton'
+import TransparentStatusBar from '../common/TransparentStatusBar'
 
 const screenWidth = fromTheme.screenWidth;
 const background = require('../../../assets/images/background/item-4-bg.jpg');
@@ -18,15 +20,13 @@ class Vocabulary extends Component {
     render() {
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
-                <View style={styles.statusBarBackground} />
+                <TransparentStatusBar />
+                <TitleWithBackButton title="V O C B U L A R Y" />
 
-                <View style={styles.titleRow}>
-                    <Text style={styles.title}>V O C B U L A R Y</Text>
-                </View>
                 <ScrollView>
                     <WordList />
                 </ScrollView>
-            </Image>
+            </Image >
         )
     }
 }

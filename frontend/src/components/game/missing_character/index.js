@@ -5,12 +5,12 @@ import styles, * as fromStyles from './styles';
 import {connect} from 'react-redux';
 import {getCurrentGame, getCurrentAnswerKey, getCurrentRightAnswerKey} from '../../../reducers';
 import {answer} from '../../../actions/games';
-import {setColorForCard} from '../../../helpers/answerCard';
+import {setColorForTransparentCard} from '../../../helpers/answerCard';
 
 const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, rightAnswerKey}) => (
 
     <View style={[styles.answerCharacterContainer, {
-        backgroundColor: setColorForCard(index, answerKey, rightAnswerKey)
+        backgroundColor: setColorForTransparentCard(index, answerKey, rightAnswerKey)
     }]}>
         <TouchableHighlight
             onPress={() => {
