@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {Image, StyleSheet, View, Text, Animated, Easing, TouchableWithoutFeedback} from 'react-native';
 import {connect} from 'react-redux';
-const logo = require('../../../assets/images/logo.png');
 import {loginWithFacebook} from '../../actions/login';
 import {navReplaceAt} from '../../actions/rootNavigation';
 import {getLoginStatus} from '../../reducers';
 import * as types from '../../actions/types';
+import theme, * as fromTheme from '../../theme';
+
+const logo = fromTheme.LOGO;
 
 class SpinningButton extends Component {
 

@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import {Image, StyleSheet, View, Text, Animated, Easing, TouchableWithoutFeedback, Alert} from 'react-native';
 import {Container} from 'native-base';
 import {connect} from 'react-redux';
-const welcome = require('../../../assets/images/play_and_learn_with_retry.png');
-const background = require('../../../assets/images/background/item-6-bg.jpg');
+import theme, * as fromTheme from '../../theme';
 import styles from './styles';
 import {loginWithFacebook, cancelLoginWithFacebook} from '../../actions/login';
 import {navReplaceAt} from '../../actions/rootNavigation';
 import {getLoginStatus, getLoginErrorMessage} from '../../reducers';
 import SpinningButton from './SpiningButton';
 import * as actionTypes from '../../actions/types';
+
+const welcome = fromTheme.WELCOME_IMG;
+const background = fromTheme.LOGIN_BG_IMG;
 
 class LoginPage extends Component {
 

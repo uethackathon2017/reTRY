@@ -5,7 +5,7 @@ import styles from './styles';
 import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 
-const awardIcon = require('../../../assets/images/award_icon.png');
+const defaultIcon = fromTheme.DEFAULT_AWARD_ICON;
 
 class AchievementCard extends Component {
     render() {
@@ -37,7 +37,7 @@ class AchievementList extends Component {
                                          image={{uri: award.image}}/>);
             } else {
                 return (<AchievementCard key={index} title={award.title} description={award.description}
-                                         image={awardIcon}/>);
+                                         image={defaultIcon}/>);
             }
         });
     }
