@@ -57,7 +57,7 @@ class Me extends Component {
                             {score(profile.level + 1) - profile.score} điểm nữa để lên cấp
                         </Text>
                     </View>
-                    <AchievementList/>
+                    <AchievementList awards={profile.awards}/>
                 </ScrollView>
             </Image>
         )
