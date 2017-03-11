@@ -45,8 +45,7 @@ let UserSchema = new mongoose.Schema({
             ref: 'Word'
         },
         passCount: Number,
-        failCount: Number,
-        latestReview: Date
+        failCount: Number
     }],
     role: {
         type: String,
