@@ -16,7 +16,7 @@ class BackButton extends Component {
             <Button light transparent onPress={() => this._logout()}>
                 {/*<Icon name='exit-to-app' android="md-exit" ios="ios-exit"*/}
                 {/*style={{color: 'white', alignSelf: 'center'}}/>*/}
-                <Text style={{color: 'white', alignSelf: 'center'}}>Sign out</Text>
+                <Text style={{color: 'white', alignSelf: 'center', textAlign: 'center'}}>Sign out</Text>
             </Button>
         )
     }

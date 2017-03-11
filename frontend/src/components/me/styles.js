@@ -25,13 +25,48 @@ export default StyleSheet.create({
         alignSelf: 'center',
     },
 
-    userAvatarContainer: {},
+    userAvatarContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
     userName: {
+        flex: 0.4,
         ...fromTheme.BG_TRANSPARENT,
         alignSelf: 'center',
         color: 'white',
         fontSize: 16,
+        textAlign: 'center',
+    },
+
+    userNameContainer: {
+        alignSelf: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    diamondContainer: {
+        height: 16,
+        width: 16,
+        flexDirection: 'row',
+    },
+
+    diamond: {
+        flex: 1,
+        resizeMode: 'contain',
+        alignSelf: 'center',
+    },
+
+    upgradeText: {
+        ...fromTheme.BG_TRANSPARENT,
+        color: 'white',
+        marginLeft: 10,
+    },
+
+    upgradeButton: {
+        flex: 0.3,
     },
 
     userLevelContainer: {

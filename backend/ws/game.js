@@ -94,7 +94,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
 
     const socketPlayerHandler = (socket) => {
 
-    }
+    };
 
     firstSocket.on('answer quiz', (quizData) => {
         // quizData: { _id, key, time }
@@ -233,42 +233,37 @@ module.exports = (game) => {
                         console.log('Failed words: ' + failedWords.toString());
                         console.log(passedWords.length);
                         console.log(failedWords.length);
-                        let passedWordsToBeInserted = [];
-                        let failedWordsToBeInserted = [];
-                        let passCount = passedWords.reduce((acc, curr) => {
-                            for (let idx = 0; idx < passedWords.length; idx++) {    
-                                if (curr.toString() === passedWords[idx].toString())
-                                    return acc++;
-                            }
-                            return acc;
-                        }, 0);
-                        console.log('passCount: ' + passCount);
-                        for (let idx = 0; idx < passedWords.length; idx++) {
-                            passedWordsToBeInserted.push({
-                                _id: passedWords[idx].toString(),
-                                passCount: 2,
-                                failCount: 3
+                        passedWords.forEach(word => {
+                            User.findOneAndUpdate({
+                                _id: socket.decoded_token._id,
+                                'passedWords._id': word
+                            }, {
+                                $inc: {
+                                    'passedWords.$.count': 1,
+                                }
+                            }, {
+                                upsert: true
+                            })
+                            .then(result=> {})
+                            .catch(err => {
+                                if (err) console.log(err);
                             });
-                        }
-                        for (let idx = 0; idx < failedWords.length; idx++) {
-                            failedWordsToBeInserted.push({
-                                _id: failedWords[idx].toString(),
-                                passCount: 2,
-                                failCount: 3
+                        });
+                        failedWords.forEach(word => {
+                            User.findOneAndUpdate({
+                                _id: socket.decoded_token._id,
+                                'failedWords._id': word
+                            }, {
+                                $inc: {
+                                    'failedWords.$.count': 1,
+                                }
+                            }, {
+                                upsert: true
+                            })
+                            .then(result => {})
+                            .catch(err => {
+                                if (err) console.log(err);
                             });
-                        }
-                        User.updateAsync({
-                            _id: socket.decoded_token._id
-                        }, {
-                            $addToSet: {
-                                words: passedWordsToBeInserted.concat(failedWordsToBeInserted)
-                            }
-                        })
-                        .then(result => {
-                            console.log(result);
-                        })
-                        .catch(err => {
-                            if (err) console.log(err);
                         });
                     }
                 });
