@@ -88,7 +88,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         game.to(room).emit('quiz start');
         setTimeout(() => {
             nextQuiz();
-        }, 2000);
+        }, 3000);
     }, 11000);
 
 
