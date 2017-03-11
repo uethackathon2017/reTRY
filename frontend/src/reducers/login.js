@@ -35,6 +35,7 @@ const login = (state = initialState, action) => {
                 refreshToken: action.response.refreshToken
             };
         case types.FBLOGIN_CANCEL:
+        case types.LOGOUT:
             return initialState;
         default:
             return state

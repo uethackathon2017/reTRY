@@ -4,10 +4,10 @@ import styles from './styles';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
 import AchievementList from './AchievementList';
-import {getProfile} from '../../reducers';
+import {getProfile, checkShouldGetApi} from '../../reducers';
 import {connect} from 'react-redux';
 import {getProfile as getProfileApi} from '../../actions/profile';
-import TitleWithBackButton from '../common/TitleWithBackButton';
+import TitleWithLogout from '../common/TitleWithLogout';
 import TransparentStatusBar from '../common/TransparentStatusBar';
 
 const screenWidth = fromTheme.screenWidth;
@@ -16,6 +16,18 @@ const background = fromTheme.ME_BG_IMG;
 class Me extends Component {
     componentDidMount() {
         this.props.getProfileApi();
+    }
+
+    _getTitleComponent() {
+        const {
+            isCurrentUser
+        } = this.props;
+
+        if (isCurrentUser) {
+            return (<TitleWithLogout title="P R O F I L E"/>);
+        } else {
+            return (<TitleWithBackButton title="P R O F I L E"/>);
+        }
     }
 
     render() {
@@ -30,11 +42,12 @@ class Me extends Component {
         const level = (score) => {
             return score / 30 + 1;
         };
+
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <TransparentStatusBar/>
                 <ScrollView>
-                    <TitleWithBackButton title="P R O F I L E"/>
+                    {this._getTitleComponent()}
                     <View style={styles.userAvatarContainer}>
                         {Avatar(profile)}
                     </View>
@@ -72,6 +85,7 @@ const Avatar = (profile) => {
 const mapStateToProps = (state) => {
     return {
         profile: getProfile(state),
+        isCurrentUser: checkShouldGetApi(state),
     }
 };
 
