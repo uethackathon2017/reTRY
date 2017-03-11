@@ -6,6 +6,19 @@ import PopupDialog, {ScaleAnimation} from 'react-native-popup-dialog';
 import styles from './styles';
 import {getFindStatus, getOpponentData} from '../../reducers';
 import CountDownText from './CountDownText';
+import {Icon} from 'native-base';
+
+const getStarsForLevel = (level) => {
+
+    let viewArray = [];
+
+    for (let i = 0; i < (level - 1)/ 60 + 1; i++) {
+        viewArray.push(<Icon name={"ios-star-outline"}/>);
+    }
+
+    return viewArray;
+};
+
 
 class FoundPopup extends Component {
     render() {
@@ -55,12 +68,9 @@ class FoundPopup extends Component {
                                       numberOfLines={1}
                                       ellipsizeMode='tail'
                                 >{opponent.firstName} {opponent.lastName}</Text>
-                                <Text style={styles.description}
-                                      ellipsizeMode='tail'
-                                      numberOfLines={3}
-                                >
-                                    {opponent.description}
-                                </Text>
+                                <Text>Level</Text>
+                                <Text>{opponent.level}</Text>
+                                {getStarsForLevel(opponent.level)}
                             </View>
                         </View>
                         <CountDownText/>
@@ -71,11 +81,18 @@ class FoundPopup extends Component {
     }
 }
 
+
+
 const checkShouldShowDialog = (state) => getFindStatus(state) === 'complete';
 
 const mapStateToProps = (state) => ({
     shouldShowDialog: checkShouldShowDialog(state),
     opponent:getOpponentData(state)
 });
+
+// const mapStateToProps = (state) => ({
+//     shouldShowDialog: true,
+//     opponent:getOpponentData(state)
+// });
 
 export default connect(mapStateToProps)(FoundPopup);
