@@ -20,10 +20,8 @@ class Topics extends Component {
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
                 <TransparentStatusBar />
-                <TitleWithBackButton title="T O P I C" />
-                <ScrollView>
-                    <TopicList />
-                </ScrollView>
+                <TitleWithBackButton title="T O P I C S" />
+                <TopicList />
             </Image>
         )
     }

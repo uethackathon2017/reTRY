@@ -7,29 +7,37 @@ const screenWidth = fromTheme.screenWidth;
 
 const box = {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderBottomColor: '#ffffff',
+    borderBottomWidth: 0.5,
+    width: screenWidth,
 };
 
 const icon = {
-    fontSize: 100
+    flex: 0.5,
+    fontSize: 100,
+    alignSelf: 'center',
+    textAlign: 'center',
 };
 
-const title = {};
+const title = {
+    fontWeight: '500',
+    ...fromTheme.BG_TRANSPARENT,
+    flex: 0.5,
+    fontSize: fromTheme.H4_SIZE,
+    alignSelf: 'center',
+    textAlign: 'center',
+};
 
 module.exports = StyleSheet.create({
     container: {
         flex: 1,
         width: null,
         height: null,
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         alignItems: 'center',
-    },
-
-    statusBarBackground: {
-        height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: '#30415D80',
     },
 
     spacer: {
@@ -37,7 +45,7 @@ module.exports = StyleSheet.create({
     },
 
     leadersBox: {
-        backgroundColor: '#30415D80',
+        backgroundColor: '#00000050',
         ...box,
         height: boxHeight,
         width: screenWidth,
@@ -55,23 +63,25 @@ module.exports = StyleSheet.create({
     },
 
     playBox: {
-        backgroundColor: '#CF676680',
+        backgroundColor: '#da7d79',
         ...box,
         height: boxHeight,
         width: screenWidth,
     },
 
     playIcon: {
-        ...icon
+        ...icon,
+        color: 'white',
     },
 
     playTitle: {
-        ...title
+        ...title,
+        color: 'white',
     },
 
 
     meBox: {
-        backgroundColor: '#03142480',
+        backgroundColor: '#00000050',
         ...box,
         height: boxHeight,
         width: screenWidth,
@@ -89,17 +99,19 @@ module.exports = StyleSheet.create({
 
 
     settingsBox: {
-        backgroundColor: '#8EAEBD80',
+        backgroundColor: '#00000050',
         ...box,
         height: boxHeight,
         width: screenWidth,
     },
 
     settingsIcon: {
-        ...icon
+        ...icon,
+        color: 'white',
     },
 
     settingsTitle: {
-        ...title
+        ...title,
+        color: 'white',
     }
 });
