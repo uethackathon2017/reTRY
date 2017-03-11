@@ -101,7 +101,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         redisClient.get('score of ' + firstSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-            let currentQuizz = quizzes[nextQuizIndex - 1];
+            let currentQuizz = quizzes[currentQuizIdx];
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -151,7 +151,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
 
-            let currentQuizz = quizzes[nextQuizIndex - 1];
+            let currentQuizz = quizzes[currentQuizIdx];
 
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
