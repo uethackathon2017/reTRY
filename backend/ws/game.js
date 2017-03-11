@@ -242,15 +242,19 @@ module.exports = (game) => {
                                 if (user) {
                                     user.update({
                                         $inc: {
-                                            'passedWords.$.count': 1,
+                                            'passedWords.count': 1,
                                         }
                                     }).exec();
                                 } else {
                                     User.update({
                                         _id: socket.decoded_token._id
                                     }, {
-                                        'passedWords._id': word,
-                                        'passedWords.count': 1
+                                        $push: {
+                                            passedWords: {
+                                                _id: word,
+                                                count: 1
+                                            }
+                                        }
                                     }).exec();
                                 }
                             })
@@ -267,15 +271,19 @@ module.exports = (game) => {
                                 if (user) {
                                     user.update({
                                         $inc: {
-                                            'failedWords.$.count': 1,
+                                            'failedWords.count': 1,
                                         }
                                     }).exec();
                                 } else {
                                     User.update({
                                         _id: socket.decoded_token._id
                                     }, {
-                                        'failedWords._id': word,
-                                        'failedWords.count': 1
+                                        $push: {
+                                            failedWords: {
+                                                _id: word,
+                                                count: 1
+                                            }
+                                        }
                                     }).exec();
                                 }
                             })
