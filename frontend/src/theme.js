@@ -7,13 +7,13 @@ const deviceWidth = Dimensions.get('window').width;
 const platform = Platform.OS;
 const platformStyle = undefined;
 
-export const LEADERS_BG_IMG = {uri: 'https://dl.dropbox.com/s/fne0nj5jm2bv6w8/item-8-bg.jpg?dl=0'};
-export const FIND_BG_IMG = {uri: 'https://dl.dropbox.com/s/vytcv3mf4wr2o4q/item-13-bg.jpg?dl=0'};
-export const ME_BG_IMG = {uri: 'https://dl.dropbox.com/s/2q22exjwmlkymps/item-4-bg.jpg?dl=0'};
-export const LOGIN_BG_IMG = {uri: 'https://dl.dropbox.com/s/2q22exjwmlkymps/item-4-bg.jpg?dl=0'};
-export const DEFAULT_AWARD_ICON = {uri: 'https://dl.dropboxusercontent.com/s/14o0iw3d22vi2cz/161%20-%20Star%20%28Flat%29.png?dl=0'};
-export const WELCOME_IMG = {uri: 'https://dl.dropbox.com/s/ibp9zwe5sjk7rjh/play_and_learn_with_retry.png?dl=0'};
-export const LOGO = {uri: 'https://dl.dropbox.com/s/ibdf10ju99ifkx9/logo.png?dl=0'};
+export const LEADERS_BG_IMG = require('../assets/images/background/item-8-bg.jpg');
+export const FIND_BG_IMG = require('../assets/images/background/item-13-bg.jpg');
+export const ME_BG_IMG = require('../assets/images/background/item-4-bg.jpg');
+export const LOGIN_BG_IMG = require('../assets/images/background/item-4-bg.jpg');
+export const DEFAULT_AWARD_ICON = require('../assets/images/award_icon.png');
+export const WELCOME_IMG = require('../assets/images/play_and_learn_with_retry.png');
+export const LOGO = require('../assets/images/logo.png');
 
 const {StatusBarManager} = NativeModules;
 export const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT; // get height
