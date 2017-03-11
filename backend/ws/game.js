@@ -39,7 +39,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         currentQuizIdx++;
 
         if (currentQuizIdx < quizzes.length) {
-            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx].duration + 1) * 1000)
+            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx - 1].duration + 1) * 1000)
         } else {
             setTimeout(() => {
                 redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
@@ -80,7 +80,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 });
             });
-            }, (quizzes[currentQuizIdx].duration + 1) * 1000);
+            }, (quizzes[currentQuizIdx - 1].duration + 1) * 1000);
         }
     };
 
