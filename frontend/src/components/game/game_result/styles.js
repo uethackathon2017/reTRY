@@ -1,5 +1,6 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 import * as fromTheme from '../../../theme';
+
 const screenWidth = fromTheme.screenWidth;
 const screenHeight = fromTheme.screenHeight;
 
@@ -9,53 +10,38 @@ const userAvatar = {
     borderRadius: 40,
     borderWidth: 5,
     alignSelf: 'center',
-}
+};
 
 const button = {
     flex: 0.3
-}
+};
 
 const scoreValue = {
     fontSize: fromTheme.H3_SIZE,
     alignSelf: 'center',
-}
+};
+
 const playerName = {
     fontSize: fromTheme.H3_SIZE,
     marginTop: 10
-}
+};
+
 const level = {
     fontSize: fromTheme.H5_SIZE,
     marginTop: 5,
     color: 'white',
 
-}
+};
+
 export default StyleSheet.create({
-    header: {
+    header: {},
 
-    }, title: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-    }
-
-    , container: {
+    container: {
         flex: 1,
         flexDirection: 'column',
         backgroundColor: fromTheme.ULTRAMARINE,
     },
-    statusBarBackground: {
-        width: screenWidth,
-        height: fromTheme.STATUSBAR_HEIGHT,
-        backgroundColor: fromTheme.INDIGO,
-    },
 
-    titleRow: {
-        width: screenWidth,
-        paddingTop: 10,
-        paddingBottom: 10,
-        backgroundColor: fromTheme.INDIGO,
-    },
     awardImage: {
         marginTop: 10,
         alignSelf: 'center'
