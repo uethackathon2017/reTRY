@@ -234,27 +234,31 @@ module.exports = (game) => {
                         console.log(passedWords.length);
                         console.log(failedWords.length);
                         passedWords.forEach(word => {
-                            User.updateAsync({
+                            User.findOneAndUpdate({
                                 _id: socket.decoded_token._id,
                                 'passedWords._id': word
                             }, {
                                 $inc: {
                                     'passedWords.$.count': 1,
                                 }
+                            }, {
+                                upsert: true
                             })
-                            .then(result => {})
+                            .then(result=> {})
                             .catch(err => {
                                 if (err) console.log(err);
                             });
                         });
                         failedWords.forEach(word => {
-                            User.updateAsync({
+                            User.findOneAndUpdate({
                                 _id: socket.decoded_token._id,
                                 'failedWords._id': word
                             }, {
                                 $inc: {
                                     'failedWords.$.count': 1,
                                 }
+                            }, {
+                                upsert: true
                             })
                             .then(result => {})
                             .catch(err => {
