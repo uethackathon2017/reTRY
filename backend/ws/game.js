@@ -397,7 +397,7 @@ module.exports = (game) => {
                         .lean()
                         .then(quizzes => {
                             if (quizzes.length < 10) {
-                                Quiz.find({}).populate('relatedWords').lean()
+                                Quiz.find({}).limit(10 - quizzes.length).populate('relatedWords').lean()
                                 .then(addedQuizzes => {
                                     let enough = quizzes.concat(addedQuizzes);
                                     console.log('QUIZZED GENERATED!!!!!!!!!!');
