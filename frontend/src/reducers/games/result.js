@@ -19,6 +19,8 @@ const result = (state = {
     }
 };
 
+export default result;
+
 export const getSelfScoreAfterGame = (state) => state.selfScore;
 export const getOpponentScoreAfterGame = (state) => state.opponentScore;
 export const getsSelfDataBeforeGame =  (state) => state.selfDataBeforeGame;
