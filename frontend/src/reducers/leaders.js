@@ -1,7 +1,6 @@
 import * as types from '../actions/types';
 
 const initialState = {
-    errorMessage: null,
     topTenHighestLevel: [],
 };
 

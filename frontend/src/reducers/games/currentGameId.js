@@ -1,7 +1,7 @@
 import * as actionTypes from '../../actions/types';
 
 
-const currentGameId = (state = null, action) => {
+const currentGameId = (state = "", action) => {
     switch (action.type){
         case actionTypes.SHOW_GAME:
             return action.id;

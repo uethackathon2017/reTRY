@@ -3,9 +3,6 @@ import * as actionTypes from '../../actions/types';
 import byId, * as fromById from './byId';
 import ids, * as fromIds from './ids';
 import currentGameId, * as fromCurrentGameId from './currentGameId';
-import errorMessage from './errorMessage';
-import isFetching from './isFetching';
-import rivalPlayer from './rivalPlayer';
 import find, * as fromFind from './find';
 import words, * as fromWord from './words';
 import newWordsCountDown, * as fromNewWordsCountDown from './newWordsCountDown';
@@ -18,9 +15,6 @@ const games = combineReducers({
     byId,
     ids,
     currentGameId,
-    errorMessage,
-    isFetching,
-    rivalPlayer,
     find,
     words,
     newWordsCountDown,
@@ -92,9 +86,9 @@ export const getOpponentScore = (state) => {
 };
 
 export const getCurrentAnswerKey = (state) => {
-    return fromCurrentAnswer.getCurrentAnswerKey(state.currentAnwser);
+    return fromCurrentAnswer.getCurrentAnswerKey(state.currentAnswer);
 };
 
 export const getCurrentRightAnswerKey = (state) => {
-    return fromCurrentRightAnswer.getCurrentRightAnswerKey(state.currentRightAnwser);
+    return fromCurrentRightAnswer.getCurrentRightAnswerKey(state.currentRightAnswer);
 };

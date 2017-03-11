@@ -2,10 +2,7 @@ import * as types from '../actions/types';
 import {REHYDRATE} from 'redux-persist/constants'
 
 const initialState = {
-    status: types.LOGIN_NONE,
-    errorMessage: null,
-    accessToken: null,
-    refreshToken: null
+    status: types.LOGIN_NONE
 };
 
 const login = (state = initialState, action) => {

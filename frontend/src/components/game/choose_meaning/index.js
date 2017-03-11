@@ -6,38 +6,7 @@ import {getCurrentGame, getCurrentAnswerKey, getCurrentRightAnswerKey} from '../
 import {connect} from 'react-redux';
 import {answer} from '../../../actions/games';
 import * as fromTheme from '../../../theme';
-
-const setColorForCard = (index, answerKey, rightAnswerKey) => {
-
-    let color;
-
-    if (rightAnswerKey == -1) {
-        // not have result yet
-
-        if (index === answerKey) {
-            color = 'yellow'
-        } else {
-            color =  'white'
-        }
-    } else {
-        // have result
-
-        if (index === answerKey && answerKey === rightAnswerKey) {
-            // true answer
-            color = 'green'
-        } else if (index === answerKey && answerKey !== rightAnswerKey){
-            // wrong answer
-            color = 'red'
-        } else {
-            // other
-            color=  'white'
-        }
-    }
-
-
-    console.log(color);
-    return color;
-};
+import {setColorForCard} from '../../../helpers/answerCard';
 
 const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, rightAnswerKey}) => (
     <Card style={{
@@ -53,6 +22,8 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
+                } else {
+                    console.log('Can\'t answer');
                 }
              }}
             style={{flex: 1, alignSelf: 'stretch', justifyContent: 'center', alignItems: 'center'}}
@@ -79,6 +50,8 @@ const EnViAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
+                } else {
+                    console.log('Can\'t answer');
                 }
 
             }}
@@ -96,6 +69,10 @@ class ChooseMeaning extends Component {
     render() {
 
         const {game, answerKey, rightAnswerKey} = this.props;
+
+        console.log("================= PROPS============");
+        console.log(this.props);
+
 
         if (game.type === 'vi_en') {
             return (
