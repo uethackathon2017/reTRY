@@ -235,9 +235,9 @@ export const getOpponentScoreAfterGame = (state) => {
  * get self data before game
  * @param state
  */
-export const getsSelfDataBeforeGame =  (state) => {
+export const getsSelfDataBeforeGame = (state) => {
     return fromGames.getsSelfDataBeforeGame(state.games);
-
+}
 
 /**
  * get opponennt data before game
