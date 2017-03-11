@@ -200,15 +200,7 @@ module.exports = (game) => {
     game.on('connection', (socket) => {
         // TODO: Check if one user is online on two different devices
         User
-            .findById(socket.decoded_token._id, {
-                _id: 1,
-                email: 1,
-                fbLink: 1,
-                firstName: 1,
-                lastName: 1,
-                pictureURL: 1,
-                gender: 1
-            })
+            .findById(socket.decoded_token._id)
             .lean()
             .then(user => {
                 if (user) {
@@ -269,9 +261,12 @@ module.exports = (game) => {
                             })
                             .then(user => {
                                 if (user) {
-                                    user.update({
+                                    User.findOneAndUpdate({
+                                        _id: socket.decoded_token._id,
+                                        'failedWords._id': word
+                                    }, {
                                         $inc: {
-                                            'failedWords.count': 1,
+                                            'failedWords.$.count': 1,
                                         }
                                     }).exec();
                                 } else {
@@ -383,29 +378,54 @@ module.exports = (game) => {
                 });
 
                 setTimeout(() => {
+                    let player1FailedWords = JSON.parse(firstPlayerInfo.userData).failedWords;
+                    let player2FailedWords = JSON.parse(secondPlayerInfo.userData).failedWords;
+                    console.log('player1FailedWords: ' + player1FailedWords);
+                    console.log('player2FailedWords: ' + player2FailedWords);
+                    let mixedFailedWords = [];
+                    let tempArr = player1FailedWords.concat(player2FailedWords);
+                    if (tempArr.length < 10) {
+                        for (let idx = 0; idx < tempArr.length; idx++) {
+                            mixedFailedWords.push(tempArr[idx]._id);
+                        }
+                    } else {
+                        for (let idx = 0; idx < 10; idx++) {
+                            mixedFailedWords.push(tempArr[idx]._id);
+                        }
+                    }
+                    console.log('mixedFailedWords: ' + mixedFailedWords.toString());
 
-                    Quiz.find({})
+                    Quiz.find({ failedWords: { $in: mixedFailedWords } })
                         .populate('relatedWords')
                         .lean()
                         .then(quizzes => {
-                            let newRandomTenQuizzes = [];
-                            let pushedQuizzes = [];
-                            for (let idx = 0; idx < 10; idx++) {
-                                let randomIdx = Math.floor(Math.random() * quizzes.length);
-                                while (pushedQuizzes.indexOf(randomIdx) !== -1) {
-                                    randomIdx = Math.floor(Math.random() * quizzes.length);
-                                }
-                                pushedQuizzes.push(randomIdx);
-                                newRandomTenQuizzes.push(quizzes[randomIdx]);
+                            if (quizzes.length < 10) {
+                                Quiz.find({}).limit(10 - quizzes.length).populate('relatedWords').lean()
+                                .then(addedQuizzes => {
+                                    let enough = quizzes.concat(addedQuizzes);
+                                    console.log('QUIZZED GENERATED!!!!!!!!!!');
+                                    game.to(room).emit('game data', {
+                                        quizzes: enough
+                                    });
+                                    gameControl(game, firstSocket, secondSocket, room, enough, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
+                                })
+                            } else {
+                                console.log('QUIZZED GENERATED!!!!!!!!!!');
+                                game.to(room).emit('game data', {
+                                    quizzes: quizzes
+                                });
+                                gameControl(game, firstSocket, secondSocket, room, quizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
                             }
-
-                            game.to(room).emit('game data', {
-                                quizzes: newRandomTenQuizzes
-                            });
-
-                            console.log("=====quiz generated");
-
-                            gameControl(game, firstSocket, secondSocket, room, newRandomTenQuizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
+                            // let newRandomTenQuizzes = [];
+                            // let pushedQuizzes = [];
+                            // for (let idx = 0; idx < 10; idx++) {
+                            //     let randomIdx = Math.floor(Math.random() * quizzes.length);
+                            //     while (pushedQuizzes.indexOf(randomIdx) !== -1) {
+                            //         randomIdx = Math.floor(Math.random() * quizzes.length);
+                            //     }
+                            //     pushedQuizzes.push(randomIdx);
+                            //     newRandomTenQuizzes.push(quizzes[randomIdx]);
+                            // }
                         });
                 }, 5000);
 
