@@ -22,7 +22,7 @@ const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
 
 const Avatar = (data) => {
-    if (data && data.pictureURL) {
+    if (data.pictureURL) {
         return (<Image style={styles.userAvatarLeft}
                        source={{ uri: data.pictureURL }}/>)
     }
@@ -33,11 +33,7 @@ const Avatar = (data) => {
  * @return {string}
  */
 const full_name = (data) => {
-    if (data) {
-        return data.first_name + " " + data.last_name;
-    } else {
-        return "";
-    }
+    return data.first_name + " " + data.last_name;
 };
 
 const score = (level) => {
