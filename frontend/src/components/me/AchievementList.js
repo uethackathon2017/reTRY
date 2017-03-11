@@ -8,15 +8,31 @@ import theme, * as fromTheme from '../../theme';
 const defaultIcon = fromTheme.DEFAULT_AWARD_ICON;
 
 class AchievementCard extends Component {
+    _getThumbnail() {
+        const {
+            award
+        } = this.props;
+
+        if (award.imageURL) {
+            return (<Thumbnail style={StyleSheet.flatten(styles.achievementIcon)} source={{uri: award.imageURL}}/>)
+        } else {
+            return (<Thumbnail style={StyleSheet.flatten(styles.achievementIcon)} source={defaultIcon}/>)
+        }
+    }
+
     render() {
+        const {
+            award
+        } = this.props;
+
         return (
             <Card style={StyleSheet.flatten(styles.achievementCard)}>
                 <CardItem>
                     <Left>
-                        <Thumbnail style={StyleSheet.flatten(styles.achievementIcon)} source={this.props.image}/>
+                        {this._getThumbnail()}
                         <Body>
-                        <Text style={styles.achievementTitle}>{this.props.title}</Text>
-                        <Text note>{this.props.description}</Text>
+                        <Text style={styles.achievementTitle}>{award.title}</Text>
+                        <Text note>{award.description}</Text>
                         </Body>
                     </Left>
                 </CardItem>
@@ -31,15 +47,7 @@ class AchievementList extends Component {
             awards
         } = this.props;
 
-        return awards.map((award, index) => {
-            if (award.image) {
-                return (<AchievementCard key={index} title={award.title} description={award.description}
-                                         image={{uri: award.image}}/>);
-            } else {
-                return (<AchievementCard key={index} title={award.title} description={award.description}
-                                         image={defaultIcon}/>);
-            }
-        });
+        return awards.map((award, index) => (<AchievementCard key={index} award={award}/>));
     }
 
     render() {

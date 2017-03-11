@@ -28,42 +28,41 @@ class Main extends Component {  //eslint-disable-line
         return (
             <Image source={background} style={StyleSheet.flatten(styles.container)}>
                 <TransparentStatusBar/>
-                <TouchableHighlight onPress={() => this._pushTo('leaders')} style={{flex: 1}}>
+                <TouchableHighlight onPress={() => this._pushTo('leaders')} style={{flex: 1}} underlayColor="#ffffff50">
                     <View style={styles.leadersBox}>
 
-                        {spacer}
                         <Icon name="ios-trophy-outline" style={StyleSheet.flatten(styles.leadersIcon)}/>
-                        <Text style={styles.leadersTitle}>LEADERS </Text>
-                        {spacer}
+                        <Text style={styles.leadersTitle}>L E A D E R S </Text>
 
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={() => this._pushTo('find')} style={{ flex: 1 }}>
+                <TouchableHighlight onPress={() => this._pushTo('find')} style={{ flex: 1 }} underlayColor="#ff000050">
                     <View style={styles.playBox}>
                         {spacer}
                         <Icon name="ios-play-outline" style={StyleSheet.flatten(styles.playIcon)}/>
-                        <Text style={styles.playTitle}>PLAY </Text>
+                        <Text style={styles.playTitle}>P L A Y </Text>
                         {spacer}
                     </View>
                 </TouchableHighlight>
 
                 <TouchableHighlight onPress={() => {
                     this.props.clearProfile(); this._pushTo('me');
-                }} style={{ flex: 1 }}>
+                }} style={{ flex: 1 }} underlayColor="#ffffff50">
                     <View style={StyleSheet.flatten(styles.meBox)}>
                         {spacer}
                         <Icon name="ios-person-outline" style={StyleSheet.flatten(styles.leadersIcon)}/>
-                        <Text style={styles.meTitle}>ME </Text>
+                        <Text style={styles.meTitle}>P R O F I L E </Text>
                         {spacer}
                     </View>
                 </TouchableHighlight>
 
-                <TouchableHighlight onPress={() => this._pushTo('topics')} style={{ flex: 1 }}>
+                <TouchableHighlight onPress={() => this._pushTo('topics')} style={{ flex: 1 }}
+                                    underlayColor="#ffffff50">
                     <View style={StyleSheet.flatten(styles.settingsBox)}>
                         {spacer}
                         <Icon name="ios-grid-outline" style={StyleSheet.flatten(styles.settingsIcon)}/>
-                        <Text style={styles.settingsTitle}>TOPICS</Text>
+                        <Text style={styles.settingsTitle}>T O P I C S</Text>
                         {spacer}
                     </View>
                 </TouchableHighlight>
