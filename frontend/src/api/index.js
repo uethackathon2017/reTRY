@@ -35,11 +35,20 @@ export const leaders = (accessToken) => {
 };
 
 export const topics = (accessToken) => {
-    console.log("topic api:")
     return fetch(config.apiUrl + '/games/getTopics', {
         method: 'GET',
         headers: {
             authorization: accessToken,
         }
+    })
+};
+
+export const getVocaboraiesByTopicId = (accessToken, topicId) => {
+    console.log("vocabularies api:")
+    return fetch(config.apiUrl + '/games/getWordsByTopic?topicId=' + topicId, {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        },
     })
 };

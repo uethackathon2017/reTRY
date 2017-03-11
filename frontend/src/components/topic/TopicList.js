@@ -1,19 +1,20 @@
 // Danh sách các từ hay sai
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
-import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
+import { Thumbnail, Card, CardItem, Body, Left } from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
-import {getTopics} from '../../reducers';
-import {connect} from 'react-redux';
-import {getTopics as getTopicsApi} from '../../actions/topics';
-import {navPushRoute} from '../../actions/rootNavigation';
+import { getTopics } from '../../reducers';
+import { connect } from 'react-redux';
+import { getTopics as getTopicsApi } from '../../actions/topics';
+import { navPushRoute } from '../../actions/rootNavigation';
+// import { shouldShowVocabulary } from '../../actions/vocabulary';
 
 const welcome = require('../../../assets/images/logo.jpg');
 
 class TopicCard extends Component {
-    
+
     static propTypes = {
         reset: React.PropTypes.func,
         navigation: React.PropTypes.shape({
@@ -21,26 +22,33 @@ class TopicCard extends Component {
         }),
     };
 
+    _pushTo(route, user) {
+        this.props.navPushRoute(route)
+    }
+
     render() {
         return (
-            <Card style={StyleSheet.flatten(styles.achievementCard)}>
-                <CardItem>
-                    <Left>
-                        <Thumbnail source={welcome}/>
-                        <Body>
-                        <Text style={styles.achievementTitle}>{this.props.title}</Text>
-                        <Text note>{this.props.description}</Text>
-                        </Body>
-                    </Left>
-                </CardItem>
-            </Card>
+            <TouchableHighlight onPress={() => this._pushTo('wordList', this.props.topic)} style={{ flex: 1 }}
+                underlayColor={fromTheme.LAVENDER}>
+                <Card style={StyleSheet.flatten(styles.achievementCard)}>
+                    <CardItem>
+                        <Left>
+                            <Thumbnail source={welcome} />
+                            <Body>
+                                <Text style={styles.achievementTitle}>{this.props.title}</Text>
+                                <Text note>{this.props.description}</Text>
+                            </Body>
+                        </Left>
+                    </CardItem>
+                </Card>
+            </TouchableHighlight>
         )
     }
 }
 
 class TopicList extends Component {
-    
-    componentDidMount(){
+
+    componentDidMount() {
         this.props.getTopicsApi();
     }
 
@@ -60,7 +68,7 @@ class TopicList extends Component {
     render() {
         return (
             <View style={styles.achievementList}>
-               {this._mapPropsToView()}
+                {this._mapPropsToView()}
             </View>
         )
     }
