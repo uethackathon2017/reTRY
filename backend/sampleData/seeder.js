@@ -32,7 +32,7 @@ mongoInit(err => {
             return Quiz.removeAsync();
         })
         .then(() => {
-            console.log('Documents on "Quiz" table cleared!');
+                console.log('Documents on "Quiz" table cleared!');
             console.log('Cleaning "Award" table...');
             return Award.removeAsync();
         })

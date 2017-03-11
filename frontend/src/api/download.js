@@ -4,8 +4,13 @@ const downLoadFile = (url) => {
     const des = `${RNFS.DocumentDirectoryPath}/${(new Date()).getTime()}.jpg`;
 
     return new Promise((resolve, reject) => {
+
         const progress = data => {
-            if (data.bybytesWritten == data.contentLength) {
+            if (data.statusCode != 200) {
+                reject(new Error('Down load failed!'));
+            }
+
+            if (data.bytesWritten == data.contentLength) {
                 return resolve(des);
             }
         };
@@ -16,7 +21,7 @@ const downLoadFile = (url) => {
             begin: null,
             progress: progress,
             background: null,
-            10
+            progressDivider: 10
         });
     })
 };

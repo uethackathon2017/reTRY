@@ -100,17 +100,21 @@ export const getCurrentRightAnswerKey = (state) => {
 };
 
 export const getSelfScoreAfterGame = (state) => {
-    fromResult.getSelfScoreAfterGame(state.result);
+    return fromResult.getSelfScoreAfterGame(state.result);
 };
 
 export const getOpponentScoreAfterGame = (state) => {
-    fromResult.getOpponentScoreAfterGame(state.result);
+    return fromResult.getOpponentScoreAfterGame(state.result);
 };
 
 export const getsSelfDataBeforeGame =  (state) => {
-    fromResult.getsSelfDataBeforeGame(state.result);
+    return fromResult.getsSelfDataBeforeGame(state.result);
 };
 
 export const getOpponentDataBeforeGame = (state) => {
-    fromResult.getOpponentDataBeforeGame(state.result);
+    return fromResult.getOpponentDataBeforeGame(state.result);
+};
+
+export const getCurrentGameIndexOverTotal = (state) => {
+    return fromIds.getGameIds(state.ids).indexOf(fromCurrentGameId.getCurrentGameId(state.currentGameId)) +"/" + fromIds.getGameIds(state.ids).length;
 };

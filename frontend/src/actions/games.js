@@ -41,6 +41,8 @@ export const startFinding = () => (dispatch, getState) => {
             data: data
         });
 
+        
+
         dispatch(navReplaceAt('newWords'));
 
         let newWordsCountDown = config.newWordsCountDown;
