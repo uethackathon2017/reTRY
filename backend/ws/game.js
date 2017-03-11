@@ -224,7 +224,7 @@ module.exports = (game) => {
                 redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
-                    if (passedWords || failedWords) {
+                    if (passedWords.length || failedWords.length) {
                         console.log(passedWords[0]);
                         console.log(failedWords[0]);
                         console.log(passedWords.length);
