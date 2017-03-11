@@ -1,8 +1,8 @@
 // Danh sách các từ hay sai
-import React, {Component} from 'react';
-import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, ScrollView, TouchableHighlight, Image } from 'react-native';
 import styles from './styles';
-import {Thumbnail, Card, CardItem, Body, Left, Button, Icon} from 'native-base';
+import { Thumbnail, Card, CardItem, Body, Left, Button, Icon } from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
 
@@ -14,19 +14,19 @@ class FriendCard extends Component {
             <Card style={StyleSheet.flatten(styles.achievementCard)}>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={welcome}/>
-                        <Body style={{flexDirection:'row'}}>
-                            <View style={{flex: 0.7}}>
+                        <Thumbnail source={welcome} />
+                        <Body style={{ flexDirection: 'row' }}>
+                            <View style={{ flex: 0.7 }}>
                                 <Text style={styles.achievementTitle}>{this.props.title}</Text>
                                 <Text note>{this.props.description}</Text>
                             </View>
-                        
-                            <View style={{flex: 0.3}}>
+
+                            <View style={{ flex: 0.3 }}>
                                 <Button bordered iconLeft >
                                     <Icon name='ios-chatboxes-outline' />
                                 </Button>
-                        </View>
-                        
+                            </View>
+
 
                         </Body>
                     </Left>
@@ -43,10 +43,10 @@ class FriendList extends Component {
                 {/*<View style={styles.achievementListTitleContainer}>
                     <Text style={styles.achievementListTitle}>THÀNH TÍCH</Text>
                 </View>*/}
-                <FriendCard title="Nguyễn Văn Nhật" description="Level 2"/>
-                <FriendCard title="Trần Minh Tuấn" description="Level 7"/>
-                <FriendCard title="Trần Việt Thắng" description="Level 2"/>
-                <FriendCard title="Đặng Hải Triều" description="Level 5"/>
+                <FriendCard title="Nguyễn Văn Nhật" description="Level 2" />
+                <FriendCard title="Trần Minh Tuấn" description="Level 7" />
+                <FriendCard title="Trần Việt Thắng" description="Level 2" />
+                <FriendCard title="Đặng Hải Triều" description="Level 5" />
             </View>
         )
     }
