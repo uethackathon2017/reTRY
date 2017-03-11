@@ -13,7 +13,7 @@ class SelfScoreBar extends Component {
 
         const {selfData} = this.props;
 
-        if (pictureURL.pictureURL) {
+        if (selfData.pictureURL) {
             return (
                 <View style={styles.me}>
                     <Image

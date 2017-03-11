@@ -50,7 +50,7 @@ export const getOpponentData = (state) => {
 
 export const getSelfData = (state) => {
     return state.data.self;
-}
+};
 
 export const getCountDown = (state) => {
     return state.countDown;
