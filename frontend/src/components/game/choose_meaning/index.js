@@ -4,14 +4,38 @@ import {Card} from 'native-base';
 import styles, * as fromStyles from './styles';
 import {getCurrentGame} from '../../../reducers';
 import {connect} from 'react-redux';
+import {answer} from '../../../actions/games';
 
-const AnswerCard = ({word}) => (
+const ViEnAnswerCard = ({answer, answerFunction, index, quizId}) => (
     <Card style={StyleSheet.flatten(styles.answerCard)}
-          key={word._id.toString()}
+          key={answer._id.toString()}
     >
-        <Text style={styles.answer}>
-            {word}
-        </Text>
+        <TouchableHighlight
+            onPress={() => {
+            answerFunction(quizId, index);
+         }}
+        >
+            <Text style={styles.answer}>
+                {answer.content + " /" + answer.pronounce[0] + "/"}
+            </Text>
+        </TouchableHighlight>
+    </Card>
+
+);
+
+const EnViAnswerCard = ({answer, answerFunction, index, quizId}) => (
+    <Card style={StyleSheet.flatten(styles.answerCard)}
+          key={answer._id.toString()}
+    >
+        <TouchableHighlight
+            onPress={() => {
+            answerFunction(quizId, index);
+         }}
+        >
+            <Text style={styles.answer}>
+                {answer.content}
+            </Text>
+        </TouchableHighlight>
     </Card>
 );
 
@@ -25,28 +49,49 @@ class ChooseMeaning extends Component {
             return (
                 <View style={styles.container}>
                     <View style={styles.questionContainer}>
-                        <Text style={styles.word}>game.question.content</Text>
-                        <Text style={styles.instruction}>game.question.description_en</Text>
+                        <Text style={styles.word}>{game.question.content}</Text>
+                        <Text style={styles.instruction}>{game.question.description_en}</Text>
                     </View>
                     <View style={styles.answersContainer}>
                         {game.answers.map((answer, index) => {
                             return (
-                                <TouchableHighlight
-                                    onPress={() => {
-                                        dispatch
-                                    }}
-                                >
-                                    <AnswerCard
-                                        word={answer.content}
-                                    />
-                                </TouchableHighlight>
+                                <ViEnAnswerCard
+                                    key={answer._id.toString()}
+                                    answer={answer}
+                                    answerFunction={this.props.answer}
+                                    index={index}
+                                    quizId={game._id}
+                                />
                             )
                         })}
                     </View>
                 </View>
             )
+        } else if (game.type === 'en_vi') {
+            return (
+                <View style={styles.container}>
+                    <View style={styles.questionContainer}>
+                        <Text style={styles.word}>{game.question.content + " /" + game.question.pronounce[0]+"/"}</Text>
+                        <Text style={styles.instruction}>{game.question.description_en}</Text>
+                    </View>
+                    <View style={styles.answersContainer}>
+                        {game.answers.map((answer, index) => {
+                            return (
+                                <EnViAnswerCard
+                                    key={answer._id.toString()}
+                                    answer={answer}
+                                    answerFunction={this.props.answer}
+                                    index={index}
+                                    quizId={game._id}
+                                />
+
+                            )
+                        })}
+                    </View>
+                </View>
+            );
         } else {
-            return (<View/>);
+            return (<View/>)
         }
     }
 }
@@ -55,4 +100,6 @@ const mapStateToProps = (state) => ({
     game: getCurrentGame(state)
 });
 
-export default connect(mapStateToProps)(ChooseMeaning);
+export default connect(mapStateToProps, {
+    answer
+})(ChooseMeaning);

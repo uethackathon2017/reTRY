@@ -82,6 +82,7 @@ if (cluster.isMaster) {
   });
 } else {
   const redisClient = require('./utils/redis');
+  redisClient.flushdb();
   const async = require('async');
   const TASK_SCHEDULED_TIMER = 500;
   let task = (callback) => {

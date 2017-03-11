@@ -9,6 +9,7 @@ import rivalPlayer from './rivalPlayer';
 import find, * as fromFind from './find';
 import words, * as fromWord from './words';
 import newWordsCountDown, * as fromNewWordsCountDown from './newWordsCountDown';
+import gameCountDown, * as fromGameCountDown from './gameCountDown';
 
 const games = combineReducers({
     byId,
@@ -19,7 +20,8 @@ const games = combineReducers({
     rivalPlayer,
     find,
     words,
-    newWordsCountDown
+    newWordsCountDown,
+    gameCountDown
 });
 
 export default games;
@@ -69,4 +71,8 @@ export const getGameIds = (state) => {
 
 export const getNewWordsCountDown = (state) => {
     return fromNewWordsCountDown.getNewWordsCountDown(state.newWordsCountDown);
+};
+
+export const getGameCountDown = (state) => {
+    return fromGameCountDown.getGameCountDown(state.gameCountDown);
 };

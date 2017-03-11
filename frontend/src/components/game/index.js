@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Image } from 'react-native';
 import { Container } from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import PercentageCircle from 'react-native-percentage-circle';
+import GameCountDown from './GameCountdown';
 
 import * as fromTheme from '../../theme';
 import styles from './styles';
@@ -14,7 +13,7 @@ class Game extends Component {
             <Container style={StyleSheet.flatten(styles.container)}>
                 <View style={styles.scoreBrand}>
                     <View style={styles.me}>
-                        <CacheableImage
+                        <Image
                             style={[styles.avatar, styles.myAvatar]}
                             source={{ uri: "http://knowledge-commons.com/static/assets/images/avatar.png" }}
                         />
@@ -24,22 +23,13 @@ class Game extends Component {
                     <View style={{
                         marginTop: fromTheme.STATUSBAR_HEIGHT - 15
                     }}>
-                        <PercentageCircle
-                            radius={20}
-                            percent={50}
-                            color={fromTheme.CRIMSON_SKY}
-                            bgcolor={fromTheme.ULTRAMARINE}
-                            innerColor={fromTheme.ULTRAMARINE}
-                            borderWidth={4}
-                        >
-                            <Text style={styles.countDownText}>5</Text>
-                        </PercentageCircle>
+                        <GameCountDown/>
                     </View>
 
 
                     <View style={styles.player}>
                         <Text style={[styles.score, styles.playerScore]}>54</Text>
-                        <CacheableImage
+                        <Image
                             style={[styles.avatar, styles.playerAvatar]}
                             source={{ uri: "http://knowledge-commons.com/static/assets/images/avatar.png" }}
                         />
