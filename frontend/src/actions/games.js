@@ -51,7 +51,6 @@ export const startFinding = () => (dispatch, getState) => {
             data: data
         });
 
-        
 
         dispatch(navReplaceAt('newWords'));
 
@@ -72,6 +71,11 @@ export const startFinding = () => (dispatch, getState) => {
 
     let currentGameCountDownInterval;
 
+    socket.on('quiz start', () => {
+        // move to game screen if needed
+        dispatch(navReplaceAt('game'));
+    });
+
     socket.on('quiz', (data) => {
 
         clearInterval(currentGameCountDownInterval);
@@ -81,14 +85,8 @@ export const startFinding = () => (dispatch, getState) => {
             id: data.quizId
         });
 
-        const currentGame = getCurrentGame(getState());
-
-        // move to game screen if needed
-        if (getGameIds(getState()).indexOf(data.quizId) === 0) {
-            dispatch(navReplaceAt('game'));
-        }
-
         // switch game
+        const currentGame = getCurrentGame(getState());
         switch (currentGame.type) {
             case 'vi_en':
             case 'en_vi':
@@ -102,6 +100,7 @@ export const startFinding = () => (dispatch, getState) => {
         }
 
         // Game count down
+
         let gameCountdown = currentGame.duration;
         console.log("=== DURATION: " + gameCountdown);
 

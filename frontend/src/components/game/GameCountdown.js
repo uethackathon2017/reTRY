@@ -9,7 +9,7 @@ import * as fromTheme from '../../theme';
 class GameCountdown extends Component {
     render() {
 
-        const {countDown, duration} = this.props;
+        const {countDown} = this.props;
 
         return (
             <Text style={styles.countDownText}>{countDown}</Text>
@@ -19,7 +19,6 @@ class GameCountdown extends Component {
 
 const mapStateToProps = (state) => ({
     countDown: getGameCountDown(state),
-    duration: getCurrentGame(state).duration
 });
 
 

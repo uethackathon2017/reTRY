@@ -5,7 +5,7 @@ import {getGameNavigation} from '../../reducers';
 import ChooseMeaningGame from './choose_meaning';
 import ListenGame from './listen';
 import MissingCharacterGame from './missing_character';
-
+import * as fromTheme from '../../theme';
 
 const {
     CardStack: NavigationCardStack,
@@ -23,7 +23,15 @@ class GameNavigator extends Component {
             case 'missing_character':
                 return <MissingCharacterGame/>;
             default:
-                return (<Text></Text>)
+                return (
+                    <View style={{
+                        flex: 1,
+                        backgroundColor: fromTheme.ULTRAMARINE,
+                    }}>
+                        <Text>Loading...</Text>
+                    </View>
+
+                )
         }
     }
 

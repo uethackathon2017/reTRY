@@ -14,7 +14,7 @@ const errorHandle = (socket, err) => {
 };
 
 const calculateLevel = (score) => {
-    return 1 + parseInt(score)/30;
+    return parseInt(1 + parseInt(score)/30);
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
@@ -39,7 +39,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         currentQuizIdx++;
 
         if (currentQuizIdx < quizzes.length) {
-            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx].duration + 1) * 1000)
+            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx - 1].duration + 1) * 1000)
         } else {
             setTimeout(() => {
                 redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
@@ -80,12 +80,15 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 });
             });
-            }, (quizzes[currentQuizIdx].duration + 1) * 1000);
+            }, (quizzes[currentQuizIdx - 1].duration + 1) * 1000);
         }
     };
 
     setTimeout(() => {
-        nextQuiz();
+        game.to(room).emit('quiz start');
+        setTimeout(() => {
+            nextQuiz();
+        }, 3000);
     }, 11000);
 
 
@@ -101,7 +104,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         redisClient.get('score of ' + firstSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-            let currentQuizz = quizzes[currentQuizIdx];
+            let currentQuizz = quizzes[currentQuizIdx - 1];
+            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -139,7 +143,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 }
             }
-
         });
     });
 
@@ -150,9 +153,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         redisClient.get('score of ' + secondSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-
-            let currentQuizz = quizzes[currentQuizIdx];
-
+            let currentQuizz = quizzes[currentQuizIdx - 1];
+            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -160,14 +162,13 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     // console.log('word id========' + wordNeedToBeTracked.toString());
                     // console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('passed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
-                    
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
                     redisClient.set('score of ' + secondSocket.id, currentScore.toString());
                     secondSocket.emit('self quiz result', {
-                            result: true,
-                            currentScore: currentScore,
-                            rightAnswer: currentQuizz.key
-                        });
+                        result: true,
+                        currentScore: currentScore,
+                        rightAnswer: currentQuizz.key
+                    });
                     secondSocket.broadcast.to(room).emit('opponent quiz result', {
                         result: true,
                         currentScore: currentScore,
@@ -179,7 +180,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     // console.log('word id========' + wordNeedToBeTracked.toString());
                     // console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('failed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
-
                     secondSocket.emit('self quiz result', {
                         result: false,
                         currentScore: currentScore,
@@ -192,8 +192,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 }
             }
-
-
         });
     });
 };
@@ -231,13 +229,13 @@ module.exports = (game) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
                     if (passedWords.length || failedWords.length) {
-                        console.log(passedWords[0]);
-                        console.log(failedWords[0]);
+                        console.log('Passed words: ' + passedWords.toString());
+                        console.log('Failed words: ' + failedWords.toString());
                         console.log(passedWords.length);
                         console.log(failedWords.length);
                         let passedWordsToBeInserted = [];
                         let failedWordsToBeInserted = [];
-                        let passCount = failedWords.reduce((acc, curr) => {
+                        let passCount = passedWords.reduce((acc, curr) => {
                             for (let idx = 0; idx < passedWords.length; idx++) {    
                                 if (curr.toString() === passedWords[idx].toString())
                                     return acc++;

@@ -5,7 +5,7 @@ const initialState = {
     index: 0,
     routes: [
         {
-            key: 'missing_character',
+            key: 'none',
             index: 0,
         },
     ],
