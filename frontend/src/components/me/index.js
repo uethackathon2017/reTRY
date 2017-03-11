@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {StyleSheet, View, Text, Image, Platform, ScrollView} from 'react-native';
 import styles from './styles';
-import {Container} from 'native-base';
+import {Container, Button, Icon} from 'native-base';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
 import AchievementList from './AchievementList';
 import {getProfile} from '../../reducers';
 import {connect} from 'react-redux';
 import {getProfile as getProfileApi} from '../../actions/profile';
-import CacheableImage from 'react-native-cacheable-image';
+import {navPopRoute} from '../../actions/rootNavigation'
 
 const screenWidth = fromTheme.screenWidth;
 const background = fromTheme.ME_BG_IMG;
@@ -16,6 +16,10 @@ const background = fromTheme.ME_BG_IMG;
 class Me extends Component {
     componentDidMount() {
         this.props.getProfileApi();
+    }
+
+    _popRoute() {
+        this.props.navPopRoute();
     }
 
     render() {
@@ -35,7 +39,13 @@ class Me extends Component {
                 <View style={styles.statusBarBackground}/>
                 <ScrollView>
                     <View style={styles.titleRow}>
+                        <View style={styles.backButtonContainer}>
+                            <Button light transparent onPress={() => this._popRoute()}>
+                                <Icon name='arrow-back' style={styles.backButtonIcon}/>
+                            </Button>
+                        </View>
                         <Text style={styles.title}>P R O F I L E</Text>
+                        <View style={{flex: 0.2}}/>
                     </View>
                     <View style={styles.userAvatarContainer}>
                         {Avatar(profile)}
@@ -79,5 +89,5 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-    getProfileApi
+    getProfileApi, navPopRoute
 })(Me);
