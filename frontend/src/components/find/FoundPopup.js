@@ -71,7 +71,6 @@ class FoundPopup extends Component {
     }
 }
 
-
 const checkShouldShowDialog = (state) => getFindStatus(state) === 'complete';
 
 const mapStateToProps = (state) => ({
