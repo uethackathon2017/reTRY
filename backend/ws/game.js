@@ -224,47 +224,49 @@ module.exports = (game) => {
                 redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
-                    console.log(passedWords[0]);
-                    console.log(failedWords[0]);
-                    console.log(passedWords.length);
-                    console.log(failedWords.length);
-                    let passedWordsToBeInserted = [];
-                    let failedWordsToBeInserted = [];
-                    let passCount = failedWords.reduce((acc, curr) => {
-                        for (let idx = 0; idx < passedWords.length; idx++) {    
-                            if (curr.toString() === passedWords[idx].toString())
-                                return acc++;
+                    if (passedWords || failedWords) {
+                        console.log(passedWords[0]);
+                        console.log(failedWords[0]);
+                        console.log(passedWords.length);
+                        console.log(failedWords.length);
+                        let passedWordsToBeInserted = [];
+                        let failedWordsToBeInserted = [];
+                        let passCount = failedWords.reduce((acc, curr) => {
+                            for (let idx = 0; idx < passedWords.length; idx++) {    
+                                if (curr.toString() === passedWords[idx].toString())
+                                    return acc++;
+                            }
+                            return acc;
+                        }, 0);
+                        console.log(passCount);
+                        for (let idx = 0; idx < passedWords.length; idx++) {
+                            passedWordsToBeInserted.push({
+                                _id: passedWords[idx].toString(),
+                                passCount: 2,
+                                failCount: 3
+                            });
                         }
-                        return acc;
-                    }, 0);
-                    console.log(passCount);
-                    for (let idx = 0; idx < passedWords.length; idx++) {
-                        passedWordsToBeInserted.push({
-                            _id: passedWords[idx].toString(),
-                            passCount: 2,
-                            failCount: 3
+                        for (let idx = 0; idx < failedWords.length; idx++) {
+                            failedWordsToBeInserted.push({
+                                _id: failedWords[idx].toString(),
+                                passCount: 2,
+                                failCount: 3
+                            });
+                        }
+                        User.updateAsync({
+                            _id: socket.decoded_token._id
+                        }, {
+                            $addToSet: {
+                                words: passedWordsToBeInserted.concat(failedWordsToBeInserted)
+                            }
+                        })
+                        .then(result => {
+                            console.log(result);
+                        })
+                        .catch(err => {
+                            if (err) console.log(err);
                         });
                     }
-                    for (let idx = 0; idx < failedWords.length; idx++) {
-                        failedWordsToBeInserted.push({
-                            _id: failedWords[idx].toString(),
-                            passCount: 2,
-                            failCount: 3
-                        });
-                    }
-                    User.updateAsync({
-                        _id: socket.decoded_token._id
-                    }, {
-                        $addToSet: {
-                            words: passedWordsToBeInserted.concat(failedWordsToBeInserted)
-                        }
-                    })
-                    .then(result => {
-                        console.log(result);
-                    })
-                    .catch(err => {
-                        if (err) console.log(err);
-                    });
                 });
             });
             redisClient.srem('listWaitingPlayers', socket.id, (error) => {
