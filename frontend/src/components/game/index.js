@@ -6,44 +6,75 @@ import {connect} from 'react-redux';
 import * as fromTheme from '../../theme';
 import styles from './styles';
 import GameNavigation from './GameNavigation';
-import {getSelfScore, getOpponentScore} from '../../reducers';
+import {getSelfScore, getOpponentScore, getSelfData, getOpponentData} from '../../reducers';
 
 class SelfScoreBar extends Component {
     render() {
-        return (
-            <View style={styles.me}>
-                <Image
-                    style={[styles.avatar, styles.myAvatar]}
-                    source={{ uri: "http://knowledge-commons.com/static/assets/images/avatar.png" }}
-                />
-                <Text style={[styles.score, styles.myScore]}>{this.props.score}</Text>
-            </View>
-        )
+
+        const {selfData} = this.props;
+
+        if (pictureURL.pictureURL) {
+            return (
+                <View style={styles.me}>
+                    <Image
+                        style={[styles.avatar, styles.myAvatar]}
+                        source={{ uri: selfData.pictureURL }}
+                    />
+                    <Text style={[styles.score, styles.myScore]}>{this.props.score}</Text>
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.me}>
+                    <Image
+                        style={[styles.avatar, styles.myAvatar]}
+                    />
+                    <Text style={[styles.score, styles.myScore]}>{this.props.score}</Text>
+                </View>
+            )
+        }
     }
 }
 
 const selfMapStateToProps = (state) => ({
-    score: getSelfScore(state)
+    score: getSelfScore(state),
+    selfData: getSelfData(state)
 });
 
 const SelfScoreBarView = connect(selfMapStateToProps)(SelfScoreBar);
 
 class OpponentScoreBar extends Component {
     render() {
-        return (
-            <View style={styles.player}>
-                <Text style={[styles.score, styles.playerScore]}>{this.props.score}</Text>
-                <Image
-                    style={[styles.avatar, styles.playerAvatar]}
-                    source={{ uri: "http://knowledge-commons.com/static/assets/images/avatar.png" }}
-                />
-            </View>
-        )
+
+        const {opponentData} = this.props;
+
+        if (opponentData.pictureURL) {
+
+            return (
+                <View style={styles.player}>
+                    <Text style={[styles.score, styles.playerScore]}>{this.props.score}</Text>
+                    <Image
+                        style={[styles.avatar, styles.playerAvatar]}
+                        source={{ uri: opponentData.pictureURL }}
+                    />
+                </View>
+            )
+        } else {
+            return (
+                <View style={styles.player}>
+                    <Text style={[styles.score, styles.playerScore]}>{this.props.score}</Text>
+                    <Image
+                        style={[styles.avatar, styles.playerAvatar]}
+                    />
+                </View>
+            )
+        }
     }
 }
 
 const opponentMapStateToProps = (state) => ({
-    score: getOpponentScore(state)
+    score: getOpponentScore(state),
+    opponentData: getOpponentData(state)
 });
 
 const OpponentScoreBarView = connect(opponentMapStateToProps)(OpponentScoreBar);

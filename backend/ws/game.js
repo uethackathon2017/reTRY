@@ -238,7 +238,7 @@ module.exports = (game) => {
                 }
 
                 firstSocket.emit('opponent found', {
-                    opponent: JSON.parse(secondPlayerInfo.userData)
+                    opponent: JSON.parse(secondPlayerInfo.userData),
                 });
 
                 secondSocket.emit('opponent found', {
