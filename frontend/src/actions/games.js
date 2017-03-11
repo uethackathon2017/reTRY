@@ -2,7 +2,7 @@ import * as actionTypes from './types';
 import {connect, getSocket} from '../api/socket';
 import config from '../config';
 import {getAccessToken, getGameIds, getCurrentGame} from '../reducers';
-import {navReplaceAt, navPopRoute} from './rootNavigation';
+import {navReplaceAt, navPopRoute, navResetRoute} from './rootNavigation';
 import * as gameNav from './gameNavigation';
 
 export const startFinding = () => (dispatch, getState) => {
@@ -39,10 +39,10 @@ export const startFinding = () => (dispatch, getState) => {
         socket.disconnect();
         socket.close();
         dispatch({
-            type: actionTypes.FIND_CANCEL
+            type: actionTypes.LOGOUT
         });
 
-        dispatch(navPopRoute())
+        dispatch(navResetRoute())
     });
 
     socket.on('game data', (data) => {

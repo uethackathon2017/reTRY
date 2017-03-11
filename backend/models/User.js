@@ -39,13 +39,19 @@ let UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Award'
     }],
-    words: [{
+    failedWords: [{
         _id: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Word'
         },
-        passCount: Number,
-        failCount: Number
+        count: Number
+    }],
+    passedWords: [{
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Word'
+        },
+        count: Number
     }],
     role: {
         type: String,

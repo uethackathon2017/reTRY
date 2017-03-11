@@ -14,7 +14,7 @@ const errorHandle = (socket, err) => {
 };
 
 const calculateLevel = (score) => {
-    return 1 + parseInt(score)/30;
+    return parseInt(1 + parseInt(score)/30);
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
@@ -105,6 +105,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
             let currentQuizz = quizzes[currentQuizIdx - 1];
+            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -142,7 +143,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 }
             }
-
         });
     });
 
@@ -153,9 +153,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         redisClient.get('score of ' + secondSocket.id, (error, currentScore) => {
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
-
             let currentQuizz = quizzes[currentQuizIdx - 1];
-
+            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -163,7 +162,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     // console.log('word id========' + wordNeedToBeTracked.toString());
                     // console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('passed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
-                    
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
                     redisClient.set('score of ' + secondSocket.id, currentScore.toString());
                     secondSocket.emit('self quiz result', {
@@ -182,7 +180,6 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     // console.log('word id========' + wordNeedToBeTracked.toString());
                     // console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('failed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
-
                     secondSocket.emit('self quiz result', {
                         result: false,
                         currentScore: currentScore,
@@ -232,46 +229,41 @@ module.exports = (game) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
                     if (passedWords.length || failedWords.length) {
-                        console.log(passedWords[0]);
-                        console.log(failedWords[0]);
+                        console.log('Passed words: ' + passedWords.toString());
+                        console.log('Failed words: ' + failedWords.toString());
                         console.log(passedWords.length);
                         console.log(failedWords.length);
-                        let passedWordsToBeInserted = [];
-                        let failedWordsToBeInserted = [];
-                        let passCount = failedWords.reduce((acc, curr) => {
-                            for (let idx = 0; idx < passedWords.length; idx++) {    
-                                if (curr.toString() === passedWords[idx].toString())
-                                    return acc++;
-                            }
-                            return acc;
-                        }, 0);
-                        console.log('passCount: ' + passCount);
-                        for (let idx = 0; idx < passedWords.length; idx++) {
-                            passedWordsToBeInserted.push({
-                                _id: passedWords[idx].toString(),
-                                passCount: 2,
-                                failCount: 3
+                        passedWords.forEach(word => {
+                            User.findOneAndUpdate({
+                                _id: socket.decoded_token._id,
+                                'passedWords._id': word
+                            }, {
+                                $inc: {
+                                    'passedWords.$.count': 1,
+                                }
+                            }, {
+                                upsert: true
+                            })
+                            .then(result=> {})
+                            .catch(err => {
+                                if (err) console.log(err);
                             });
-                        }
-                        for (let idx = 0; idx < failedWords.length; idx++) {
-                            failedWordsToBeInserted.push({
-                                _id: failedWords[idx].toString(),
-                                passCount: 2,
-                                failCount: 3
+                        });
+                        failedWords.forEach(word => {
+                            User.findOneAndUpdate({
+                                _id: socket.decoded_token._id,
+                                'failedWords._id': word
+                            }, {
+                                $inc: {
+                                    'failedWords.$.count': 1,
+                                }
+                            }, {
+                                upsert: true
+                            })
+                            .then(result => {})
+                            .catch(err => {
+                                if (err) console.log(err);
                             });
-                        }
-                        User.updateAsync({
-                            _id: socket.decoded_token._id
-                        }, {
-                            $addToSet: {
-                                words: passedWordsToBeInserted.concat(failedWordsToBeInserted)
-                            }
-                        })
-                        .then(result => {
-                            console.log(result);
-                        })
-                        .catch(err => {
-                            if (err) console.log(err);
                         });
                     }
                 });
