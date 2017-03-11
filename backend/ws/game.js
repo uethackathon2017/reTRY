@@ -263,7 +263,7 @@ module.exports = (game) => {
                                 if (user) {
                                     user.update({
                                         $inc: {
-                                            'failedWords.count': 1,
+                                            'failedWords.$.count': 1,
                                         }
                                     }).exec();
                                 } else {
