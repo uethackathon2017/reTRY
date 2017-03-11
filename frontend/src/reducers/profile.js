@@ -36,6 +36,7 @@ const profile = (state = initialState, action) => {
             };
         case types.GET_PROFILE_SUCCESS:
             return {
+                ...state,
                 userData: action.response.userData,
             };
         default:
