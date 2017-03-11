@@ -174,3 +174,19 @@ export const checkShouldGetApi = (state) => {
 export const getTopics = (state) => {
     return fromTopics.getTopics(state.topics)
 }
+
+/**
+ * get self score
+ * @param state
+ */
+export const getSelfScore = (state) => {
+    return fromGames.getSelfScore(state.games);
+};
+
+/**
+ * get opponent score
+ * @param state
+ */
+export const getOpponentScore = (state) => {
+    return fromGames.getOpponentScore(state.games);
+};
