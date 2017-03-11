@@ -1,6 +1,6 @@
 'use strict';
 
-const { User, Token } = require('../models');
+const { User, Token, Award } = require('../models');
 const config = require('../config');
 const { FB } = require('fb');
 const Promise = require('bluebird');
@@ -13,9 +13,10 @@ module.exports = {
     let fbAccessToken = request.headers.authorization;
     getUserDataFromFacebook(fbAccessToken)
       .then(userFbData => {
-        return Promise.join(userFbData, User.findOneAsync({ fbId: userFbData.id }, { _id: 1, role: 1 }));
+        let findingFirstLoginAward = Award.findOne({ title: 'Very first step!' });
+        return Promise.join(userFbData, User.findOneAsync({ fbId: userFbData.id }, { _id: 1, role: 1 }), findingFirstLoginAward);
       })
-      .then(([ userFbData, user ]) => {
+      .then(([ userFbData, user, firstLoginAward ]) => {
         if (!user) {
           let newUser = new User({
             fbId: userFbData.id,
@@ -24,7 +25,9 @@ module.exports = {
             firstName: userFbData.first_name,
             lastName: userFbData.last_name,
             pictureURL: userFbData.picture.data.url,
-            gender: userFbData.gender
+            gender: userFbData.gender,
+            score: firstLoginAward.bonusScore,
+            awards: [ firstLoginAward._id ]
           });
           return newUser.saveAsync();
         }
