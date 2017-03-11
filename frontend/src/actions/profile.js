@@ -2,7 +2,7 @@ import * as actions from './types';
 import {getAccessToken, checkShouldGetApi} from '../reducers';
 import {profile} from '../api';
 
-export const getProfile = () => (dispatch, getState) => {
+export const    getProfile = () => (dispatch, getState) => {
     if (checkShouldGetApi(getState())) {
         dispatch({
             type: actions.GET_PROFILE_REQUEST,

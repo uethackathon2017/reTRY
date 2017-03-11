@@ -220,7 +220,7 @@ export const getCurrentRightAnswerKey = (state) => {
  * @param state
  */
 export const getSelfScoreAfterGame = (state) => {
-    fromGames.getSelfScoreAfterGame(state.games);
+    return fromGames.getSelfScoreAfterGame(state.games);
 };
 
 /**
@@ -228,7 +228,7 @@ export const getSelfScoreAfterGame = (state) => {
  * @param state
  */
 export const getOpponentScoreAfterGame = (state) => {
-    fromGames.getOpponentScoreAfterGame(state.games);
+    return fromGames.getOpponentScoreAfterGame(state.games);
 };
 
 /**
@@ -236,7 +236,7 @@ export const getOpponentScoreAfterGame = (state) => {
  * @param state
  */
 export const getsSelfDataBeforeGame =  (state) => {
-    fromGames.getsSelfDataBeforeGame(state.games);
+    return fromGames.getsSelfDataBeforeGame(state.games);
 };
 
 /**
@@ -244,5 +244,14 @@ export const getsSelfDataBeforeGame =  (state) => {
  * @param state
  */
 export const getOpponentDataBeforeGame = (state) => {
-    fromGames.getOpponentDataBeforeGame(state.games);
+    return fromGames.getOpponentDataBeforeGame(state.games);
+};
+
+
+/**
+ * Get current game index over total. Ex: 1/10
+ * @param state
+ */
+export const getCurrentGameIndexOverTotal = (state) => {
+    return fromGames.getCurrentGameIndexOverTotal(state.games);
 };

@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import * as fromTheme from '../../theme';
 import styles from './styles';
 import GameNavigation from './GameNavigation';
-import {getSelfScore, getOpponentScore, getSelfData, getOpponentData} from '../../reducers';
+import {getSelfScore, getOpponentScore, getSelfData, getOpponentData, getCurrentGameIndexOverTotal} from '../../reducers';
 
 class SelfScoreBar extends Component {
     render() {
@@ -97,7 +97,7 @@ class Game extends Component {
                 </View>
 
                 <View style={styles.gameNumberContainer}>
-                    <Text style={styles.gameNumber}>Game 1/10</Text>
+                    <Text style={styles.gameNumber}>Game {this.props.gameIndexOverTotal}</Text>
                 </View>
 
                 <GameNavigation />
@@ -107,4 +107,8 @@ class Game extends Component {
     }
 }
 
-export default Game;
+const gameMapStateToProps = (state) => ({
+    gameIndexOverTotal: getCurrentGameIndexOverTotal(state)
+});
+
+export default connect(gameMapStateToProps)(Game);

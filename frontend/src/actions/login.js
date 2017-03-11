@@ -4,7 +4,7 @@ const {LoginManager, AccessToken} = FBSDK;
 import * as actions from './types';
 import {facebookAuth} from '../api';
 import {showLoadingPopup, hideLoadingPopup} from './loadingPopup';
-    
+
 export const loginWithFacebook = () => (dispatch) => {
     dispatch({
         type: actions.FBLOGIN_REQUEST
@@ -70,5 +70,11 @@ export const loginWithFacebook = () => (dispatch) => {
 export const cancelLoginWithFacebook = () => (dispatch) => {
     dispatch({
         type: actions.FBLOGIN_CANCEL
+    });
+};
+
+export const logout = () => (dispatch) => {
+    dispatch({
+        type: actions.LOGOUT
     });
 };

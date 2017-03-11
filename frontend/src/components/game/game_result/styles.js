@@ -111,10 +111,6 @@ export default StyleSheet.create({
         marginTop: 20,
         flex: 0.5
     },
-    listButtonContainer: {
-        flexDirection: 'row',
-        marginTop: 100
-    },
 
     button: {
         ...button,

@@ -55,6 +55,7 @@ const level = (score) => {
 };
 
 class GameResult extends Component {
+
     _pushTo(route) {
         this.props.navPushRoute(route);
     }
@@ -110,6 +111,9 @@ class GameResult extends Component {
     };
 
     render() {
+
+        console.log(this.props);
+
         const {
             selfScoreAfterGame, opponentScoreAfterGame, selfDataBeforeGame, opponentDataBeforeGame
         } = this.props;
@@ -156,30 +160,6 @@ class GameResult extends Component {
                             </PercentageCircle>
                         </View>
                     </View>
-
-                    <View style={styles.listButtonContainer}>
-                        <View style={styles.button}>
-                            <Button iconLeft primary onPress={() => this._pushTo('main')}>
-                                <Icon name='home'/>
-                                <Text style={styles.buttonText}>Home</Text>
-                            </Button>
-                        </View>
-                        {/*<View style={styles.button}>*/}
-                        {/*<Button iconLeft success>*/}
-                        {/*<Icon name='ios-chatboxes-outline'/>*/}
-                        {/*<Text style={styles.buttonText}>Chat</Text>*/}
-                        {/*</Button>*/}
-                        {/*</View>*/}
-
-                        {/*<View style={styles.button}>*/}
-                        {/*<Button iconLeft info>*/}
-                        {/*<Icon name='share'/>*/}
-                        {/*<Text style={styles.buttonText}>Share</Text>*/}
-                        {/*</Button>*/}
-                        {/*</View>*/}
-                    </View>
-
-
                 </ScrollView>
             </Container>
         )
