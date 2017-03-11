@@ -13,7 +13,7 @@ const errorHandle = (socket, err) => {
 };
 
 const calculateLevel = (score) => {
-    return 1 + parseInt(score / 30);
+    return 1 + parseInt(score)/30;
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
@@ -217,27 +217,29 @@ module.exports = (game) => {
                 redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
+                    console.log(passedWords);
+                    console.log(failedWords);
                     let passedWordsToBeInserted = [];
                     let failedWordsToBeInserted = [];
                     for (let idx = 0; idx < passedWords.length; idx++) {
                         passedWordsToBeInserted.push({
-                            _id: passedWords[idx],
+                            _id: passedWords[idx].toString(),
                             passCount: passedWords.reduce((acc, val) => {
-                                if (val === passedWords[idx]) return acc++;
+                                if (val.toString() === passedWords[idx].toString()) return acc++;
                             }, 0),
                             failCount: failedWords.reduce((acc, val) => {
-                                if (val === passedWords[idx]) return acc++;
+                                if (val.toString() === passedWords[idx].toString()) return acc++;
                             }, 0)
                         });
                     }
                     for (let idx = 0; idx < failedWords.length; idx++) {
                         failedWordsToBeInserted.push({
-                            _id: failedWords[idx],
+                            _id: failedWords[idx].toString(),
                             passCount: passedWords.reduce((acc, val) => {
-                                if (val === failedWords[idx]) return acc++;
+                                if (val.toString() === failedWords[idx].toString()) return acc++;
                             }, 0),
                             failCount: failedWords.reduce((acc, val) => {
-                                if (val === failedWords[idx]) return acc++;
+                                if (val.toString() === failedWords[idx].toString()) return acc++;
                             }, 0)
                         });
                     }
