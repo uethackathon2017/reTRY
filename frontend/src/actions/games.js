@@ -2,7 +2,7 @@ import * as actionTypes from './types';
 import {connect, getSocket} from '../api/socket';
 import config from '../config';
 import {getAccessToken, getGameIds, getCurrentGame} from '../reducers';
-import {navReplaceAt, navPopRoute} from './rootNavigation';
+import {navReplaceAt, navPopRoute, navResetRoute} from './rootNavigation';
 import * as gameNav from './gameNavigation';
 
 export const startFinding = () => (dispatch, getState) => {
@@ -39,10 +39,10 @@ export const startFinding = () => (dispatch, getState) => {
         socket.disconnect();
         socket.close();
         dispatch({
-            type: actionTypes.FIND_CANCEL
+            type: actionTypes.LOGOUT
         });
 
-        dispatch(navPopRoute())
+        dispatch(navResetRoute())
     });
 
     socket.on('game data', (data) => {
@@ -129,20 +129,6 @@ export const startFinding = () => (dispatch, getState) => {
     });
 
 
-};
-
-export const answer = (quizId, answerIndex) => (dispatch, getState) => {
-    const socket = getSocket();
-
-    dispatch({
-        type: actionTypes.ANSWER,
-        key: answerIndex
-    });
-
-    socket.emit('answer quiz', {
-        _id: quizId,
-        key: answerIndex
-    });
 
     socket.on('self quiz result', (data) => {
         dispatch({
@@ -170,6 +156,20 @@ export const answer = (quizId, answerIndex) => (dispatch, getState) => {
         socket.close();
         dispatch(navReplaceAt('gameResult'));
     })
+};
+
+export const answer = (quizId, answerIndex) => (dispatch, getState) => {
+    const socket = getSocket();
+
+    dispatch({
+        type: actionTypes.ANSWER,
+        key: answerIndex
+    });
+
+    socket.emit('answer quiz', {
+        _id: quizId,
+        key: answerIndex
+    });
 };
 
 export const cancelFinding = () => (dispatch) => {

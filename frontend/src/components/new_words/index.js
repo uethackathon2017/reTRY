@@ -71,7 +71,7 @@ const cardWithImage = (word) => (
 );
 
 const wordCard = (word) => {
-    if (!word.image || word.image == '') {
+    if (!word || !word.image || word.image == '') {
         return cardWithNoImage(word);
     } else {
         return cardWithImage(word);
@@ -95,7 +95,12 @@ class NewWords extends Component {
                 >
 
                     {words.map((word) => {
-                        return wordCard(word);
+                        if (word) {
+                            return wordCard(word);
+                        } else {
+                            return <View/>;
+                        }
+
                     })}
 
                 </Carousel>
