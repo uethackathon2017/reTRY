@@ -41,7 +41,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         if (nextQuizIndex < quizzes.length) {
             currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx].duration + 1) * 1000)
         } else {
-            redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
+            setTimeout(() => {
+                redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
                 redisClient.get('score of ' + secondSocket.id, (error, secondPlayerScore) => {
                     firstSocket.emit('game end', { selfScore: firstPlayerScore, opponentScore: secondPlayerScore, selfData: firstPlayerData, opponentData: secondPlayerData });
                     secondSocket.emit('game end', { selfScore: secondPlayerScore, opponentScore: firstPlayerScore, selfData: secondPlayerData, opponentData: firstPlayerData });             
@@ -79,6 +80,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 });
             });
+            }, (quizzes[currentQuizIdx].duration + 1) * 1000);
         }
     };
 
