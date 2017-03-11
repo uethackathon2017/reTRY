@@ -2,7 +2,7 @@ import * as actionTypes from './types';
 import {connect, getSocket} from '../api/socket';
 import config from '../config';
 import {getAccessToken, getGameIds, getCurrentGame} from '../reducers';
-import {navReplaceAt} from './rootNavigation';
+import {navReplaceAt, navPopRoute} from './rootNavigation';
 import * as gameNav from './gameNavigation';
 
 export const startFinding = () => (dispatch, getState) => {
@@ -33,6 +33,16 @@ export const startFinding = () => (dispatch, getState) => {
             }
             gameStartCountDown--;
         }, 1000)
+    });
+
+    socket.on('invalid token', () => {
+        socket.disconnect();
+        socket.close();
+        dispatch({
+            type: actionTypes.FIND_CANCEL
+        });
+
+        dispatch(navPopRoute())
     });
 
     socket.on('game data', (data) => {
@@ -117,9 +127,9 @@ export const startFinding = () => (dispatch, getState) => {
                 countDown: gameCountdown
             })
         }, 1000);
+    });
 
 
-    })
 };
 
 export const answer = (quizId, answerIndex) => (dispatch, getState) => {

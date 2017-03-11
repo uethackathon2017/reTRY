@@ -5,6 +5,7 @@ const {
     replaceAt,
     popRoute,
     pushRoute,
+    reset
 } = actions;
 
 export const navReplaceAt = (route) => (dispatch, getState) => {
@@ -24,4 +25,8 @@ export const navPushRoute = (route) => (dispatch, getState) => {
     const state = getState();
     const navigation = getRootNavigation(state);
     dispatch(pushRoute({key: route, index: 1}, navigation.key));
+};
+
+export const navReset = () => (dispatch, getState) => {
+    dispatch(reset())
 };
