@@ -13,7 +13,7 @@ class AchievementCard extends Component {
             <Card style={StyleSheet.flatten(styles.achievementCard)}>
                 <CardItem>
                     <Left>
-                        <Thumbnail source={this.props.image}/>
+                        <Thumbnail style={StyleSheet.flatten(styles.achievementIcon)} source={this.props.image}/>
                         <Body>
                         <Text style={styles.achievementTitle}>{this.props.title}</Text>
                         <Text note>{this.props.description}</Text>
