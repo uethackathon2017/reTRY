@@ -231,23 +231,15 @@ module.exports = (game) => {
                     for (let idx = 0; idx < passedWords.length; idx++) {
                         passedWordsToBeInserted.push({
                             _id: passedWords[idx].toString(),
-                            passCount: passedWords.reduce((acc, val) => {
-                                if (val.toString() === passedWords[idx].toString()) return acc++;
-                            }, 0),
-                            failCount: failedWords.reduce((acc, val) => {
-                                if (val.toString() === passedWords[idx].toString()) return acc++;
-                            }, 0)
+                            passCount: 2,
+                            failCount: 3
                         });
                     }
                     for (let idx = 0; idx < failedWords.length; idx++) {
                         failedWordsToBeInserted.push({
                             _id: failedWords[idx].toString(),
-                            passCount: passedWords.reduce((acc, val) => {
-                                if (val.toString() === failedWords[idx].toString()) return acc++;
-                            }, 0),
-                            failCount: failedWords.reduce((acc, val) => {
-                                if (val.toString() === failedWords[idx].toString()) return acc++;
-                            }, 0)
+                            passCount: 2,
+                            failCount: 3
                         });
                     }
                     User.updateAsync({
