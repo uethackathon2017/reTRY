@@ -7,6 +7,7 @@ import gameNavigation, * as fromGameNavigation from './gameNavigation';
 import games, * as fromGames from './games';
 import profile, * as fromProfile from './profile';
 import leaders, * as fromLeaders from './leaders';
+import topics, * as fromTopics from './topics';
 
 export default combineReducers({
     rootNavigation,
@@ -16,6 +17,7 @@ export default combineReducers({
     gameNavigation,
     profile,
     leaders,
+    topics,
 });
 
 
@@ -169,3 +171,6 @@ export const checkShouldGetApi = (state) => {
     return fromProfile.checkShouldGetApi(state.profile);
 };
 
+export const getTopics = (state) => {
+    return fromTopics.getTopics(state.topics)
+}
