@@ -13,7 +13,7 @@ const errorHandle = (socket, err) => {
 };
 
 const calculateLevel = (score) => {
-    return 1 + parseInt(score / 30);
+    return 1 + parseInt(score)/30;
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
@@ -52,8 +52,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     User.updateAsync({
                         _id: firstPlayerData._id
                     }, {
-                        score: (firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore,
-                        level: calculateLevel((firstPlayerData.score ? firstPlayerData.score : 0) + firstPlayerScore)
+                        score: score,
+                        level: level
                         // TODO: Update words here
                         // TODO: Update awards here
                     })
@@ -64,8 +64,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                         return User.updateAsync({
                             _id: secondPlayerData._id
                         }, {
-                            score: (secondPlayerData.score ? secondPlayerData.score : 0) + secondPlayerScore,
-                            level: calculateLevel((secondPlayerData.score ? secondPlayerData.score : 0) + secondPlayerData)
+                            score: score,
+                            level: level
                             // TODO: Update words here
                             // TODO: Update awards here
                         });
@@ -102,7 +102,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
+                    console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('passed words of ' + firstSocket.id, wordNeedToBeTracked.toString());
 
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
@@ -119,7 +120,9 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 } else {
                     // Save words which this user has the wrong answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
+                    console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
+                    console.log('word id========' + wordNeedToBeTracked.toString());
                     redisClient.sadd('failed words of ' + firstSocket.id, wordNeedToBeTracked.toString());
 
                     firstSocket.emit('self quiz result', {
@@ -151,9 +154,11 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
+                    console.log('word id========' + wordNeedToBeTracked.toString());
+                    console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('passed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
-
+                    
                     currentScore += parseInt((currentQuizz.duration - time)) < 0 ? 0 : parseInt((currentQuizz.duration - time));
                     redisClient.set('score of ' + secondSocket.id, currentScore.toString());
                     secondSocket.emit('self quiz result', {
@@ -168,7 +173,9 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                     });
                 } else {
                     // Save words which this user has the wrong answer
-                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key];
+                    let wordNeedToBeTracked = currentQuizz.relatedWords[currentQuizz.key]._id;
+                    console.log('word id========' + wordNeedToBeTracked.toString());
+                    console.log(JSON.stringify(currentQuizz.relatedWords[currentQuizz.key]));
                     redisClient.sadd('failed words of ' + secondSocket.id, wordNeedToBeTracked.toString());
 
                     secondSocket.emit('self quiz result', {
@@ -215,30 +222,24 @@ module.exports = (game) => {
             console.log('User ' + socket.id.toString() + " disconnected");
             redisClient.smembers('passed words of ' + socket.id, (err, passedWords) => {
                 redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
-                    passedWords = JSON.parse(passedWords);
-                    failedWords = JSON.parse(failedWords);
+                    // passedWords = JSON.parse(passedWords);
+                    // failedWords = JSON.parse(failedWords);
+                    console.log(passedWords[0]);
+                    console.log(failedWords[0]);
                     let passedWordsToBeInserted = [];
                     let failedWordsToBeInserted = [];
                     for (let idx = 0; idx < passedWords.length; idx++) {
                         passedWordsToBeInserted.push({
-                            _id: passedWords[idx],
-                            passCount: passedWords.reduce((acc, val) => {
-                                if (val === passedWords[idx]) return acc++;
-                            }, 0),
-                            failCount: failedWords.reduce((acc, val) => {
-                                if (val === passedWords[idx]) return acc++;
-                            }, 0)
+                            _id: passedWords[idx].toString(),
+                            passCount: 2,
+                            failCount: 3
                         });
                     }
                     for (let idx = 0; idx < failedWords.length; idx++) {
                         failedWordsToBeInserted.push({
-                            _id: failedWords[idx],
-                            passCount: passedWords.reduce((acc, val) => {
-                                if (val === failedWords[idx]) return acc++;
-                            }, 0),
-                            failCount: failedWords.reduce((acc, val) => {
-                                if (val === failedWords[idx]) return acc++;
-                            }, 0)
+                            _id: failedWords[idx].toString(),
+                            passCount: 2,
+                            failCount: 3
                         });
                     }
                     User.updateAsync({
