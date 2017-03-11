@@ -18,7 +18,7 @@ const calculateLevel = (score) => {
 };
 
 const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayerData, secondPlayerData) => {
-    let nextQuizIndex = 0;
+    let currentQuizIdx = 0;
     let isFirstPlayerAnswerd = false;
     let isSecondPlayerAnswerd = false;
     let quizStartTime;
@@ -29,17 +29,17 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
         isFirstPlayerAnswerd = false;
         isSecondPlayerAnswerd = false;
 
-        // console.log("==== GAME: " + nextQuizIndex, ' with duration: ' + quizzes[nextQuizIndex].duration);
+        console.log("==== GAME: " + currentQuizIdx, ' with duration: ' + quizzes[currentQuizIdx].duration);
         quizStartTime = new Date();
 
         game.to(room).emit('quiz', {
-            quizId: quizzes[nextQuizIndex]._id
+            quizId: quizzes[currentQuizIdx]._id
         });
 
-        nextQuizIndex++;
+        currentQuizIdx++;
 
-        if (nextQuizIndex <= quizzes.length) {
-            currentTimout = setTimeout(nextQuiz, (quizzes[nextQuizIndex - 1].duration + 1) * 1000)
+        if (nextQuizIndex < quizzes.length) {
+            currentTimout = setTimeout(nextQuiz, (quizzes[currentQuizIdx].duration + 1) * 1000)
         } else {
             redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
                 redisClient.get('score of ' + secondSocket.id, (error, secondPlayerScore) => {
