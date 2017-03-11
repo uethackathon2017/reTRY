@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "adm-zip": "^0.4.7",
+    "async": "^2.1.5",
     "native-base": "^2.0.10",
     "plist": "^2.0.1",
     "react": "15.4.2",

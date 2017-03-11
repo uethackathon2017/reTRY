@@ -89,5 +89,21 @@ export default StyleSheet.create({
     description: {
         flexWrap: 'wrap',
         marginTop: 16
+    },
+
+    levelContainer: {
+        justifyContent: 'flex-start',
+        flexDirection: 'row',
+        alignItems: 'flex-end'
+    },
+
+    level: {
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+
+    starsContainer: {
+        justifyContent: 'flex-start',
+        flexDirection: 'row'
     }
 });
