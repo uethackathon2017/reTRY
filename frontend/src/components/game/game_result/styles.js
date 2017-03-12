@@ -19,24 +19,28 @@ const button = {
 const scoreValue = {
     fontSize: fromTheme.H3_SIZE,
     alignSelf: 'center',
+    ...fromTheme.BG_TRANSPARENT,
 };
 
 const playerName = {
     fontSize: fromTheme.H3_SIZE,
-    marginTop: 10
+    marginTop: 10,
+    ...fromTheme.BG_TRANSPARENT,
 };
 
 const level = {
     fontSize: fromTheme.H5_SIZE,
     marginTop: 5,
     color: 'white',
-
+    ...fromTheme.BG_TRANSPARENT,
 };
 
 export default StyleSheet.create({
     header: {},
 
     container: {
+        width: null,
+        height: null,
         flex: 1,
         flexDirection: 'column',
         backgroundColor: fromTheme.ULTRAMARINE,
@@ -129,5 +133,10 @@ export default StyleSheet.create({
     },
     awardContainer: {
         flex: 0.5
+    },
+
+    title: {
+        ...fromTheme.BG_TRANSPARENT,
+        color: 'white',
     }
 });
