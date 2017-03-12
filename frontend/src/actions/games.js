@@ -82,34 +82,30 @@ export const startFinding = () => (dispatch, getState) => {
 
         clearInterval(currentGameCountDownInterval);
 
+        // switch game
+        const currentGame = getCurrentGame(getState());
+        switch (currentGame.type) {
+            case 'vi_en':
+            case 'en_vi':
+                dispatch(gameNav.navReplaceAt('choose_meaning'));
+                break;
+            case 'missingChar':
+                dispatch(gameNav.navReplaceAt('missing_character'));
+                break;
+            case 'listen':
+                dispatch(gameNav.navReplaceAt('listen'));
+                break;
+            default:
+                return;
+        }
+
         dispatch({
             type: actionTypes.SHOW_GAME,
             id: data.quizId
         });
 
-        // switch game
-        const currentGame = getCurrentGame(getState());
-
-        setTimeout(() => {
-
-            switch (currentGame.type) {
-                case 'vi_en':
-                case 'en_vi':
-                    dispatch(gameNav.navReplaceAt('choose_meaning'));
-                    break;
-                case 'missingChar':
-                    dispatch(gameNav.navReplaceAt('missing_character'));
-                    break;
-                case 'listen':
-                    dispatch(gameNav.navReplaceAt('listen'));
-                    break;
-                default:
-                    return;
-            }
-        }, 0.5);
 
         // Game count down
-
         let gameCountdown = currentGame.duration;
 
         dispatch({
@@ -132,7 +128,6 @@ export const startFinding = () => (dispatch, getState) => {
             })
         }, 1000);
     });
-
 
 
     socket.on('self quiz result', (data) => {

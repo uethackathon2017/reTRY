@@ -44,12 +44,10 @@ class Listen extends Component {
     constructor() {
         super();
         this.state = {
-            downloaded: false,
             playing: false
         };
 
-        this.basePath = RNFS.DocumentDirectoryPath;
-        this.fileName = (new Date()).getTime();
+
     }
 
     _getIcon() {
@@ -62,6 +60,9 @@ class Listen extends Component {
 
     render() {
         const {game, answerKey, rightAnswerKey} = this.props;
+        if (!game) {
+            return <View/>
+        }
 
         return (
             <View style={styles.container}>
@@ -71,14 +72,17 @@ class Listen extends Component {
                             this.setState({
                                 playing: true
                             });
-                            if (this.state.downloaded == false) {
-                                downLoadFile(game.question.audio, this.basePath + "/" +this.fileName)
+
+                               const basePath = RNFS.DocumentDirectoryPath;
+                               const fileName = (new Date()).getTime();
+
+                                downLoadFile(game.question.audio, basePath + "/" +fileName)
                                 .then(des => {
                                     this.setState({
                                         downloaded: true
                                     });
 
-                                    return play(this.fileName, this.basePath)
+                                    return play(fileName, basePath)
                                 })
                                 .then(() => {
 
@@ -99,27 +103,7 @@ class Listen extends Component {
                                         }
                                     ]);
                                 })
-                            } else {
-                                play(this.fileName, this.basePath)
-                                .then(() => {
-                                    this.setState({
-                                        playing: false
-                                    })
-                                })
-                                .catch((error) => {
-                                    this.setState({
-                                        playing: false
-                                    });
-                                    Alert.alert('Error', error.message, [
-                                        {
-                                            text: 'OK',
-                                            onPress: () => {
 
-                                            }
-                                        }
-                                    ]);
-                                })
-                            }
                         }}>
                         <View>
                             {this._getIcon()}
