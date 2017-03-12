@@ -3,7 +3,9 @@ import * as types from '../actions/types';
 const initialState = {
     errorMessage: null,
     words: [],
-    topic: null,
+    topic: {
+        name: null,
+    },
 };
 
 const words = (state = initialState, action) => {

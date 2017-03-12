@@ -62,7 +62,6 @@ export default StyleSheet.create({
     upgradeText: {
         ...fromTheme.BG_TRANSPARENT,
         color: 'white',
-        marginLeft: 10,
     },
 
     upgradeButton: {
