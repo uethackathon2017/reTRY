@@ -204,6 +204,7 @@ module.exports = (game) => {
         User
             .findById(socket.decoded_token._id)
             .lean()
+            .populate('awards')
             .then(user => {
                 if (user) {
                     redisClient.hset(socket.id.toString(), 'userData', JSON.stringify(user));
@@ -218,135 +219,7 @@ module.exports = (game) => {
             });
         socket.on('disconnect', () => {
             console.log('User ' + socket.id.toString() + " disconnected");
-            redisClient.smembers('passed words of ' + socket.id, (err, passedWords) => {
-                redisClient.smembers('failed words of ' + socket.id, (err, failedWords) => {
-                    // passedWords = JSON.parse(passedWords);
-                    // failedWords = JSON.parse(failedWords);
-                    if (passedWords.length || failedWords.length) {
-                        // console.log('Passed words: ' + passedWords.toString());
-                        // console.log('Failed words: ' + failedWords.toString());
-                        // console.log(passedWords.length);
-                        // console.log(failedWords.length);
-                        User.findOneAndUpdate({
-                            _id: socket.decoded_token._id,
-                            'passedWords._id': {
-                                $in: passedWords
-                            }
-                        }, {
-                            $inc: {
-                                'passedWords.count': 1,
-                            }
-                        }, { multi: true })
-                        .then(result => {
-                            console.log('UPDATE PASSED RESULT---- ' + result);
-                            if (!result) {
-                                User.updateAsync({
-                                    _id: socket.decoded_token._id
-                                }, {
-                                    $push: {
-                                        _id: {
-                                            $each: passedWords
-                                        },
-                                        score: 1
-                                    }
-                                }, { multi: true })
-                                .then(result => {
-                                    console.log('UPDATE PASSED RESULT---- ' + result);
-                                });
-                            }
-                            User.findOneAndUpdate({
-                                _id: socket.decoded_token._id,
-                                'failedWords._id': {
-                                    $in: failedWords
-                                }
-                            }, {
-                                $inc: {
-                                    'failedWords.count': 1,
-                                }
-                            }, { multi: true })
-                            .then(result => {
-                                console.log('UPDATE FAILED RESULT---- ' + result);
-                                if (!result) {
-                                    User.updateAsync({
-                                        _id: socket.decoded_token._id
-                                    }, {
-                                        $push: {
-                                            _id: {
-                                                $each: failedWords
-                                            },
-                                            score: 1
-                                        }
-                                    }, { multi: true })
-                                    .then(result => {
-                                        console.log('UPDATE PASSED RESULT---- ' + result);
-                                    });
-                                }
-                            });
-                        })
-                        // passedWords.forEach(word => {
-                        //     User.findOne({
-                        //         _id: socket.decoded_token._id,
-                        //         'passedWords._id': word
-                        //     })
-                        //     .then(user => {
-                        //         if (user) {
-                        //             user.update({
-                        //                 $inc: {
-                        //                     'passedWords.count': 1,
-                        //                 }
-                        //             }).exec();
-                        //         } else {
-                        //             User.update({
-                        //                 _id: socket.decoded_token._id
-                        //             }, {
-                        //                 $push: {
-                        //                     passedWords: {
-                        //                         _id: word,
-                        //                         count: 1
-                        //                     }
-                        //                 }
-                        //             }).exec();
-                        //         }
-                        //     })
-                        //     .catch(err => {
-                        //         if (err) console.log(err);
-                        //     });
-                        // });
-                        // failedWords.forEach(word => {
-                        //     User.findOne({
-                        //         _id: socket.decoded_token._id,
-                        //         'failedWords._id': word
-                        //     })
-                        //     .then(user => {
-                        //         if (user) {
-                        //             User.findOneAndUpdate({
-                        //                 _id: socket.decoded_token._id,
-                        //                 'failedWords._id': word
-                        //             }, {
-                        //                 $inc: {
-                        //                     'failedWords.$.count': 1,
-                        //                 }
-                        //             }).exec();
-                        //         } else {
-                        //             User.update({
-                        //                 _id: socket.decoded_token._id
-                        //             }, {
-                        //                 $push: {
-                        //                     failedWords: {
-                        //                         _id: word,
-                        //                         count: 1
-                        //                     }
-                        //                 }
-                        //             }).exec();
-                        //         }
-                        //     })
-                        .catch(err => {
-                            if (err) console.log(err);
-                        });
-                        // });
-                    }
-                });
-            });
+        
             redisClient.srem('listWaitingPlayers', socket.id, (error) => {
                 if (error) {
                     console.log(error);

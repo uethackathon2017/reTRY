@@ -2,20 +2,11 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
-import {Thumbnail, Card, CardItem, Body, Left, Button, Icon} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import theme, * as fromTheme from '../../theme';
-import * as Progress from 'react-native-progress';
+import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
 import {getWordsByTopic, getTopic} from '../../reducers';
 import {connect} from 'react-redux';
 
-const welcome = require('../../../assets/images/logo.jpg');
 const speakerWord = require('../../../assets/images/speaker_word.png');
-const bird = require('../../../assets/images/membership/bird.png');
-const speaker = require('../../../assets/images/membership/speaker.png');
-const chart = require('../../../assets/images/membership/chart.png');
-
-const screenWidth = fromTheme.screenWidth;
 
 class Word extends Component {
     _getThumbnail() {
