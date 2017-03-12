@@ -41,7 +41,7 @@ class MissingWord extends Component {
                 <View style={styles.answersContainer}>
                     {
                         game.answers.map((answer, index) => {
-                            console.log("INDEX: " + index);
+
                             return (<AnswerCharacter
                                 character={answer.content}
                                 index={index}

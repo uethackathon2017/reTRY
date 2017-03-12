@@ -40,6 +40,26 @@ const AnswerCard = ({answer, answerFunction, index, quizId, answerKey, rightAnsw
 );
 
 class Listen extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+            downloaded: false,
+            playing: false
+        };
+
+        this.basePath = RNFS.DocumentDirectoryPath;
+        this.fileName = (new Date()).getTime();
+    }
+
+    _getIcon() {
+        if (this.state.playing == false) {
+            return  <Icon name="play" style={StyleSheet.flatten(styles.playIcon)}/>
+        } else {
+            return  <Icon name="square" style={StyleSheet.flatten(styles.playIcon)}/>
+        }
+    }
+
     render() {
         const {game, answerKey, rightAnswerKey} = this.props;
 
@@ -48,27 +68,61 @@ class Listen extends Component {
                 <View style={styles.questionContainer}>
                     <TouchableHighlight
                         onPress={() => {
-                            let basePath = RNFS.DocumentDirectoryPath;
-                            let fileName = (new Date()).getTime();
-                            downLoadFile(game.question.audio, basePath + "/" +fileName)
-                            .then(des => play(fileName, basePath))
-                            .then(() => {
-                                console.log("Play OK!");
-                            })
-                            .catch((error) => {
-                                console.log(error);
-                                 Alert.alert('Error', error.message, [
-                                    {
-                                        text: 'OK',
-                                        onPress: () => {
+                            this.setState({
+                                playing: true
+                            });
+                            if (this.state.downloaded == false) {
+                                downLoadFile(game.question.audio, this.basePath + "/" +this.fileName)
+                                .then(des => {
+                                    this.setState({
+                                        downloaded: true
+                                    });
 
+                                    return play(this.fileName, this.basePath)
+                                })
+                                .then(() => {
+
+                                    this.setState({
+                                        playing: false
+                                    })
+                                })
+                                .catch((error) => {
+                                    this.setState({
+                                        playing: false
+                                    });
+                                    Alert.alert('Error', error.message, [
+                                        {
+                                            text: 'OK',
+                                            onPress: () => {
+
+                                            }
                                         }
-                                    }
-                                 ]);
-                            })
+                                    ]);
+                                })
+                            } else {
+                                play(this.fileName, this.basePath)
+                                .then(() => {
+                                    this.setState({
+                                        playing: false
+                                    })
+                                })
+                                .catch((error) => {
+                                    this.setState({
+                                        playing: false
+                                    });
+                                    Alert.alert('Error', error.message, [
+                                        {
+                                            text: 'OK',
+                                            onPress: () => {
+
+                                            }
+                                        }
+                                    ]);
+                                })
+                            }
                         }}>
                         <View>
-                            <Icon name="play" style={StyleSheet.flatten(styles.playIcon)}/>
+                            {this._getIcon()}
                         </View>
                     </TouchableHighlight>
                     <Text style={styles.instruction}>{game.question.description_en}</Text>

@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {Card, Icon, Container, Button, Content, Footer} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import styles, * as fromStyles from './styles';
-import PercentageCircle from 'react-native-percentage-circle';
-import * as fromTheme from '../../../theme';
+import {View, Text, Image, ScrollView} from 'react-native';
+import styles from './styles';
 import TransparentStatusBar from '../../common/TransparentStatusBar';
 import TitleWithBackButton from '../../common/TitleWithBackButton';
 import {connect} from 'react-redux';
@@ -16,35 +12,20 @@ import {
 } from '../../../reducers';
 import {navPushRoute} from '../../../actions/rootNavigation';
 
-const congrats = require('../../../../assets/images/award/congrats.png');
+const award_win = require('../../../../assets/images/award/congrats.png');
+const award_lose = require('../../../../assets/images/award/sad.png');
+const award_draw = require('../../../../assets/images/award/draw.png');
 const background = require('../../../../assets/images/background/item-4-bg.jpg');
 const STATUS_WIN = 1;
 const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
 
-const Avatar = (data) => {
-    if (data && data.pictureURL) {
-        return (<Image style={styles.userAvatarLeft}
+const Avatar = (data, style) => {
+    if (data.pictureURL) {
+        return (<Image style={style}
                        source={{ uri: data.pictureURL }}/>)
     }
-    return (<Image style={styles.userAvatarLeft}/>)
-};
-
-/**
- * @return {string}
- */
-const full_name = (data) => {
-    if (data && data.first_name && data.last_name) {
-        return data.first_name + " " + data.last_name;
-    }
-    return "";
-};
-
-const safe_level = (data) => {
-    if (data && data.level) {
-        return data.level;
-    }
-    return "";
+    return (<Image style={style}/>)
 };
 
 const score = (level) => {
@@ -56,10 +37,6 @@ const level = (score) => {
 };
 
 class GameResult extends Component {
-
-    _pushTo(route) {
-        this.props.navPushRoute(route);
-    }
 
     _getStatus() {
         const {
@@ -95,7 +72,11 @@ class GameResult extends Component {
 
         switch (status) {
             case STATUS_WIN:
-                return (<Image source={congrats} style={styles.awardImage}/>);
+                return (<Image source={award_win} style={styles.awardImage}/>);
+            case STATUS_LOSE:
+                return (<Image source={award_lose} style={styles.awardImage}/>);
+            case STATUS_DRAW:
+                return (<Image source={award_draw} style={styles.awardImage}/>);
             default:
                 return (<Image style={styles.awardImage}/>);
         }
@@ -112,9 +93,6 @@ class GameResult extends Component {
     };
 
     render() {
-
-        console.log(this.props);
-
         const {
             selfScoreAfterGame, opponentScoreAfterGame, selfDataBeforeGame, opponentDataBeforeGame
         } = this.props;
@@ -129,18 +107,18 @@ class GameResult extends Component {
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
                                 <Text style={styles.scoreLeftValue}>{selfScoreAfterGame}</Text>
-                                {Avatar(selfDataBeforeGame)}
+                                {Avatar(selfDataBeforeGame, styles.userAvatarLeft)}
                             </View>
-                            <Text style={styles.playerNameLeft}>{full_name(selfDataBeforeGame)}</Text>
-                            <Text style={styles.levelLeft}>Level {safe_level(selfDataBeforeGame)}</Text>
+                            <Text style={styles.playerNameLeft}>{selfDataBeforeGame.firstName} {selfDataBeforeGame.lastName}</Text>
+                            <Text style={styles.levelLeft}>Level {selfDataBeforeGame.level}</Text>
                         </View>
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
-                                {Avatar(opponentDataBeforeGame)}
+                                {Avatar(opponentDataBeforeGame, styles.userAvatarRight)}
                                 <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
                             </View>
-                            <Text style={styles.playerNameRight}>{full_name(opponentDataBeforeGame)}</Text>
-                            <Text style={styles.levelRight}>Level {safe_level(opponentDataBeforeGame)}</Text>
+                            <Text style={styles.playerNameRight}>{opponentDataBeforeGame.firstName} {opponentDataBeforeGame.lastName}</Text>
+                            <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
                         </View>
                     </View>
                     <View style={styles.levelAndAwardContainer}>
@@ -148,7 +126,7 @@ class GameResult extends Component {
                             {this._getCups()}
                         </View>
 
-                        <View style={styles.levelupContainer}>
+                        {/*<View style={styles.levelupContainer}>
                             <PercentageCircle
                                 radius={50}
                                 percent={this._getProgress()}
@@ -159,7 +137,7 @@ class GameResult extends Component {
                             >
                                 <Text style={styles.title}>Level {level(selfScoreAfterGame)}</Text>
                             </PercentageCircle>
-                        </View>
+                        </View>*/}
                     </View>
                 </ScrollView>
             </Image>
