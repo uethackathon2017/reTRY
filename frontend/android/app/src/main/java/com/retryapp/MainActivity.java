@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import com.facebook.CallbackManager;
 import com.facebook.react.ReactActivity;
+import com.zmxv.RNSound.RNSoundPackage; // <-- New
 
 public class MainActivity extends ReactActivity {
 

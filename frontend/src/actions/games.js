@@ -49,27 +49,10 @@ export const startFinding = () => (dispatch, getState) => {
 
     socket.on('game data', (data) => {
 
-
-        let q = async.queue((task, callback) => {
-            task();
-        });
-
-        q.drain = () => {
-            // all items have been processed
-        };
-
-        data.quizzes.map((quiz) => {
-            if (quiz.type == 'voice') {
-                q.push({}, func)
-            }
-        });
-
         dispatch({
             type: actionTypes.GET_GAME_SUCCESS,
             data: data
         });
-
-
 
         dispatch(navReplaceAt('newWords'));
 
@@ -113,6 +96,9 @@ export const startFinding = () => (dispatch, getState) => {
                 break;
             case 'missingChar':
                 dispatch(gameNav.navReplaceAt('missing_character'));
+                break;
+            case 'listen':
+                dispatch(gameNav.navReplaceAt('listen'));
                 break;
             default:
                 return;
