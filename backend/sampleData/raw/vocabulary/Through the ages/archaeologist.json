@@ -1,0 +1,27 @@
+{
+  "name": "archaeologist",
+  "def": [
+    {
+      "definition": "nhà khảo cổ",
+      "definition_en": "an anthropologist who studies prehistoric people and their culture",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    ",ɑrki'ɑlʌdʒɪst"
+  ],
+  "frequency": 3.19,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/arc/archa/archaeologist__us_1.mp3",
+  "image": "http://science.phillipmartin.info/science_archaeologist.png",
+  "example": [
+    "The archaeologist has just found a dinosaur skeleton in the valley"
+  ]
+}
