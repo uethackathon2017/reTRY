@@ -4,7 +4,7 @@ export const downLoadFile = (url, des) => {
     return new Promise((resolve, reject) => {
 
         const progress = data => {
-            console.log('on process!');
+
             // if (data.statusCode != 200) {
             //     console.log(data.statusCode);
             //     reject(new Error('Down load failed!'));
