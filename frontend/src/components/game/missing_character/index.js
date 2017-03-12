@@ -32,6 +32,9 @@ const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, r
 class MissingWord extends Component {
     render() {
         const {game, answerKey, rightAnswerKey} = this.props;
+        if (!game) {
+            return <View/>
+        }
         return (
             <View style={styles.container}>
                 <View style={styles.questionContainer}>
