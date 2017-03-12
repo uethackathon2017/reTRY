@@ -53,9 +53,14 @@ export default StyleSheet.create({
     },
 
     playerContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+    },
+
+    playContainerTouchable: {
         flex: 0.5,
         marginTop: 20,
-        flexDirection: 'column',
         justifyContent: 'center',
     },
 

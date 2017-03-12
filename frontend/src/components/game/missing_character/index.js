@@ -14,7 +14,7 @@ const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, r
         backgroundColor: setColorForTransparentCard(index, answerKey, rightAnswerKey)
     }]}>
         <TouchableHighlight
-            underlayColor={fromTheme.LINEN}
+            underlayColor="#00000050"
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
@@ -32,6 +32,9 @@ const AnswerCharacter = ({character, answerFunction, quizId, index, answerKey, r
 class MissingWord extends Component {
     render() {
         const {game, answerKey, rightAnswerKey} = this.props;
+        if (!game) {
+            return <View/>
+        }
         return (
             <View style={styles.container}>
                 <View style={styles.questionContainer}>
