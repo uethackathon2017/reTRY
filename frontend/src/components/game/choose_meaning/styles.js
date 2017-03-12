@@ -46,5 +46,6 @@ export default StyleSheet.create({
     instruction: {
         marginTop: 8,
         color: 'white',
+        textAlign: 'center'
     },
 });

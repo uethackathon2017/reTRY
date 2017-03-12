@@ -89,20 +89,24 @@ export const startFinding = () => (dispatch, getState) => {
 
         // switch game
         const currentGame = getCurrentGame(getState());
-        switch (currentGame.type) {
-            case 'vi_en':
-            case 'en_vi':
-                dispatch(gameNav.navReplaceAt('choose_meaning'));
-                break;
-            case 'missingChar':
-                dispatch(gameNav.navReplaceAt('missing_character'));
-                break;
-            case 'listen':
-                dispatch(gameNav.navReplaceAt('listen'));
-                break;
-            default:
-                return;
-        }
+
+        setTimeout(() => {
+
+            switch (currentGame.type) {
+                case 'vi_en':
+                case 'en_vi':
+                    dispatch(gameNav.navReplaceAt('choose_meaning'));
+                    break;
+                case 'missingChar':
+                    dispatch(gameNav.navReplaceAt('missing_character'));
+                    break;
+                case 'listen':
+                    dispatch(gameNav.navReplaceAt('listen'));
+                    break;
+                default:
+                    return;
+            }
+        }, 0.5);
 
         // Game count down
 
