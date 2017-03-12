@@ -4,6 +4,8 @@ import config from '../config';
 import {getAccessToken, getGameIds, getCurrentGame} from '../reducers';
 import {navReplaceAt, navPopRoute, navResetRoute} from './rootNavigation';
 import * as gameNav from './gameNavigation';
+import async from 'async';
+import {downLoadFile} from '../api/download';
 
 export const startFinding = () => (dispatch, getState) => {
     dispatch({
@@ -47,7 +49,20 @@ export const startFinding = () => (dispatch, getState) => {
 
     socket.on('game data', (data) => {
 
-        data.for
+
+        let q = async.queue((task, callback) => {
+            task();
+        });
+
+        q.drain = () => {
+            // all items have been processed
+        };
+
+        data.quizzes.map((quiz) => {
+            if (quiz.type == 'voice') {
+                q.push({}, func)
+            }
+        });
 
         dispatch({
             type: actionTypes.GET_GAME_SUCCESS,

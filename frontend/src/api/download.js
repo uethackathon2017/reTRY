@@ -1,8 +1,6 @@
 import RNFS from 'react-native-fs';
 
-const downLoadFile = (url) => {
-    const des = `${RNFS.DocumentDirectoryPath}/${(new Date()).getTime()}.jpg`;
-
+export const downLoadFile = (url, des) => {
     return new Promise((resolve, reject) => {
 
         const progress = data => {

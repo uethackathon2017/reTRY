@@ -3,7 +3,6 @@ import {getAccessToken} from '../reducers';
 import {topics} from '../api';
 
 export const getTopics = () => (dispatch, getState) => {
-    console.log("getTopic action");
     dispatch({
         type: actions.GET_TOPICS_REQUEST,
     });

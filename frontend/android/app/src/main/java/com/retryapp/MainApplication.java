@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.CallbackManager;
 import com.facebook.react.ReactApplication;
+import com.audioStreaming.ReactNativeAudioStreamingPackage;
 import com.rnfs.RNFSPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.react.ReactNativeHost;
@@ -36,6 +37,7 @@ public class MainApplication extends Application implements ReactApplication {
 
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
+            new ReactNativeAudioStreamingPackage(),
                     new RNFSPackage(),
                     new FBSDKPackage(mCallbackManager)
             );

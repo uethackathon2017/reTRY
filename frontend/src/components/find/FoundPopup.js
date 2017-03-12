@@ -13,7 +13,7 @@ const getStarsForLevel = (level) => {
     let viewArray = [];
 
     for (let i = 0; i < (level - 1)/ 60 + 1; i++) {
-        viewArray.push(<Icon name={"ios-star-outline"}/>);
+        viewArray.push(<Icon name={"ios-star-outline"} key={i} style={{marginLeft: 8}}/>);
     }
 
     return viewArray;
@@ -68,9 +68,14 @@ class FoundPopup extends Component {
                                       numberOfLines={1}
                                       ellipsizeMode='tail'
                                 >{opponent.firstName} {opponent.lastName}</Text>
-                                <Text>Level</Text>
-                                <Text>{opponent.level}</Text>
-                                {getStarsForLevel(opponent.level)}
+                                <View style={styles.levelContainer}>
+                                    <Text>Level</Text>
+                                    <Text style={styles.level}> {opponent.level}</Text>
+                                </View>
+                                <View style={styles.starsContainer}>
+                                    {getStarsForLevel(opponent.level)}
+                                </View>
+
                             </View>
                         </View>
                         <CountDownText/>
