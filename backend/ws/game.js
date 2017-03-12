@@ -429,16 +429,25 @@ module.exports = (game) => {
                         .lean()
                         .then(quizzes => {
                             Quiz.find({ failedWords: { $nin: mixedFailedWords } })
-                                .limit(5 - quizzes.length)
                                 .populate('relatedWords')
                                 .lean()
                                 .then(addedQuizzes => {
                                     let tenQuizzes = quizzes.concat(addedQuizzes);
+                                    let newRandomFiveQuizzes = [];
+                                    let pushedQuizzes = [];
+                                    for (let idx = 0; idx < 5 - quizzes.length; idx++) {
+                                        let randomIdx = Math.floor(Math.random() * addedQuizzes.length);
+                                        while (pushedQuizzes.indexOf(randomIdx) !== -1) {
+                                            randomIdx = Math.floor(Math.random() * addedQuizzes.length);
+                                        }
+                                        pushedQuizzes.push(randomIdx);
+                                        newRandomFiveQuizzes.push(addedQuizzes[randomIdx]);
+                                    }
                                     console.log('QUIZZED GENERATED!!!!!!!!!!');
                                     game.to(room).emit('game data', {
-                                        quizzes: tenQuizzes
+                                        quizzes: newRandomFiveQuizzes
                                     });
-                                    gameControl(game, firstSocket, secondSocket, room, tenQuizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
+                                    gameControl(game, firstSocket, secondSocket, room, newRandomFiveQuizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
                                 });
                         });
                 }, 5000);
