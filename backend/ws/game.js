@@ -60,7 +60,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                         // TODO: Update awards here
                     })
                     .then(result => {
-                        console.log('player 1 result: ' + result);
+                        // console.log('player 1 result: ' + result);
                         let score = parseInt(firstPlayerData.score ? firstPlayerData.score : 0) + parseInt(firstPlayerScore);
                         let level = calculateLevel(score);
                         return User.updateAsync({
@@ -73,7 +73,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
                         });
                     })
                     .then(result => {
-                        console.log('player 2 result: ' + result);
+                        // console.log('player 2 result: ' + result);
                     })
                     .catch(err => {
                         console.log(err);
@@ -105,7 +105,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
             let currentQuizz = quizzes[currentQuizIdx - 1];
-            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
+            // console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -154,7 +154,7 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             if (!currentScore) currentScore = 0;
             else currentScore = parseInt(currentScore);
             let currentQuizz = quizzes[currentQuizIdx - 1];
-            console.log('Current quiz: ' + JSON.stringify(currentQuizz));
+            // console.log('Current quiz: ' + JSON.stringify(currentQuizz));
             if (currentQuizz._id.toString() === quizData._id.toString()) {
                 if (currentQuizz.key === quizData.key) {
                     // Save words which this user has the right answer
@@ -221,10 +221,10 @@ module.exports = (game) => {
                     // passedWords = JSON.parse(passedWords);
                     // failedWords = JSON.parse(failedWords);
                     if (passedWords.length || failedWords.length) {
-                        console.log('Passed words: ' + passedWords.toString());
-                        console.log('Failed words: ' + failedWords.toString());
-                        console.log(passedWords.length);
-                        console.log(failedWords.length);
+                        // console.log('Passed words: ' + passedWords.toString());
+                        // console.log('Failed words: ' + failedWords.toString());
+                        // console.log(passedWords.length);
+                        // console.log(failedWords.length);
                         passedWords.forEach(word => {
                             User.findOne({
                                 _id: socket.decoded_token._id,
@@ -396,36 +396,22 @@ module.exports = (game) => {
                     console.log('mixedFailedWords: ' + mixedFailedWords.toString());
 
                     Quiz.find({ failedWords: { $in: mixedFailedWords } })
+                        .limit(4)
                         .populate('relatedWords')
                         .lean()
                         .then(quizzes => {
-                            if (quizzes.length < 10) {
-                                Quiz.find({}).limit(10 - quizzes.length).populate('relatedWords').lean()
+                            Quiz.find({ failedWords: { $nin: mixedFailedWords } })
+                                .limit(6)
+                                .populate('relatedWords')
+                                .lean()
                                 .then(addedQuizzes => {
-                                    let enough = quizzes.concat(addedQuizzes);
+                                    let tenQuizzes = quizzes.concat(addedQuizzes);
                                     console.log('QUIZZED GENERATED!!!!!!!!!!');
                                     game.to(room).emit('game data', {
-                                        quizzes: enough
+                                        quizzes: tenQuizzes
                                     });
-                                    gameControl(game, firstSocket, secondSocket, room, enough, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
-                                })
-                            } else {
-                                console.log('QUIZZED GENERATED!!!!!!!!!!');
-                                game.to(room).emit('game data', {
-                                    quizzes: quizzes
+                                    gameControl(game, firstSocket, secondSocket, room, tenQuizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
                                 });
-                                gameControl(game, firstSocket, secondSocket, room, quizzes, JSON.parse(firstPlayerInfo.userData), JSON.parse(secondPlayerInfo.userData));
-                            }
-                            // let newRandomTenQuizzes = [];
-                            // let pushedQuizzes = [];
-                            // for (let idx = 0; idx < 10; idx++) {
-                            //     let randomIdx = Math.floor(Math.random() * quizzes.length);
-                            //     while (pushedQuizzes.indexOf(randomIdx) !== -1) {
-                            //         randomIdx = Math.floor(Math.random() * quizzes.length);
-                            //     }
-                            //     pushedQuizzes.push(randomIdx);
-                            //     newRandomTenQuizzes.push(quizzes[randomIdx]);
-                            // }
                         });
                 }, 5000);
 
