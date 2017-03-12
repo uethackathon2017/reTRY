@@ -25,8 +25,6 @@ export const setColorForCard = (index, answerKey, rightAnswerKey) => {
         }
     }
 
-
-    console.log(color);
     return color;
 };
 
