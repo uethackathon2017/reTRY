@@ -104,4 +104,37 @@ userRoutes.push({
   }
 });
 
+
+userRoutes.push({
+  method: 'GET',
+  path: '/users/upgradeToVip',
+  handler: userHandler.upgradeToVip,
+  config: {
+    auth: {
+      mode: 'required',
+      strategies: [ 'jwt' ],
+      access: {
+        scope: [ 'admin', 'common', '+accessToken' ]
+      }
+    },
+    tags: [ 'api', 'users' ],
+    description: 'Upgrade to vip',
+    notes: 'Require access token',
+    validate: {
+      headers: Joi.object({
+        authorization: Joi.string().required().description('Access token')
+      }).required().unknown()
+    },
+    response: {
+      status: {
+        // Response format in case of success
+        200: Joi.object({
+          message: Joi.string().required()
+        }).required(),
+        // TODO: Response format in case of failure
+      }
+    }
+  }
+});
+
 module.exports = userRoutes;

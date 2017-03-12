@@ -9,7 +9,7 @@ const initialState = {
         score: null,
         level: null,
         awards: [],
-        fbLink: null,
+        membership: null,
     },
     shouldGetApi: true,
 };
@@ -38,6 +38,14 @@ const profile = (state = initialState, action) => {
             return {
                 ...state,
                 userData: action.response.userData,
+            };
+        case types.UPGRADE_MEMBERSHIP_SUCCESS:
+            return {
+                ...state,
+                userData: {
+                    ...state.userData,
+                    membership: "vip",
+                }
             };
         default:
             return state

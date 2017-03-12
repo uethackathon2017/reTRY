@@ -11,6 +11,7 @@ import TitleWithLogout from '../common/TitleWithLogout';
 import TitleWithBackButton from '../common/TitleWithBackButton';
 import TransparentStatusBar from '../common/TransparentStatusBar';
 import {Button, Icon} from 'native-base';
+import {navPushRoute} from '../../actions/rootNavigation';
 
 const screenWidth = fromTheme.screenWidth;
 const background = fromTheme.ME_BG_IMG;
@@ -38,12 +39,13 @@ class Me extends Component {
             isCurrentUser, profile
         } = this.props;
 
-        if (isCurrentUser) {
+        if (isCurrentUser && profile.membership === "normal") {
             return (
                 <View style={styles.userNameContainer}>
                     <View style={{flex: 0.3}}></View>
                     <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
-                    <Button light transparent small style={styles.upgradeButton}>
+                    <Button light transparent small style={StyleSheet.flatten(styles.upgradeButton)}
+                            onPress={() => this._pushTo('membership')}>
                         <View style={styles.diamondContainer}>
                             <Image source={diamond} style={styles.diamond}/>
                         </View>
@@ -51,9 +53,26 @@ class Me extends Component {
                     </Button>
                 </View>
             )
-        } else {
+        } else if (!isCurrentUser && profile.membership === "normal") {
             return (<Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>);
+        } else {
+            return (
+                <View style={styles.userNameContainer}>
+                    <View style={{flex: 0.3}}></View>
+                    <Text style={styles.userName}>{profile.firstName} {profile.lastName}</Text>
+                    <View style={styles.upgradeButton}>
+                        <View style={styles.diamondContainer}>
+                            <Image source={diamond} style={styles.diamond}/>
+                        </View>
+                        <Text style={styles.upgradeText}>VIP</Text>
+                    </View>
+                </View>
+            )
         }
+    }
+
+    _pushTo(route) {
+        this.props.navPushRoute(route);
     }
 
     render() {
@@ -117,5 +136,5 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-    getProfileApi
+    getProfileApi, navPushRoute
 })(Me);

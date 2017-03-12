@@ -13,27 +13,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
 
-    titleRow: {
-        width: screenWidth,
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 10,
-        paddingBottom: 10,
-    },
-
-    title: {
-        ...fromTheme.BG_TRANSPARENT,
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        alignSelf: 'center',
-    },
-
-    statusBarBackground: {
-        width: screenWidth,
-        height: fromTheme.STATUSBAR_HEIGHT,
-        // backgroundColor: fromTheme.ULTRAMARINE,
-    },
 
     userAvatar: {
         marginTop: 20,

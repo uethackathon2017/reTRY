@@ -43,9 +43,17 @@ export const topics = (accessToken) => {
     })
 };
 
-export const getVocaboraiesByTopicId = (accessToken, topicId) => {
-    console.log("vocabularies api:")
-    return fetch(config.apiUrl + '/games/getWordsByTopic?topicId=' + topicId, {
+export const wordsByTopic = (accessToken, topic) => {
+    return fetch(config.apiUrl + '/games/getWordsByTopic?topicId=' + topic._id, {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        },
+    })
+};
+
+export const upgradeMembership = (accessToken) => {
+    return fetch(config.apiUrl + '/users/upgradeToVip', {
         method: 'GET',
         headers: {
             authorization: accessToken,

@@ -1,0 +1,29 @@
+{
+  "name": "behaviour",
+  "def": [
+    {
+      "definition": "Hành vi",
+      "definition_en": "(psychology) the aggregate of the responses or reactions or movements made by an organism in any situation",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "manner"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body and The mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "bɪ'heɪvjər"
+  ],
+  "frequency": 4.27,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/b/beh/behav/behaviour__us_1.mp3",
+  "image": "",
+  "example": [
+    "He is always on his best behaviour when communicating with his clients."
+  ]
+}

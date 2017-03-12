@@ -17,6 +17,7 @@ import {
 import {navPushRoute} from '../../../actions/rootNavigation';
 
 const congrats = require('../../../../assets/images/award/congrats.png');
+const background = require('../../../../assets/images/background/item-4-bg.jpg');
 const STATUS_WIN = 1;
 const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
@@ -119,7 +120,7 @@ class GameResult extends Component {
         } = this.props;
 
         return (
-            <Container style={StyleSheet.flatten(styles.container)}>
+            <Image style={styles.container} source={background}>
                 <ScrollView>
                     <TransparentStatusBar/>
                     <TitleWithBackButton title={this._getTitle()}/>
@@ -161,7 +162,7 @@ class GameResult extends Component {
                         </View>
                     </View>
                 </ScrollView>
-            </Container>
+            </Image>
         )
     }
 }

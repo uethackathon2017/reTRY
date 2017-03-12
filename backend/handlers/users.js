@@ -57,5 +57,23 @@ module.exports = {
         console.log(err);
         return reply(new Boom.wrap(err));
       });
+  },
+
+  upgradeToVip: (request, reply) => {
+    User
+      .updateAsync({
+        _id: request.auth.credentials._id
+      }, {
+        $set: { membership: 'vip' }
+      })
+      .then(result => {
+        return reply({
+          message: 'Successfully upgrade to vip member'
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        return reply(new Boom.wrap(err));
+      });
   }
 };
