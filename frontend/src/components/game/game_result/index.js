@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, ScrollView} from 'react-native';
+import {View, Text, Image, ScrollView, TouchableHighlight} from 'react-native';
 import styles from './styles';
 import TransparentStatusBar from '../../common/TransparentStatusBar';
 import TitleWithBackButton from '../../common/TitleWithBackButton';
@@ -11,6 +11,7 @@ import {
     getOpponentDataBeforeGame
 } from '../../../reducers';
 import {navPushRoute} from '../../../actions/rootNavigation';
+import {shouldShowPublicProfile} from '../../../actions/profile';
 
 const award_win = require('../../../../assets/images/award/congrats.png');
 const award_lose = require('../../../../assets/images/award/sad.png');
@@ -37,6 +38,11 @@ const level = (score) => {
 };
 
 class GameResult extends Component {
+
+    _seeOpponent() {
+        this.props.shouldShowPublicProfile(this.props.opponentDataBeforeGame);
+        this.props.navPushRoute('me');
+    }
 
     _getStatus() {
         const {
@@ -112,14 +118,16 @@ class GameResult extends Component {
                             <Text style={styles.playerNameLeft}>{selfDataBeforeGame.firstName} {selfDataBeforeGame.lastName}</Text>
                             <Text style={styles.levelLeft}>Level {selfDataBeforeGame.level}</Text>
                         </View>
-                        <View style={styles.playerContainer}>
-                            <View style={styles.avatarAndScoreContainer}>
-                                {Avatar(opponentDataBeforeGame, styles.userAvatarRight)}
-                                <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
+                        <TouchableHighlight onPress={() => this._seeOpponent()} style={styles.playerContainer} underlayColor="#ffffff50">
+                            <View style={styles.playerContainer}>
+                                <View style={styles.avatarAndScoreContainer}>
+                                    {Avatar(opponentDataBeforeGame, styles.userAvatarRight)}
+                                    <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
+                                </View>
+                                <Text style={styles.playerNameRight}>{opponentDataBeforeGame.firstName} {opponentDataBeforeGame.lastName}</Text>
+                                <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
                             </View>
-                            <Text style={styles.playerNameRight}>{opponentDataBeforeGame.firstName} {opponentDataBeforeGame.lastName}</Text>
-                            <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
-                        </View>
+                        </TouchableHighlight>
                     </View>
                     <View style={styles.levelAndAwardContainer}>
                         <View style={styles.awardContainer}>
@@ -154,4 +162,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {navPushRoute})(GameResult);
+export default connect(mapStateToProps, {navPushRoute, shouldShowPublicProfile})(GameResult);
