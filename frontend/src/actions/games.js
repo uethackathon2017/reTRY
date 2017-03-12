@@ -82,6 +82,11 @@ export const startFinding = () => (dispatch, getState) => {
 
         clearInterval(currentGameCountDownInterval);
 
+        dispatch({
+            type: actionTypes.SHOW_GAME,
+            id: data.quizId
+        });
+
         // switch game
         const currentGame = getCurrentGame(getState());
         switch (currentGame.type) {
@@ -98,12 +103,6 @@ export const startFinding = () => (dispatch, getState) => {
             default:
                 return;
         }
-
-        dispatch({
-            type: actionTypes.SHOW_GAME,
-            id: data.quizId
-        });
-
 
         // Game count down
         let gameCountdown = currentGame.duration;

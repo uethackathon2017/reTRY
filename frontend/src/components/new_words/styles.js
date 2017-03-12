@@ -102,7 +102,7 @@ export default StyleSheet.create({
     meaning: {
         color: fromTheme.DARK_TEXT,
         textAlign: 'center',
-        fontSize: 12
+        fontSize: 18
     },
 
     definition: {
