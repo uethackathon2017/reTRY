@@ -1,0 +1,29 @@
+{
+  "name": "acquire",
+  "def": [
+    {
+      "definition": "Thu được, đạt được",
+      "definition_en": "come to have or undergo a change of (physical features and attributes)",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "obtain"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body, the mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'kwaɪər"
+  ],
+  "frequency": 3.43,
+  "audio": "",
+  "image": "",
+  "example": [
+    "The young player acquired a reputation for scoring 2 goals for his team in the final."
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "evidence",
+  "def": [
+    {
+      "definition": "bằng chứng",
+      "definition_en": "your basis for belief or disbelief; knowledge on which to base belief",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ɛvɪdəns"
+  ],
+  "frequency": 4.86,
+  "audio": "",
+  "image": "",
+  "example": [
+    "His trembling was evidence of his fear"
+  ]
+}

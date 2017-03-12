@@ -1,0 +1,27 @@
+{
+  "name": "century",
+  "def": [
+    {
+      "definition": "thế kỷ",
+      "definition_en": "a period of 100 years",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'sɛntʃəri"
+  ],
+  "frequency": 4.53,
+  "audio": "",
+  "image": "",
+  "example": [
+    "My grandfather turned 100 years old tody. He has lived for a whole century"
+  ]
+}

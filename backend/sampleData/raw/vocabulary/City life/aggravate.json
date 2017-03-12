@@ -1,0 +1,29 @@
+{
+  "name": "aggravate",
+  "def": [
+    {
+      "definition": "làm trầm trọng thêm",
+      "definition_en": "exasperate or irritate",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "worsen"
+  ],
+  "antonyms": [],
+  "topics": [
+    "City life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ægrə,veɪt"
+  ],
+  "frequency": 2.68,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/agg/aggra/aggravate__us_1.mp3",
+  "image": "http://www.hello-world.com/images/vocabulary/V375.png",
+  "example": [
+    "I don't need his help. He would do nothing but aggravate the situation."
+  ]
+}

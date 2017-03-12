@@ -1,0 +1,31 @@
+{
+  "name": "adolescent",
+  "def": [
+    {
+      "definition": "Thanh niên",
+      "definition_en": "a juvenile between the onset of puberty and maturity",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "stripling",
+    "teen",
+    "teenager"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body, the mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    ",æd'əlɛsənt"
+  ],
+  "frequency": 3.26,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Adolescents tend to be very competitive. They always want to be better than the others."
+  ]
+}

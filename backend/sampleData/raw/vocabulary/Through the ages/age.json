@@ -1,0 +1,29 @@
+{
+  "name": "age",
+  "def": [
+    {
+      "definition": "Thời đại",
+      "definition_en": "a prolonged period of time",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "period"
+  ],
+  "antonyms": [],
+  "topics": [
+    "Through the ages"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "eɪdʒ"
+  ],
+  "frequency": 5.06,
+  "audio": "",
+  "image": "",
+  "example": [
+    "Weapons have become more and more powerful through the ages"
+  ]
+}
