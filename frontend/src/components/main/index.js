@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Image, View, Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {connect} from 'react-redux';
 import {actions} from 'react-native-navigation-redux-helpers';
-import {Container, Icon} from 'native-base';
+import {Container, Icon,Toast} from 'native-base';
 import {navPushRoute} from '../../actions/rootNavigation';
 import {clearProfile} from '../../actions/profile';
 import TransparentStatusBar from '../common/TransparentStatusBar';
@@ -22,6 +22,14 @@ class Main extends Component {  //eslint-disable-line
 
     _pushTo(route) {
         this.props.navPushRoute(route);
+    }
+
+    componentDidMount() {
+        Toast.show({
+            text: 'Hello',
+            position: 'bottom',
+            buttonText: 'OK'
+        })
     }
 
     render() {
