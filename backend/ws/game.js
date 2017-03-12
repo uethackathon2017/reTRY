@@ -225,67 +225,93 @@ module.exports = (game) => {
                         // console.log('Failed words: ' + failedWords.toString());
                         // console.log(passedWords.length);
                         // console.log(failedWords.length);
-                        passedWords.forEach(word => {
-                            User.findOne({
+                        User.findOneAndUpdate({
+                            _id: socket.decoded_token._id,
+                            passedWords: {
+                                $in: passedWords
+                            }
+                        }, {
+                            $inc: {
+                                'passedWords.count': 1,
+                            }
+                        }, { upsert: true, multi: true})
+                        .then(result => {
+                            console.log('UPDATE PASSED RESULT---- ' + result);
+                            User.findOneAndUpdate({
                                 _id: socket.decoded_token._id,
-                                'passedWords._id': word
-                            })
-                            .then(user => {
-                                if (user) {
-                                    user.update({
-                                        $inc: {
-                                            'passedWords.count': 1,
-                                        }
-                                    }).exec();
-                                } else {
-                                    User.update({
-                                        _id: socket.decoded_token._id
-                                    }, {
-                                        $push: {
-                                            passedWords: {
-                                                _id: word,
-                                                count: 1
-                                            }
-                                        }
-                                    }).exec();
+                                failedWords: {
+                                    $in: failedWords
                                 }
-                            })
-                            .catch(err => {
-                                if (err) console.log(err);
-                            });
-                        });
-                        failedWords.forEach(word => {
-                            User.findOne({
-                                _id: socket.decoded_token._id,
-                                'failedWords._id': word
-                            })
-                            .then(user => {
-                                if (user) {
-                                    User.findOneAndUpdate({
-                                        _id: socket.decoded_token._id,
-                                        'failedWords._id': word
-                                    }, {
-                                        $inc: {
-                                            'failedWords.$.count': 1,
-                                        }
-                                    }).exec();
-                                } else {
-                                    User.update({
-                                        _id: socket.decoded_token._id
-                                    }, {
-                                        $push: {
-                                            failedWords: {
-                                                _id: word,
-                                                count: 1
-                                            }
-                                        }
-                                    }).exec();
+                            }, {
+                                $inc: {
+                                    'failedWords.count': 1,
                                 }
-                            })
-                            .catch(err => {
-                                if (err) console.log(err);
+                            }, { upsert: true, multi: true})
+                            .then(result => {
+                                console.log('UPDATE FAILED RESULT---- ' + result);
                             });
+                        })
+                        // passedWords.forEach(word => {
+                        //     User.findOne({
+                        //         _id: socket.decoded_token._id,
+                        //         'passedWords._id': word
+                        //     })
+                        //     .then(user => {
+                        //         if (user) {
+                        //             user.update({
+                        //                 $inc: {
+                        //                     'passedWords.count': 1,
+                        //                 }
+                        //             }).exec();
+                        //         } else {
+                        //             User.update({
+                        //                 _id: socket.decoded_token._id
+                        //             }, {
+                        //                 $push: {
+                        //                     passedWords: {
+                        //                         _id: word,
+                        //                         count: 1
+                        //                     }
+                        //                 }
+                        //             }).exec();
+                        //         }
+                        //     })
+                        //     .catch(err => {
+                        //         if (err) console.log(err);
+                        //     });
+                        // });
+                        // failedWords.forEach(word => {
+                        //     User.findOne({
+                        //         _id: socket.decoded_token._id,
+                        //         'failedWords._id': word
+                        //     })
+                        //     .then(user => {
+                        //         if (user) {
+                        //             User.findOneAndUpdate({
+                        //                 _id: socket.decoded_token._id,
+                        //                 'failedWords._id': word
+                        //             }, {
+                        //                 $inc: {
+                        //                     'failedWords.$.count': 1,
+                        //                 }
+                        //             }).exec();
+                        //         } else {
+                        //             User.update({
+                        //                 _id: socket.decoded_token._id
+                        //             }, {
+                        //                 $push: {
+                        //                     failedWords: {
+                        //                         _id: word,
+                        //                         count: 1
+                        //                     }
+                        //                 }
+                        //             }).exec();
+                        //         }
+                        //     })
+                        .catch(err => {
+                            if (err) console.log(err);
                         });
+                        // });
                     }
                 });
             });
