@@ -23,28 +23,11 @@ const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
 
 const Avatar = (data) => {
-    if (data && data.pictureURL) {
+    if (data.pictureURL) {
         return (<Image style={styles.userAvatarLeft}
                        source={{ uri: data.pictureURL }}/>)
     }
     return (<Image style={styles.userAvatarLeft}/>)
-};
-
-/**
- * @return {string}
- */
-const full_name = (data) => {
-    if (data && data.first_name && data.last_name) {
-        return data.first_name + " " + data.last_name;
-    }
-    return "";
-};
-
-const safe_level = (data) => {
-    if (data && data.level) {
-        return data.level;
-    }
-    return "";
 };
 
 const score = (level) => {
@@ -131,16 +114,16 @@ class GameResult extends Component {
                                 <Text style={styles.scoreLeftValue}>{selfScoreAfterGame}</Text>
                                 {Avatar(selfDataBeforeGame)}
                             </View>
-                            <Text style={styles.playerNameLeft}>{full_name(selfDataBeforeGame)}</Text>
-                            <Text style={styles.levelLeft}>Level {safe_level(selfDataBeforeGame)}</Text>
+                            <Text style={styles.playerNameLeft}>{selfDataBeforeGame.first_name} {selfDataBeforeGame.last_name}</Text>
+                            <Text style={styles.levelLeft}>Level {selfDataBeforeGame.level}</Text>
                         </View>
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
                                 {Avatar(opponentDataBeforeGame)}
                                 <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
                             </View>
-                            <Text style={styles.playerNameRight}>{full_name(opponentDataBeforeGame)}</Text>
-                            <Text style={styles.levelRight}>Level {safe_level(opponentDataBeforeGame)}</Text>
+                            <Text style={styles.playerNameRight}>{opponentDataBeforeGame.first_name} {opponentDataBeforeGame.last_name}</Text>
+                            <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
                         </View>
                     </View>
                     <View style={styles.levelAndAwardContainer}>
@@ -148,7 +131,7 @@ class GameResult extends Component {
                             {this._getCups()}
                         </View>
 
-                        <View style={styles.levelupContainer}>
+                        {/*<View style={styles.levelupContainer}>
                             <PercentageCircle
                                 radius={50}
                                 percent={this._getProgress()}
@@ -159,7 +142,7 @@ class GameResult extends Component {
                             >
                                 <Text style={styles.title}>Level {level(selfScoreAfterGame)}</Text>
                             </PercentageCircle>
-                        </View>
+                        </View>*/}
                     </View>
                 </ScrollView>
             </Image>

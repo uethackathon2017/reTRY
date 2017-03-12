@@ -107,15 +107,11 @@ export const startFinding = () => (dispatch, getState) => {
         // Game count down
 
         let gameCountdown = currentGame.duration;
-        console.log("=== DURATION: " + gameCountdown);
-
 
         dispatch({
             type: actionTypes.GAME_COUNT_DOWN,
             countDown: gameCountdown
         });
-
-        console.log("=== DURATION: " + gameCountdown);
 
         currentGameCountDownInterval = setInterval(() => {
             if (gameCountdown === 0) {
