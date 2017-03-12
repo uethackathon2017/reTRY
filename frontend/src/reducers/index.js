@@ -8,6 +8,7 @@ import games, * as fromGames from './games';
 import profile, * as fromProfile from './profile';
 import leaders, * as fromLeaders from './leaders';
 import topics, * as fromTopics from './topics';
+import words, * as fromWords from './words';
 
 export default combineReducers({
     rootNavigation,
@@ -18,6 +19,7 @@ export default combineReducers({
     profile,
     leaders,
     topics,
+    words,
 });
 
 
@@ -237,7 +239,7 @@ export const getOpponentScoreAfterGame = (state) => {
  */
 export const getsSelfDataBeforeGame = (state) => {
     return fromGames.getsSelfDataBeforeGame(state.games);
-}
+};
 
 /**
  * get opponennt data before game
@@ -256,6 +258,12 @@ export const getCurrentGameIndexOverTotal = (state) => {
     return fromGames.getCurrentGameIndexOverTotal(state.games);
 };
 
-export const getVocabularyByTopic = (state) => {
-    return fromTopics.getVocabularyByTopic(state.topic);
+export const getWordsByTopic = (state) => {
+    console.log("getWordsByTopic: ");
+    console.log(state);
+    return fromWords.getWordsByTopic(state.words);
+};
+
+export const getTopic = (state) => {
+    return fromWords.getTopic(state.words);
 };
