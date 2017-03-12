@@ -44,6 +44,8 @@ const gameControl = (game, firstSocket, secondSocket, room, quizzes, firstPlayer
             setTimeout(() => {
                 redisClient.get('score of ' + firstSocket.id, (error, firstPlayerScore) => {
                 redisClient.get('score of ' + secondSocket.id, (error, secondPlayerScore) => {
+                    firstPlayerScore = firstPlayerScore ? firstPlayerScore : 0;
+                    secondPlayerScore = secondPlayerScore ? secondPlayerScore : 0;
                     firstSocket.emit('game end', { selfScore: firstPlayerScore, opponentScore: secondPlayerScore, selfData: firstPlayerData, opponentData: secondPlayerData });
                     secondSocket.emit('game end', { selfScore: secondPlayerScore, opponentScore: firstPlayerScore, selfData: secondPlayerData, opponentData: firstPlayerData });             
                     // TODO: Save result of two players
@@ -422,12 +424,12 @@ module.exports = (game) => {
                     console.log('mixedFailedWords: ' + mixedFailedWords.toString());
 
                     Quiz.find({ failedWords: { $in: mixedFailedWords } })
-                        .limit(4)
+                        .limit(2)
                         .populate('relatedWords')
                         .lean()
                         .then(quizzes => {
                             Quiz.find({ failedWords: { $nin: mixedFailedWords } })
-                                .limit(6)
+                                .limit(5 - quizzes.length)
                                 .populate('relatedWords')
                                 .lean()
                                 .then(addedQuizzes => {

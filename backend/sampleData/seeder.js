@@ -235,7 +235,7 @@ mongoInit(err => {
                     topics: result[idx].topics,
                     relatedWords: [result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id],
                     type: 'listen',
-                    duration: 10
+                    duration: 15
                 };
                 quizBulk.push(listenQuizType1);
                 let listenQuizType2 = {
@@ -260,7 +260,7 @@ mongoInit(err => {
                     topics: result[idx].topics,
                     relatedWords: [result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id],
                     type: 'listen',
-                    duration: 5
+                    duration: 15
                 };
                 quizBulk.push(listenQuizType2);
             }
