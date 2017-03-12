@@ -19,7 +19,7 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
           key={answer._id.toString()}
     >
         <TouchableHighlight
-            underlayColor={fromTheme.LINEN}
+            underlayColor="#00000050"
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);
@@ -47,7 +47,7 @@ const EnViAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
           key={answer._id.toString()}
     >
         <TouchableHighlight
-            underlayColor={fromTheme.LINEN}
+            underlayColor="#00000050"
             onPress={() => {
                 if (answerKey == -1) {
                      answerFunction(quizId, index);

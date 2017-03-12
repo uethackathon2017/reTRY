@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
-import {Button, Icon} from 'native-base';
+import { Text} from 'react-native';
+import {Button} from 'native-base';
 import {connect} from 'react-redux';
 import {logout} from '../../actions/login'
-import {navPopRoute, navReplaceAt, navResetRoute} from '../../actions/rootNavigation'
+import { navResetRoute} from '../../actions/rootNavigation'
 
 class BackButton extends Component {
     _logout() {
