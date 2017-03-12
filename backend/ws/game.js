@@ -239,6 +239,21 @@ module.exports = (game) => {
                         }, { multi: true })
                         .then(result => {
                             console.log('UPDATE PASSED RESULT---- ' + result);
+                            if (!result) {
+                                User.updateAsync({
+                                    _id: socket.decoded_token._id
+                                }, {
+                                    $push: {
+                                        _id: {
+                                            $each: passedWords
+                                        },
+                                        score: 1
+                                    }
+                                }, { multi: true })
+                                .then(result => {
+                                    console.log('UPDATE PASSED RESULT---- ' + result);
+                                });
+                            }
                             User.findOneAndUpdate({
                                 _id: socket.decoded_token._id,
                                 'failedWords._id': {
@@ -251,6 +266,21 @@ module.exports = (game) => {
                             }, { multi: true })
                             .then(result => {
                                 console.log('UPDATE FAILED RESULT---- ' + result);
+                                if (!result) {
+                                    User.updateAsync({
+                                        _id: socket.decoded_token._id
+                                    }, {
+                                        $push: {
+                                            _id: {
+                                                $each: failedWords
+                                            },
+                                            score: 1
+                                        }
+                                    }, { multi: true })
+                                    .then(result => {
+                                        console.log('UPDATE PASSED RESULT---- ' + result);
+                                    });
+                                }
                             });
                         })
                         // passedWords.forEach(word => {
