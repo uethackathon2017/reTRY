@@ -1,0 +1,29 @@
+{
+  "name": "basic",
+  "def": [
+    {
+      "definition": "cơ bản",
+      "definition_en": "reduced to the simplest and most significant form possible without loss of generality",
+      "pos": "adj"
+    }
+  ],
+  "synonyms": [
+    "fundamental"
+  ],
+  "antonyms": [],
+  "topics": [
+    "City life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'beɪsɪk"
+  ],
+  "frequency": 4.22,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/b/bas/basic/basic__us_2.mp3",
+  "image": "http://combiboilersleeds.com/images/basic/basic-9.jpg",
+  "example": [
+    "Using cash is the basic kind of payment in Vietnam."
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "adjust",
+  "def": [
+    {
+      "definition": "điều chỉnh",
+      "definition_en": "adapt or conform oneself to new or different conditions",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "modify"
+  ],
+  "antonyms": [],
+  "topics": [
+    "City life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'dʒəst"
+  ],
+  "frequency": 3.77,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/adj/adjus/adjust__us_1.mp3",
+  "image": "http://combiboilersleeds.com/images/adjust/adjust-6.jpg",
+  "example": [
+    "He askes them to adjust the position of the wardrobe so that the room can look bigger."
+  ]
+}

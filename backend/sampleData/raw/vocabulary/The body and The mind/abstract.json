@@ -1,0 +1,31 @@
+{
+  "name": "abstract",
+  "def": [
+    {
+      "definition": "Trừu tượng",
+      "definition_en": "a sketchy summary of the main points of an argument or theory",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "outline",
+    "precis",
+    "synopsis"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body and The mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'æb,strækt"
+  ],
+  "frequency": 3.46,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/abs/abstr/abstract__us_1.mp3",
+  "image": "http://combiboilersleeds.com/images/abstract/abstract-5.jpg",
+  "example": [
+    "Pablo Picasso is very well-known for his abstract art."
+  ]
+}

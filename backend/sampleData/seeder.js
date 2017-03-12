@@ -112,7 +112,7 @@ mongoInit(err => {
             console.log(result.length + ' word(s) inserted!');
             console.log('Importing quizzes...');
             let quizBulk = [];
-            for (let idx = 0; idx < result.length - 4; idx++) {
+            for (let idx = 0; idx < result.length - 3; idx += 2) {
                 let viEnQuiz = {
                     question: {
                         content: result[idx].def[0].definition,
@@ -213,6 +213,56 @@ mongoInit(err => {
                     duration: 5
                 };
                 quizBulk.push(missingCharQuiz);
+                let listenQuizType1 = {
+                    question: {
+                        content: result[idx].name,
+                        pronounce: result[idx].pronunciation,
+                        pos: result[idx].def[0].pos,
+                        image: result[idx].image,
+                        audio: result[idx].audio,
+                        description_vi: 'Lắng nghe và chọn nghĩa thích hợp của từ',
+                        description_en: 'Listen to the given word and choose one of the following definitions'
+                    },
+                    answers: [
+                        {content: result[idx + 1].def[0].definition},
+                        {content: result[idx + 2].def[0].definition},
+                        {content: result[idx + 3].def[0].definition},
+                        {content: result[idx].def[0].definition}
+                    ],
+                    key: 3,
+                    targets: result[idx].targets,
+                    complexity: 1 / result[idx].frequency,
+                    topics: result[idx].topics,
+                    relatedWords: [result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id],
+                    type: 'listen',
+                    duration: 10
+                };
+                quizBulk.push(listenQuizType1);
+                let listenQuizType2 = {
+                    question: {
+                        content: result[idx].name,
+                        pronounce: result[idx].pronunciation,
+                        pos: result[idx].def[0].pos,
+                        image: result[idx].image,
+                        audio: result[idx].audio,
+                        description_vi: 'Lắng nghe và chọn từ thích hợp',
+                        description_en: 'Listen and choose the correct word'
+                    },
+                    answers: [
+                        {content: result[idx + 1].name, pronounce: result[idx + 1].pronunciation, pos: result[idx + 1].def[0].pos, audio: result[idx + 1].audio, image: result[idx + 1].image},
+                        {content: result[idx + 2].name, pronounce: result[idx + 2].pronunciation, pos: result[idx + 2].def[0].pos, audio: result[idx + 2].audio, image: result[idx + 2].image},
+                        {content: result[idx + 3].name, pronounce: result[idx + 3].pronunciation, pos: result[idx + 3].def[0].pos, audio: result[idx + 3].audio, image: result[idx + 3].image},
+                        {content: result[idx].name, pronounce: result[idx].pronunciation, pos: result[idx].def[0].pos, audio: result[idx].audio, image: result[idx].image},
+                    ],
+                    key: 3,
+                    targets: result[idx].targets,
+                    complexity: 1 / result[idx].frequency,
+                    topics: result[idx].topics,
+                    relatedWords: [result[idx]._id, result[idx + 1]._id, result[idx + 2]._id, result[idx + 3]._id],
+                    type: 'listen',
+                    duration: 5
+                };
+                quizBulk.push(listenQuizType2);
             }
             return Quiz.insertManyAsync(quizBulk);
         })

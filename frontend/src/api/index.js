@@ -51,3 +51,12 @@ export const wordsByTopic = (accessToken, topic) => {
         },
     })
 };
+
+export const upgradeMembership = (accessToken) => {
+    return fetch(config.apiUrl + '/users/upgradeToVip', {
+        method: 'GET',
+        headers: {
+            authorization: accessToken,
+        },
+    })
+};

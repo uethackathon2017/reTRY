@@ -1,8 +1,8 @@
 // Danh sách các từ hay sai
-import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableHighlight, Image } from 'react-native';
+import React, {Component} from 'react';
+import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
-import { Thumbnail, Card, CardItem, Body, Left, Button, Icon } from 'native-base';
+import {Thumbnail, Card, CardItem, Body, Left, Button, Icon} from 'native-base';
 import CacheableImage from 'react-native-cacheable-image';
 import theme, * as fromTheme from '../../theme';
 import * as Progress from 'react-native-progress';
@@ -24,7 +24,7 @@ class Word extends Component {
         } = this.props;
 
         if (word.image) {
-            return (<Thumbnail source={{uri: word.image}} />)
+            return (<Thumbnail source={{uri: word.image}}/>)
         } else {
             return (<Thumbnail/>)
         }
@@ -65,19 +65,22 @@ class Word extends Component {
                     <Left>
                         {this._getThumbnail()}
                         <Body >
-                            <View style={{ flexDirection: 'column' }}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={{ flex: 0.8 }}>
-                                        <Text style={styles.achievementTitle}>{word.name}</Text>
-                                        <Text style={styles.achievementpronunciation}>{this._getPronunciation()}</Text>
-                                        <Text style={styles.achievementNote} note>{this._getDescription()}</Text>
-                                    </View>
-                                    <View style={{ flex: 0.2 }}>
-                                        <Image style={styles.imageSpeaker} source={speakerWord} />
-                                    </View>
+                        <View style={{ flexDirection: 'column' }}>
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flex: 0.8 }}>
+                                    <Text style={styles.achievementTitle}>{word.name}</Text>
+                                    <Text style={styles.achievementpronunciation}>{this._getPronunciation()}</Text>
+                                    <Text style={styles.achievementNote} note>{this._getDescription()}</Text>
                                 </View>
-
+                                <View style={{flex: 0.2}}>
+                                    <TouchableHighlight style={{ height: 38 }} onPress={() => {}}
+                                                        underlayColor="#00000050">
+                                        <Image style={styles.imageSpeaker} source={speakerWord}/>
+                                    </TouchableHighlight>
+                                </View>
                             </View>
+
+                        </View>
                         </Body>
                     </Left>
                 </CardItem>
@@ -93,7 +96,7 @@ class WordList extends Component {
             words
         } = this.props;
 
-        return words.map(word => (<Word word={word}/>))
+        return words.map(word => (<Word word={word} key={word._id}/>))
     }
 
     render() {
@@ -112,6 +115,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {
-
-})(WordList);
+export default connect(mapStateToProps, {})(WordList);

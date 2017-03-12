@@ -259,8 +259,6 @@ export const getCurrentGameIndexOverTotal = (state) => {
 };
 
 export const getWordsByTopic = (state) => {
-    console.log("getWordsByTopic: ");
-    console.log(state);
     return fromWords.getWordsByTopic(state.words);
 };
 

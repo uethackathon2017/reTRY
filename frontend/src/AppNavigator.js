@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { BackAndroid, StatusBar, NavigationExperimental, View } from 'react-native';
-import { connect } from 'react-redux';
-import { actions } from 'react-native-navigation-redux-helpers';
+import React, {Component} from 'react';
+import {BackAndroid, StatusBar, NavigationExperimental, View} from 'react-native';
+import {connect} from 'react-redux';
+import {actions} from 'react-native-navigation-redux-helpers';
 
 import MainPage from './components/main';
 import LoginPage from './components/login';
@@ -15,8 +15,9 @@ import TopicPage from './components/topic';
 import FriendPage from './components/friend';
 import MembershipPage from './components/membership';
 import WordListPage from './components/words_list';
+import ListenPage from './components/game/listen';
 
-const { popRoute, } = actions;
+const {popRoute,} = actions;
 
 const {
     CardStack: NavigationCardStack,
@@ -71,6 +72,7 @@ class AppNavigator extends Component {
                 return <MembershipPage />;
             case 'wordList':
                 return <WordListPage />;
+
             default:
                 return <MainPage />;
         }

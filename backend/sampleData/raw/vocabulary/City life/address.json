@@ -1,0 +1,30 @@
+{
+  "name": "address",
+  "def": [
+    {
+      "definition": "địa chỉ",
+      "definition_en": "Written directions for finding some location; written on letters or packages that are to be delivered to that location",
+      "pos": "n"
+    }
+  ],
+  "synonyms": [
+    "destination",
+    "name and address"
+  ],
+  "antonyms": [],
+  "topics": [
+    "City life"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "'ədrɛs"
+  ],
+  "frequency": 4.76,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/add/addre/address__us_1.mp3",
+  "image": "https://4.imimg.com/data4/RF/BD/MY-979637/address-verification-service-500x500.png",
+  "example": [
+    "I still cannot find Jack's house although I have his address."
+  ]
+}

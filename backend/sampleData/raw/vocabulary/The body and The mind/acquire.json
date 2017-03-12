@@ -1,0 +1,29 @@
+{
+  "name": "acquire",
+  "def": [
+    {
+      "definition": "Thu được, đạt được",
+      "definition_en": "come to have or undergo a change of (physical features and attributes)",
+      "pos": "v"
+    }
+  ],
+  "synonyms": [
+    "obtain"
+  ],
+  "antonyms": [],
+  "topics": [
+    "The body and The mind"
+  ],
+  "targets": [
+    "IELTS"
+  ],
+  "pronunciation": [
+    "ə'kwaɪər"
+  ],
+  "frequency": 3.43,
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/a/acq/acqui/acquire__us_1.mp3",
+  "image": "http://combiboilersleeds.com/images/acquire/acquire-5.jpg",
+  "example": [
+    "The young player acquired a reputation for scoring 2 goals for his team in the final."
+  ]
+}
