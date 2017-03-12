@@ -34,7 +34,6 @@ const ViEnAnswerCard = ({answer, answerFunction, index, quizId, answerKey, right
             </Text>
         </TouchableHighlight>
     </Card>
-
 );
 
 const EnViAnswerCard = ({answer, answerFunction, index, quizId, answerKey, rightAnswerKey}) => (
@@ -71,10 +70,6 @@ class ChooseMeaning extends Component {
     render() {
 
         const {game, answerKey, rightAnswerKey} = this.props;
-
-        console.log("================= PROPS============");
-        console.log(this.props);
-
 
         if (game.type === 'vi_en') {
             return (

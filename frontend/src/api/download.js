@@ -4,9 +4,13 @@ export const downLoadFile = (url, des) => {
     return new Promise((resolve, reject) => {
 
         const progress = data => {
-            if (data.statusCode != 200) {
-                reject(new Error('Down load failed!'));
-            }
+            console.log('on process!');
+            // if (data.statusCode != 200) {
+            //     console.log(data.statusCode);
+            //     reject(new Error('Down load failed!'));
+            // }
+
+            console.log(data.bytesWritten + "/" + data.contentLength);
 
             if (data.bytesWritten == data.contentLength) {
                 return resolve(des);
@@ -19,7 +23,7 @@ export const downLoadFile = (url, des) => {
             begin: null,
             progress: progress,
             background: null,
-            progressDivider: 10
+            progressDivider: 1
         });
     })
 };
