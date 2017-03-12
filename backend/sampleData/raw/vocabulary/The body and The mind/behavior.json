@@ -1,5 +1,5 @@
 {
-  "name": "behavior",
+  "name": "behaviour",
   "def": [
     {
       "definition": "Hành vi",
@@ -12,7 +12,7 @@
   ],
   "antonyms": [],
   "topics": [
-    "The body, the mind"
+    "The body and The mind"
   ],
   "targets": [
     "IELTS"
@@ -21,7 +21,7 @@
     "bɪ'heɪvjər"
   ],
   "frequency": 4.27,
-  "audio": "",
+  "audio": "http://www.oxfordlearnersdictionaries.com/media/english/us_pron/b/beh/behav/behaviour__us_1.mp3",
   "image": "",
   "example": [
     "He is always on his best behaviour when communicating with his clients."
