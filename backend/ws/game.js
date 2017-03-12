@@ -227,7 +227,7 @@ module.exports = (game) => {
                         // console.log(failedWords.length);
                         User.findOneAndUpdate({
                             _id: socket.decoded_token._id,
-                            passedWords: {
+                            'passedWords._id': {
                                 $in: passedWords
                             }
                         }, {
@@ -239,7 +239,7 @@ module.exports = (game) => {
                             console.log('UPDATE PASSED RESULT---- ' + result);
                             User.findOneAndUpdate({
                                 _id: socket.decoded_token._id,
-                                failedWords: {
+                                'failedWords._id': {
                                     $in: failedWords
                                 }
                             }, {
