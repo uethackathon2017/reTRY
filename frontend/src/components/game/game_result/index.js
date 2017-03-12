@@ -16,7 +16,9 @@ import {
 } from '../../../reducers';
 import {navPushRoute} from '../../../actions/rootNavigation';
 
-const congrats = require('../../../../assets/images/award/congrats.png');
+const award_win = require('../../../../assets/images/award/congrats.png');
+const award_lose = require('../../../../assets/images/award/sad.png');
+const award_draw = require('../../../../assets/images/award/draw.png');
 const background = require('../../../../assets/images/background/item-4-bg.jpg');
 const STATUS_WIN = 1;
 const STATUS_LOSE = -1;
@@ -78,7 +80,11 @@ class GameResult extends Component {
 
         switch (status) {
             case STATUS_WIN:
-                return (<Image source={congrats} style={styles.awardImage}/>);
+                return (<Image source={award_win} style={styles.awardImage}/>);
+            case STATUS_LOSE:
+                return (<Image source={award_lose} style={styles.awardImage}/>);
+            case STATUS_DRAW:
+                return (<Image source={award_draw} style={styles.awardImage}/>);
             default:
                 return (<Image style={styles.awardImage}/>);
         }
@@ -95,9 +101,6 @@ class GameResult extends Component {
     };
 
     render() {
-
-        console.log(this.props);
-
         const {
             selfScoreAfterGame, opponentScoreAfterGame, selfDataBeforeGame, opponentDataBeforeGame
         } = this.props;

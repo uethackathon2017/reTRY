@@ -17,6 +17,14 @@ const screenWidth = fromTheme.screenWidth;
 const background = fromTheme.ME_BG_IMG;
 const diamond = require('../../../assets/images/diamond.png');
 
+const score = (level) => {
+    return (level - 1) * 30;
+};
+
+const level = (score) => {
+    return score / 30 + 1;
+};
+
 class Me extends Component {
     componentDidMount() {
         this.props.getProfileApi();
@@ -75,18 +83,28 @@ class Me extends Component {
         this.props.navPushRoute(route);
     }
 
+    _getProgressBar() {
+        const {
+            profile
+        } = this.props;
+
+        if (profile.score && profile.level) {
+            return (<Progress.Bar progress={(profile.score - score(profile.level))/30.0}
+                                  color={fromTheme.YELLOW} height={16}
+                                  width={(screenWidth - 20)*0.8 - 10}/>)
+        } else {
+            return (<Progress.Bar indeterminate={true}
+                                  color={fromTheme.YELLOW} height={16}
+                                  width={(screenWidth - 20)*0.8 - 10}/>)
+        }
+    }
+
     render() {
         const {
             profile
         } = this.props;
 
-        const score = (level) => {
-            return (level - 1) * 30;
-        };
 
-        const level = (score) => {
-            return score / 30 + 1;
-        };
 
         return (
             <Image style={StyleSheet.flatten(styles.container)} source={background}>
@@ -101,9 +119,7 @@ class Me extends Component {
                         <View style={styles.userLevelProgressContainer}>
                             <Text style={styles.userLevel}>Level {profile.level}</Text>
                             <View style={styles.userLevelProgress}>
-                                <Progress.Bar progress={(profile.score - score(profile.level))/30.0}
-                                              color={fromTheme.YELLOW} height={16}
-                                              width={(screenWidth - 20)*0.8 - 10}/>
+                                {this._getProgressBar()}
                             </View>
                             <Text style={styles.userLevel}>Level {profile.level + 1}</Text>
                         </View>
