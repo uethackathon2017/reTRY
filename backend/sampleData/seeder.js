@@ -112,7 +112,7 @@ mongoInit(err => {
             console.log(result.length + ' word(s) inserted!');
             console.log('Importing quizzes...');
             let quizBulk = [];
-            for (let idx = 0; idx < result.length - 4; idx += 4) {
+            for (let idx = 0; idx < result.length - 2; idx += 2) {
                 let viEnQuiz = {
                     question: {
                         content: result[idx].def[0].definition,
