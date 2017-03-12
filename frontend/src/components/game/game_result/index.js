@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
-import {Card, Icon, Container, Button, Content, Footer} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import styles, * as fromStyles from './styles';
-import PercentageCircle from 'react-native-percentage-circle';
-import * as fromTheme from '../../../theme';
+import {View, Text, Image, ScrollView} from 'react-native';
+import styles from './styles';
 import TransparentStatusBar from '../../common/TransparentStatusBar';
 import TitleWithBackButton from '../../common/TitleWithBackButton';
 import {connect} from 'react-redux';
@@ -24,12 +20,12 @@ const STATUS_WIN = 1;
 const STATUS_LOSE = -1;
 const STATUS_DRAW = 0;
 
-const Avatar = (data) => {
+const Avatar = (data, style) => {
     if (data.pictureURL) {
-        return (<Image style={styles.userAvatarLeft}
+        return (<Image style={style}
                        source={{ uri: data.pictureURL }}/>)
     }
-    return (<Image style={styles.userAvatarLeft}/>)
+    return (<Image style={style}/>)
 };
 
 const score = (level) => {
@@ -41,10 +37,6 @@ const level = (score) => {
 };
 
 class GameResult extends Component {
-
-    _pushTo(route) {
-        this.props.navPushRoute(route);
-    }
 
     _getStatus() {
         const {
@@ -115,17 +107,17 @@ class GameResult extends Component {
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
                                 <Text style={styles.scoreLeftValue}>{selfScoreAfterGame}</Text>
-                                {Avatar(selfDataBeforeGame)}
+                                {Avatar(selfDataBeforeGame, styles.userAvatarLeft)}
                             </View>
-                            <Text style={styles.playerNameLeft}>{selfDataBeforeGame.first_name} {selfDataBeforeGame.last_name}</Text>
+                            <Text style={styles.playerNameLeft}>{selfDataBeforeGame.firstName} {selfDataBeforeGame.lastName}</Text>
                             <Text style={styles.levelLeft}>Level {selfDataBeforeGame.level}</Text>
                         </View>
                         <View style={styles.playerContainer}>
                             <View style={styles.avatarAndScoreContainer}>
-                                {Avatar(opponentDataBeforeGame)}
+                                {Avatar(opponentDataBeforeGame, styles.userAvatarRight)}
                                 <Text style={styles.scoreRightValue}>{opponentScoreAfterGame}</Text>
                             </View>
-                            <Text style={styles.playerNameRight}>{opponentDataBeforeGame.first_name} {opponentDataBeforeGame.last_name}</Text>
+                            <Text style={styles.playerNameRight}>{opponentDataBeforeGame.firstName} {opponentDataBeforeGame.lastName}</Text>
                             <Text style={styles.levelRight}>Level {opponentDataBeforeGame.level}</Text>
                         </View>
                     </View>

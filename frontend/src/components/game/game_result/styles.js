@@ -1,14 +1,11 @@
 import {StyleSheet} from 'react-native';
 import * as fromTheme from '../../../theme';
 
-const screenWidth = fromTheme.screenWidth;
-const screenHeight = fromTheme.screenHeight;
-
 const userAvatar = {
     width: 80,
     height: 80,
     borderRadius: 40,
-    borderWidth: 5,
+    borderWidth: 3,
     alignSelf: 'center',
 };
 
@@ -48,7 +45,7 @@ export default StyleSheet.create({
 
     awardImage: {
         marginTop: 10,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
     playersContainer: {
         // flex: 1,

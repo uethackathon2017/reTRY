@@ -1,10 +1,8 @@
 // Danh sách các từ hay sai
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, ScrollView, TouchableHighlight, Image} from 'react-native';
+import {Text, View, ScrollView, TouchableHighlight, Image} from 'react-native';
 import styles from './styles';
-import {Thumbnail, Card, CardItem, Body, Left} from 'native-base';
-import CacheableImage from 'react-native-cacheable-image';
-import theme, * as fromTheme from '../../theme';
+import * as fromTheme from '../../theme';
 import {getTopics} from '../../reducers';
 import {connect} from 'react-redux';
 import {getTopics as getTopicsApi} from '../../actions/topics';
@@ -14,13 +12,6 @@ import {getWordsByTopicApi} from '../../actions/words';
 const defaultIcon = require('../../../assets/images/logo.jpg');
 
 class TopicCard extends Component {
-
-    static propTypes = {
-        reset: React.PropTypes.func,
-        navigation: React.PropTypes.shape({
-            key: React.PropTypes.string,
-        }),
-    };
 
     _pushTo(route, topic) {
         this.props.navPushRoute(route);
@@ -32,8 +23,8 @@ class TopicCard extends Component {
             topic
         } = this.props;
 
-        if (topic.imageURL) {
-            return (<Image style={styles.topicIcon} source={{uri: topic.imageURL}}/>)
+        if (topic.image) {
+            return (<Image style={styles.topicIcon} source={{uri: topic.image}}/>)
         } else {
             return (<Image style={styles.topicIcon} source={defaultIcon}/>)
         }
