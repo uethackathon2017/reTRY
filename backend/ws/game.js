@@ -204,6 +204,7 @@ module.exports = (game) => {
         User
             .findById(socket.decoded_token._id)
             .lean()
+            .populate('awards')
             .then(user => {
                 if (user) {
                     redisClient.hset(socket.id.toString(), 'userData', JSON.stringify(user));
