@@ -96,13 +96,13 @@ export default StyleSheet.create({
     wordType: {
         fontStyle: 'italic',
         color: fromTheme.DARK_TEXT,
-        fontSize: 12
+        fontSize: 24
     },
 
     meaning: {
         color: fromTheme.DARK_TEXT,
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 24
     },
 
     definition: {
