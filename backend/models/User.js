@@ -39,6 +39,12 @@ let UserSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Award'
     }],
+    membership: {
+        type: String,
+        enum: [ 'normal', 'vip' ],
+        default: 'normal',
+        require: 'true'
+    },
     failedWords: [{
         _id: {
             type: mongoose.Schema.Types.ObjectId,
