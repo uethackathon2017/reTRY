@@ -236,7 +236,7 @@ module.exports = (game) => {
                             $inc: {
                                 'passedWords.count': 1,
                             }
-                        }, { upsert: true, multi: true})
+                        }, { multi: true })
                         .then(result => {
                             console.log('UPDATE PASSED RESULT---- ' + result);
                             User.findOneAndUpdate({
@@ -248,7 +248,7 @@ module.exports = (game) => {
                                 $inc: {
                                     'failedWords.count': 1,
                                 }
-                            }, { upsert: true, multi: true})
+                            }, { multi: true })
                             .then(result => {
                                 console.log('UPDATE FAILED RESULT---- ' + result);
                             });
